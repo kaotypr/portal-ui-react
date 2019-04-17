@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
@@ -172,4 +173,7 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(DashboardStyles)(Dashboard);
+const swrapped_with_styles = withStyles(DashboardStyles)(Dashboard);
+const wrapped_withRouter_app = withRouter(swrapped_with_styles)
+
+export default wrapped_withRouter_app
