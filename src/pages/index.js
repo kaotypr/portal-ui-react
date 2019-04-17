@@ -1,3 +1,5 @@
+// App first load
+import Appload from './Pages/Appload';
 // Home
 import Home from './Home/Home';
 
@@ -73,6 +75,7 @@ import TextFields from './Material/text-fields';
 import Tooltips from './Material/tooltips';
 
 export {
+  Appload,
   Home,
   Calendar,
   Chat,

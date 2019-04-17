@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import Signin from './pages/Authentication/Signin'
 import Dashboard from './containers/Dashboard'
-import AppLoader from './containers/Apploader'
+import { Appload } from './pages'
 import Aux from './hoc/Aux'
 import * as actions from './stores/actions'
 
@@ -24,7 +24,7 @@ class App extends Component {
     const checked = this.props.checked // is authenticating proccess has done ? #default false , set to true after first checked neither auth success or not
     const isAuthenticated = this.props.isAuth // is user authenticated ? #default false
     // condition on first time mount, before componentDidMount
-    let NextComponent = <AppLoader/>
+    let NextComponent = <Appload/>
     // condition on authenticated & has been checked & app has been mounted for load AppLoader 
     if (isAuthenticated && checked && this.state.mounted) {
       NextComponent = <Dashboard/>
