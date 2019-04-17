@@ -1,59 +1,136 @@
 import * as _act from '../../constants/actionType'
-import { updateObject } from '../../utils/utility'
 
-const initialState = {
-  loading: false,
-  checked: false,
-  userId: false,
-  token: false,
-  refreshToken: null,
-  expiresIn: 0,
-  error: null,
-  redirectPath: '/'
-}
+import axios from 'axios'
 
-const authStart = state => {
-  return updateObject(state, {loading: true})
-}
-
-const authLogout = state => {
-  return updateObject(state, {...initialState, checked: true})
-}
-
-const authSuccess = (state, payload) => {
-  return updateObject(state, {
-    loading: false,
-    checked: true,
-    userId: payload.userId,
-    token: payload.token,
-    refreshToken: payload.refreshToken,
-    expiresIn: parseInt(payload.expiresIn, 10) / 100,
-    error: null
-  })
-}
-
-const authFail = (state, error) => {
-  if (error.response === undefined) {
-    return 
+const loginSuccess = (responseData) => {
+  const expiresToken = new Date(new Date().getTime() + parseInt(responseData.expiresIn, 10) * 1000)
+  localStorage.setItem('token', responseData.token)
+  localStorage.setItem('userId', responseData.userId)
+  localStorage.setItem('expirationTime', expiresToken)
+  localStorage.setItem('refreshToken', responseData.refreshToken)
+  return {
+    type: _act.AUTH_SUCCESS,
+    payload: responseData
   }
-  return updateObject(state, {loading: false, error: error.response.data.error, checked: true})
 }
 
-const setRedirectPath = (state, pathname) => {
-  return updateObject(state, {redirectPath: pathname})
-}
-
-const authenticationReducer = (state = initialState, action) => {
-
-  switch (action.type) {
-    case _act.AUTH_START: return authStart(state)
-    case _act.AUTH_SUCCESS: return authSuccess(state, action.payload)
-    case _act.AUTH_FAIL: return authFail(state, action.error)
-    case _act.AUTH_LOGOUT: return authLogout(state)
-    case _act.SET_REDIRECT_AUTH_PATH: return setRedirectPath(state, action.pathname)
-    default: return state
+const registerSuccess = (responseData) => {
+  const expiresToken = new Date(new Date().getTime() + parseInt(responseData.expiresIn, 10) * 1000)
+  localStorage.setItem('token', responseData.token)
+  localStorage.setItem('userId', responseData.userId)
+  localStorage.setItem('expirationTime', expiresToken)
+  localStorage.setItem('refreshToken', responseData.refreshToken)
+  return {
+    type: _act.AUTH_SUCCESS,
+    payload: responseData
   }
-
 }
 
-export default authenticationReducer
+const checkAuthTimeout = (expirationTime) => {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(authLogout())
+    }, parseInt(expirationTime, 10) * 1000)
+  }
+}
+
+export const authLogout = () => {
+  localStorage.removeItem('expirationTime')
+  localStorage.removeItem('token')
+  localStorage.removeItem('userId')
+  return {
+    type: _act.AUTH_LOGOUT
+  }
+}
+
+const authFail = (error) => {
+  return {
+    type: _act.AUTH_FAIL,
+    error: error
+  }
+}
+
+const authStart = () => {
+  return {
+    type: _act.AUTH_START
+  }
+}
+
+export const setRedirectAuthPath = (pathname) => {
+  return {
+    type: _act.SET_REDIRECT_AUTH_PATH,
+    pathname: pathname
+  }
+}
+
+export const authLogin = (authData, identifier) => {
+  return dispatch => {
+    const payload = {
+      identifier: identifier,
+      username: authData.username,
+      email: authData.email,
+      password: authData.password,
+      remember: authData.remember // to get userId token and refreshToken for re-extend expires Time login session 
+    }
+
+    // const appkey = 'AIzaSyCBi-ufC3_K13zVlMYZj7_7lzIZ3hRFgzM'
+    let url = 'http://localhost:5000/api/auth/login'
+    
+    dispatch(authStart(authData))
+
+    axios.post(url, payload)
+      .then(response => {
+        dispatch(loginSuccess(response.data))
+        dispatch(checkAuthTimeout(response.data.expiresIn))
+      })
+      .catch(error => {
+        dispatch(authFail(error))
+      })
+  }
+}
+
+export const authRegister = authData => {
+  return dispatch => {
+    const payload = {
+      username: authData.username,
+      email: authData.email,
+      password: authData.password
+    }
+
+    let url = 'http://localhost:5000/api/auth/register'
+    
+    dispatch(authStart())
+
+    axios.post(url, payload)
+      .then(response => {
+        dispatch(registerSuccess(response.data))        
+      })
+      .catch(error => {
+        dispatch(authFail(error))
+      })
+  }
+}
+
+export const authCheckState = () => {
+  return dispatch => {
+    const token = localStorage.getItem('token')
+    const refreshToken = localStorage.getItem('refreshToken')
+
+    dispatch(authStart())
+
+    if (token) {
+      const expirationTime = new Date(localStorage.getItem('expirationTime'))
+      const expiresIn = (expirationTime.getTime() - new Date().getTime()) / 1000
+      if (expirationTime <= new Date()) {
+        dispatch(authLogout())
+      } else {
+        const userId = localStorage.getItem('userId')
+        dispatch(loginSuccess({token: token, expiresIn: expiresIn, userId: userId, idToken: token, refreshToken: refreshToken}))
+        dispatch(checkAuthTimeout(expiresIn))
+      }
+    } else {
+      dispatch(authLogout())
+    }
+
+  }
+}
