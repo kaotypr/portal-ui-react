@@ -8,7 +8,7 @@ import thunk from 'redux-thunk'
 import AppProvider from './components/AppProvider/AppProvider';
 
 // import Dashboard from './containers/Dashboard';
-import { NotFound, BackendError, Appload } from './pages';
+import { NotFound, BackendError } from './pages';
 
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './stores/reducers'
@@ -38,9 +38,9 @@ render(
         <Switch>
           <Route exact path="/404" component={NotFound} />
           <Route exact path="/500" component={BackendError} />
-          <Route exact path="/loading" component={Appload} />
           <App />
           {/* 
+          <Route exact path="/loading" component={Appload} />
           <Route exact path="/404" component={NotFound} />
           <Route exact path="/500" component={BackendError} />
           <Route exact path="/Lockscreen" component={Lockscreen} />

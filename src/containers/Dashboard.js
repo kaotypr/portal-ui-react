@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
@@ -173,7 +174,15 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = state => {
+  return {
+    userAccessRoutes: state.user.accessRoutes,
+    username: state.user.name,
+  }
+}
+
 const swrapped_with_styles = withStyles(DashboardStyles)(Dashboard);
-const wrapped_withRouter_app = withRouter(swrapped_with_styles)
+const wrapped_connect_app = connect(mapStateToProps)(swrapped_with_styles)
+const wrapped_withRouter_app = withRouter(wrapped_connect_app)
 
 export default wrapped_withRouter_app
