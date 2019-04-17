@@ -1,146 +1,69 @@
+import * as _act from '../../constants/actionType'
+import { updateObject } from '../../utils/utility'
+
 const initialState = {
   name: 'Kaoなし',
-  navigations: [
+  accessRoutes: [
     { 
-      route: '/images', 
-      name: 'images', 
-      icon: 'images', 
-      text: 'Images',
+      path: '/', 
       nested: false
     },
     { 
-      route: '/records', 
-      name: 'records', 
-      icon: 'microphone', 
-      text: 'Recordings',
+      path: '/asdasdasd', 
       nested: false
     },
     { 
-      route: '/gifts', 
-      name: 'gifts', 
-      icon: 'gift', 
-      text: 'Gift',
-      nested: false
-    },
-    { 
-      route: '/trashes', 
-      name: 'trashes', 
-      icon: 'trash', 
-      text: 'Trash',
-      nested: false
-    },
-    { 
-      route: '/charts', 
-      name: 'charts', 
-      icon: 'chart pie', 
-      text: 'Charts',
-      nested: false
-    },
-    { 
-      route: '/arts', 
-      name: 'arts', 
-      icon: 'paper plane', 
-      text: 'Arts',
-      nested: false
-    },
-    { 
-      route: '#books', 
-      name: 'books', 
-      icon: 'book', 
-      text: 'Book',
+      path: '/apps', 
       nested: true,
       childs: [
         {
-          route: '/books/horror', 
-          name: 'books__horror', 
-          icon: 'freebsd', 
-          text: 'Horror',
+          path: '/calendar', 
           nested: false
         },
         {
-          route: '#booksromance', 
-          name: 'books__romance', 
-          icon: 'like', 
-          text: 'Romance',
-          nested: true,
-          childs: [
-            {
-              route: '/books/romance/sad', 
-              name: 'books__romance__sad', 
-              icon: 'frown', 
-              text: 'Sad Ending',
-              nested: false
-            },
-            {
-              route: '/books/romance/happy', 
-              name: 'books__romance__happy', 
-              icon: 'smile', 
-              text: 'Happy Ending',
-              nested: false
-            },  
-          ]
+          path: '/media', 
+          nested: false
         },
         {
-          route: '/books/fiction', 
-          name: 'books__fiction', 
-          icon: 'studiovinari', 
-          text: 'Fiction',
+          path: '/chat', 
           nested: false
         },
       ] 
     },
     { 
-      route: '#videos', 
-      name: 'videos', 
-      icon: 'video', 
-      text: 'Videos',
+      path: '/pages', 
       nested: true,
       childs: [
         {
-          route: '/videos/horror', 
-          name: 'books__horror', 
-          icon: 'freebsd', 
-          text: '18++',
-          nested: false
+          path: '/invoice',
+          nested: false,
         },
         {
-          route: '/videos/anime', 
-          name: 'books__anime', 
-          icon: 'studiovinari', 
-          text: 'Animes',
-          nested: false
+          path: '/timeline',
+          nested: false,
         },
         {
-          route: '#videosromance', 
-          name: 'books__romance', 
-          icon: 'like', 
-          text: 'Romance',
-          nested: true,
-          childs: [
-            {
-              route: '/videos/romance/sad', 
-              name: 'books__romance__sad', 
-              icon: 'frown', 
-              text: 'Sad Ending',
-              nested: false
-            },
-            {
-              route: '/videos/romance/happy', 
-              name: 'books__romance__happy', 
-              icon: 'smile', 
-              text: 'Happy Ending',
-              nested: false
-            },  
-          ]
+          path: '/blank',
+          nested: false,
+        },
+        {
+          path: '/pricing',
+          nested: false,
         },
       ]
     }
   ]
 }
 
+const authSuccess = (state, payload) => {
+  return updateObject(state, {
+    ...state // it should be the payload.user, payload.accessRoutes Change with the new result from backend api LATER!
+  })
+}
+
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'example': return state
+    case _act.AUTH_SUCCESS: return authSuccess(state, action.payload)
     default: return state
   }
 }
