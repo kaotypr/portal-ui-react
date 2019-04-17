@@ -20,7 +20,7 @@ const PasswordReset = (props) => {
             <CardContent>
               <form>
                 <div className="text-xs-center pb-xs">
-                  <img src="/static/images/logo-dark.svg" alt=""/>
+                  <img src="/static/images/logo.png" alt=""/>
                   <Typography variant="caption">Enter your email and we'll send you instructions on how to reset your password.</Typography>
                 </div>
                 <TextField

@@ -22,7 +22,7 @@ const Signup = (props) => {
             <CardContent>
               <form>
                 <div className="text-xs-center pb-xs">
-                  <img src="/static/images/logo-dark.svg" alt=""/>
+                  <img src="/static/images/logo-dark.png" alt=""/>
                   <Typography variant="caption">Create an app id to continue.</Typography>
                 </div>
                 <TextField

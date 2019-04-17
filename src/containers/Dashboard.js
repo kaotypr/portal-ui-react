@@ -133,8 +133,8 @@ class Dashboard extends Component {
     return (
       <Fragment>
         <Header
-          logoAltText="Primer Admin Template"
-          logo={`/static/images/logo.svg`}
+          logoAltText="KYC Portal"
+          logo={`/static/images/logo.png`}
           toggleDrawer={this.handleDrawerToggle}
           toogleNotifications={this.handleNotificationToggle}
           toggleFullscreen={this.handleFullscreenToggle}
