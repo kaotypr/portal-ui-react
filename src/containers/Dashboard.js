@@ -98,16 +98,34 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, userAccessRoutes, username } = this.props;
     const { opened, notificationsOpen, openSpeedDial } = this.state;
-
+    let filteredRoutes = []
+    userAccessRoutes.forEach(allowed => {
+      const selection = routes.items.find(perroutes => perroutes.path === allowed.path)
+      if (selection !== undefined) {
+        filteredRoutes.push(selection)
+      }
+      const selectionchildren = []
+      if ((allowed.nested === true && allowed["childs"] !== undefined) && selection["children"] !== undefined) {
+        allowed.childs.forEach(allowedchild => {
+          let foundchild = selection.children.find(perchildroutes => perchildroutes.path === allowedchild.path)
+          if (foundchild !== undefined) {
+            selectionchildren.push(foundchild)
+          }
+        });
+        selection["children"] = selectionchildren
+      }
+    });
+    console.log(username)
     const getRoutes = (
       <Switch>
-        { routes.items.map((item, index) => (
-          item.type === 'external' ? <Route exact path={item.path} component={item.component} name={item.name} key={index} />:
-          item.type === 'submenu' ? item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />):
-          <Route exact path={item.path} component={item.component} name={item.name} key={index} />
-        ))}
+        { filteredRoutes.map((item, index) => (
+            item.type === 'external' ? <Route exact path={item.path} component={item.component} name={item.name} key={index} />:
+            item.type === 'submenu' ? item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />):
+            <Route exact path={item.path} component={item.component} name={item.name} key={index} />
+          ))
+        }
         <Redirect to="/404" />
       </Switch>
     )
@@ -123,7 +141,7 @@ class Dashboard extends Component {
         />
         <div className={classNames(classes.panel, 'theme-dark')}>
           <Sidebar
-            routes={routes.items}
+            routes={filteredRoutes}
             opened={opened}
             toggleDrawer={this.handleDrawerToggle}
           />
