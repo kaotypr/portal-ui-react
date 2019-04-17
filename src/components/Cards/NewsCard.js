@@ -11,11 +11,11 @@ import Avatar from '@material-ui/core/Avatar';
 import WidgetStyles from '../../styles/Widget';
 
 const NewsCard = (props) => {
-  const { classes, feed, subtitle } = props;
+  const { classes, feed, subtitle, title } = props;
   return (
     <Card>
       <CardHeader
-        title="Newsfeed"
+        title={title}
         subheader={subtitle}
       />
       <Divider />

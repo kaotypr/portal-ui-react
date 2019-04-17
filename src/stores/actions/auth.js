@@ -66,14 +66,11 @@ export const setRedirectAuthPath = (pathname) => {
 export const authLogin = (authData, identifier) => {
   return dispatch => {
     const payload = {
-      identifier: identifier,
       username: authData.username,
-      email: authData.email,
       password: authData.password,
       remember: authData.remember // to get userId token and refreshToken for re-extend expires Time login session 
     }
 
-    // const appkey = 'AIzaSyCBi-ufC3_K13zVlMYZj7_7lzIZ3hRFgzM'
     let url = 'http://localhost:5000/api/auth/login'
     
     dispatch(authStart(authData))
