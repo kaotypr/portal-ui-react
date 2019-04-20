@@ -1,3 +1,3 @@
-const APP_BASENAME = ''
+const APP_BASENAME = 'portal'
 
 export default APP_BASENAME

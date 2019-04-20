@@ -8,7 +8,14 @@ import thunk from 'redux-thunk'
 import AppProvider from './components/AppProvider/AppProvider';
 
 // import Dashboard from './containers/Dashboard';
-import { NotFound, BackendError } from './pages';
+import { 
+  NotFound, 
+  BackendError, 
+  Signin, 
+  Signup, 
+  PasswordReset, 
+  Lockscreen 
+} from './pages';
 
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './stores/reducers'
@@ -36,19 +43,13 @@ render(
     <Provider store={store}>
       <BrowserRouter basename={AppBasename}>
         <Switch>
-          <Route exact path="/404" component={NotFound} />
-          <Route exact path="/500" component={BackendError} />
-          <App />
-          {/* 
-          <Route exact path="/loading" component={Appload} />
-          <Route exact path="/404" component={NotFound} />
-          <Route exact path="/500" component={BackendError} />
-          <Route exact path="/Lockscreen" component={Lockscreen} />
-          <Route exact path="/forgot" component={PasswordReset} />
+          <Route exact path="/" component={App} />
+          <Route exact path="/error" component={BackendError} />
           <Route exact path="/signin" component={Signin} />
           <Route exact path="/signup" component={Signup} />
-          <Route path="/" component={Dashboard} /> 
-          */}
+          <Route exact path="/forgot" component={PasswordReset} />
+          <Route exact path="/lockscreen" component={Lockscreen} />
+          <Route exact path="*" component={NotFound} />
         </Switch>
       </BrowserRouter>
     </Provider>

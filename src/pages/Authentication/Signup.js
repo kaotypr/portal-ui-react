@@ -22,15 +22,24 @@ const Signup = (props) => {
             <CardContent>
               <form>
                 <div className="text-xs-center pb-xs">
-                  <img src="/static/images/logo-dark.png" alt=""/>
+                  <img src="/static/images/logo.png" alt=""/>
                   <Typography variant="caption">Create an app id to continue.</Typography>
                 </div>
+                <TextField
+                  id="username"
+                  label="Username"
+                  className={classes.textField}
+                  fullWidth
+                  margin="normal"
+                  autoComplete="off"
+                />
                 <TextField
                   id="email"
                   label="Email address"
                   className={classes.textField}
                   fullWidth
                   margin="normal"
+                  autoComplete="off"
                 />
                 <TextField
                   id="password"
@@ -39,6 +48,7 @@ const Signup = (props) => {
                   type="password"
                   fullWidth
                   margin="normal"
+                  autoComplete="off"
                 />
                 <TextField
                   id="cpassword"
@@ -47,6 +57,7 @@ const Signup = (props) => {
                   type="password"
                   fullWidth
                   margin="normal"
+                  autoComplete="off"
                 />
                 <FormControlLabel
                   control={

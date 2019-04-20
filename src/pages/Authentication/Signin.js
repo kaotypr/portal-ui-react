@@ -22,7 +22,7 @@ const Signin = (props) => {
             <CardContent>
               <form>
                 <div className="text-xs-center pb-xs">
-                  <img src="/static/images/logo-dark.png" alt=""/>
+                  <img src="/static/images/logo.png" alt=""/>
                   <Typography variant="caption">Sign in with your app id to continue.</Typography>
                 </div>
                 <TextField
