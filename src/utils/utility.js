@@ -159,3 +159,20 @@ export const ucFirst = (string) => {
 export const implode = (pieces, glue) => {
   return pieces.join(glue)
 }
+
+/**
+ * 
+ * @param {String} email email string 
+ * @return {Boolean} is it true on email format or not 
+ */
+export const validateEmail = (email) => {
+  var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+/**
+ *  @param {String} passwd inputted password string 
+ *  @param {String} cpasswd inputted confimation password string 
+ *  @return {Boolean} is password match or not 
+ */
+export const passwordMatch = (passwd, cpasswd) => passwd === cpasswd 
