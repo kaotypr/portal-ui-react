@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -14,7 +15,7 @@ import {
   Signin, 
   Signup, 
   PasswordReset, 
-  Lockscreen 
+  Lockscreen,
 } from './pages';
 
 import registerServiceWorker from './registerServiceWorker';
@@ -38,9 +39,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const enhancher = composeEnhancers(applyMiddleware(logger, thunk))
 const store = createStore(rootReducer, enhancher)
 
-render(
-  <AppProvider>
-    <Provider store={store}>
+const app = (
+  <Provider store={store}>
+    <AppProvider>
       <BrowserRouter basename={AppBasename}>
         <Switch>
           <Route exact path="/" component={App} />
@@ -52,8 +53,9 @@ render(
           <Route exact path="*" component={NotFound} />
         </Switch>
       </BrowserRouter>
-    </Provider>
-  </AppProvider>
-, document.getElementById('root'));
+    </AppProvider>
+  </Provider>);
+
+ReactDOM.render(app, document.getElementById('root'));
 
 registerServiceWorker();
