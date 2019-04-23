@@ -14,18 +14,6 @@ const loginSuccess = (responseData) => {
   }
 }
 
-const registerSuccess = (responseData) => {
-  const expiresToken = new Date(new Date().getTime() + parseInt(responseData.expiresIn, 10) * 1000)
-  localStorage.setItem('token', responseData.token)
-  localStorage.setItem('userId', responseData.userId)
-  localStorage.setItem('expirationTime', expiresToken)
-  localStorage.setItem('refreshToken', responseData.refreshToken)
-  return {
-    type: _act.AUTH_SUCCESS,
-    payload: responseData
-  }
-}
-
 const checkAuthTimeout = (expirationTime) => {
   return dispatch => {
     setTimeout(() => {
@@ -71,7 +59,7 @@ export const authLogin = (authData, identifier) => {
       remember: authData.remember // to get userId token and refreshToken for re-extend expires Time login session 
     }
 
-    let url = 'http://localhost:5000/api/auth/login'
+    let url = `${process.env.REACT_APP_PORTAL_API}/signin`
     
     dispatch(authStart(authData))
 
@@ -79,28 +67,6 @@ export const authLogin = (authData, identifier) => {
       .then(response => {
         dispatch(loginSuccess(response.data))
         dispatch(checkAuthTimeout(response.data.expiresIn))
-      })
-      .catch(error => {
-        dispatch(authFail(error))
-      })
-  }
-}
-
-export const authRegister = authData => {
-  return dispatch => {
-    const payload = {
-      username: authData.username,
-      email: authData.email,
-      password: authData.password
-    }
-
-    let url = 'http://localhost:5000/api/auth/register'
-    
-    dispatch(authStart())
-
-    axios.post(url, payload)
-      .then(response => {
-        dispatch(registerSuccess(response.data))        
       })
       .catch(error => {
         dispatch(authFail(error))
