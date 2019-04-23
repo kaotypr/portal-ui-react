@@ -7,7 +7,7 @@ const initialState = {
   userId: false,
   token: false,
   refreshToken: null,
-  expiresIn: 0,
+  expiresIn: "",
   error: null,
   redirectPath: '/'
 }
@@ -28,7 +28,7 @@ const authSuccess = (state, payload) => {
     userId: payload.user_id,
     consumerId: payload.consumer_id,
     refreshToken: payload.refresh_token,
-    expiresIn: parseInt(payload.expires_in, 10) / 100,
+    expiresIn: payload.expiration_time,
     error: null
   })
 }

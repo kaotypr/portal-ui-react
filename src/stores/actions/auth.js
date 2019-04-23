@@ -3,11 +3,11 @@ import * as _act from '../../constants/actionType'
 import axios from 'axios'
 
 const loginSuccess = (responseData) => {
-  const expiresToken = new Date(responseData.expiration_time)
+  const expiresIn = new Date(responseData.expiration_time)
   localStorage.setItem('token', responseData.token)
   localStorage.setItem('user_id', responseData.user_id)
   localStorage.setItem('consumer_id', responseData.consumer_id)
-  localStorage.setItem('expiration_time', expiresToken)
+  localStorage.setItem('expiration_time', expiresIn)
   localStorage.setItem('refresh_token', responseData.refresh_token)
   return {
     type: _act.AUTH_SUCCESS,
@@ -15,11 +15,11 @@ const loginSuccess = (responseData) => {
   }
 }
 
-const checkAuthTimeout = (expirationTime) => {
+const checkAuthTimeout = (expiresIn) => {
   return dispatch => {
     setTimeout(() => {
       dispatch(authLogout())
-    }, parseInt(expirationTime, 10) * 1000)
+    }, parseInt(expiresIn, 10) * 1000)
   }
 }
 
@@ -68,9 +68,10 @@ export const authLogin = (authData, identifier) => {
 
     axios.post(url, payload)
       .then(response => {
-        console.log(response)
         dispatch(loginSuccess(response.data))
-        // dispatch(checkAuthTimeout(response.data.expiresIn))
+        const expire = new Date(response.data.expiration_time)
+        const expiresIn = (expire.getTime() - new Date().getTime()) / 1000
+        dispatch(checkAuthTimeout(expiresIn))
       })
       .catch(error => {
         dispatch(authFail(error))
@@ -87,22 +88,23 @@ export const authCheckState = () => {
     const expirationTime = localStorage.getItem('expiration_time')
 
     dispatch(authStart())
-
-    if (currentToken) {
-      const expire = new Date(expirationTime)
+    const expire = new Date(expirationTime)
+    const expiresIn = (expire.getTime() - new Date().getTime()) / 1000
+    console.log(`will expired in ${parseInt(expiresIn, 10)} seconds`, )
+    if (currentToken && userId && consumerId && refreshToken && expirationTime) {
       if (expire <= new Date()) {
         dispatch(authLogout())
       } else {
-        dispatch(
+        dispatch( 
           loginSuccess({
             token: currentToken, 
-            expires_in: expirationTime, 
+            expiration_time: expirationTime, 
             user_id: userId, 
             consumer_id: consumerId, 
             refresh_token: refreshToken
           })
         )
-        dispatch(checkAuthTimeout(expire))
+        dispatch(checkAuthTimeout(expiresIn))
       }
     } else {
       dispatch(authLogout())
