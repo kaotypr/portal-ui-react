@@ -19,6 +19,7 @@ import SessionStyles from '../../styles/Session';
 
 const Signin = (props) => {
   const component = new React.Component(props);
+  const { classes } = props;
   component.state = {
     username: "",
     password: "",
@@ -52,9 +53,13 @@ const Signin = (props) => {
     props.authLogin(authData)
   }
 
-  const { classes } = props;
-
   component.render = function(){
+
+    console.log("IS AUTHENTICATED ? ", component.props.isAuthenticated)
+    if (component.props.isAuthenticated === true) {
+      component.props.history.push({pathname: '/'})
+    }
+
     return (
       <div className={classNames(classes.session, classes.background)}>
         <div className={classes.content}>

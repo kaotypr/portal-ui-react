@@ -23,7 +23,7 @@ const checkAuthTimeout = (expiresIn) => {
   }
 }
 
-export const authLogout = () => {
+const authLogout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user_id')
   localStorage.removeItem('consumer_id')
@@ -31,6 +31,12 @@ export const authLogout = () => {
   localStorage.removeItem('refresh_token')
   return {
     type: _act.AUTH_LOGOUT
+  }
+}
+
+export const directLogout = () => {
+  return dispatch => {
+    dispatch(authLogout())
   }
 }
 

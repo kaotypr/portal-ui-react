@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,6 +26,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuIcon from '@material-ui/icons/Menu';
 import HeaderStyles from '../../styles/Header';
 
+import * as actions from '../../stores/actions'
+
 class Header extends Component {
   state = {
     anchorEl: null,
@@ -34,6 +39,7 @@ class Header extends Component {
   };
 
   handleCloseMenu = () => {
+    this.props.directLogout()
     this.setState({ anchorEl: null });
   };
 
@@ -182,4 +188,16 @@ Header.prototypes = {
   logoAltText: PropTypes.string
 };
 
-export default withStyles(HeaderStyles)(Header);
+const mapDispatchToProps = dispatch => {
+  return {
+    directLogout: () => dispatch(actions.directLogout())
+  }
+}
+
+const wrapped_withStyles_header = withStyles(HeaderStyles)(Header);
+const wrapped_connect_header = connect(null, mapDispatchToProps)(wrapped_withStyles_header)
+const wrapped_withRouter_header = withRouter(wrapped_connect_header)
+
+export default wrapped_withRouter_header
+
+
