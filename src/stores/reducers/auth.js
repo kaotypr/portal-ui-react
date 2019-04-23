@@ -24,18 +24,20 @@ const authSuccess = (state, payload) => {
   return updateObject(state, {
     loading: false,
     checked: true,
-    userId: payload.userId,
     token: payload.token,
-    refreshToken: payload.refreshToken,
-    expiresIn: parseInt(payload.expiresIn, 10) / 100,
+    userId: payload.user_id,
+    consumerId: payload.consumer_id,
+    refreshToken: payload.refresh_token,
+    expiresIn: parseInt(payload.expires_in, 10) / 100,
     error: null
   })
 }
 
 const authFail = (state, error) => {
-  if (error.response === undefined) {
+  if (error === undefined) {
     return 
   }
+  console.log({...error})
   return updateObject(state, {loading: false, error: error.response.data.error, checked: true})
 }
 

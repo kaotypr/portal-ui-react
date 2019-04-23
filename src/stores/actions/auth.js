@@ -3,11 +3,12 @@ import * as _act from '../../constants/actionType'
 import axios from 'axios'
 
 const loginSuccess = (responseData) => {
-  const expiresToken = new Date(new Date().getTime() + parseInt(responseData.expiresIn, 10) * 1000)
+  const expiresToken = new Date(responseData.expiration_time)
   localStorage.setItem('token', responseData.token)
-  localStorage.setItem('userId', responseData.userId)
-  localStorage.setItem('expirationTime', expiresToken)
-  localStorage.setItem('refreshToken', responseData.refreshToken)
+  localStorage.setItem('user_id', responseData.user_id)
+  localStorage.setItem('consumer_id', responseData.consumer_id)
+  localStorage.setItem('expiration_time', expiresToken)
+  localStorage.setItem('refresh_token', responseData.refresh_token)
   return {
     type: _act.AUTH_SUCCESS,
     payload: responseData
@@ -23,9 +24,11 @@ const checkAuthTimeout = (expirationTime) => {
 }
 
 export const authLogout = () => {
-  localStorage.removeItem('expirationTime')
   localStorage.removeItem('token')
-  localStorage.removeItem('userId')
+  localStorage.removeItem('user_id')
+  localStorage.removeItem('consumer_id')
+  localStorage.removeItem('expiration_time')
+  localStorage.removeItem('refresh_token')
   return {
     type: _act.AUTH_LOGOUT
   }
@@ -65,8 +68,9 @@ export const authLogin = (authData, identifier) => {
 
     axios.post(url, payload)
       .then(response => {
+        console.log(response)
         dispatch(loginSuccess(response.data))
-        dispatch(checkAuthTimeout(response.data.expiresIn))
+        // dispatch(checkAuthTimeout(response.data.expiresIn))
       })
       .catch(error => {
         dispatch(authFail(error))
@@ -76,20 +80,29 @@ export const authLogin = (authData, identifier) => {
 
 export const authCheckState = () => {
   return dispatch => {
-    const token = localStorage.getItem('token')
-    const refreshToken = localStorage.getItem('refreshToken')
+    const currentToken = localStorage.getItem('token')
+    const userId = localStorage.getItem('user_id')
+    const consumerId = localStorage.getItem('consumer_id')
+    const refreshToken = localStorage.getItem('refresh_token')
+    const expirationTime = localStorage.getItem('expiration_time')
 
     dispatch(authStart())
 
-    if (token) {
-      const expirationTime = new Date(localStorage.getItem('expirationTime'))
-      const expiresIn = (expirationTime.getTime() - new Date().getTime()) / 1000
-      if (expirationTime <= new Date()) {
+    if (currentToken) {
+      const expire = new Date(expirationTime)
+      if (expire <= new Date()) {
         dispatch(authLogout())
       } else {
-        const userId = localStorage.getItem('userId')
-        dispatch(loginSuccess({token: token, expiresIn: expiresIn, userId: userId, idToken: token, refreshToken: refreshToken}))
-        dispatch(checkAuthTimeout(expiresIn))
+        dispatch(
+          loginSuccess({
+            token: currentToken, 
+            expires_in: expirationTime, 
+            user_id: userId, 
+            consumer_id: consumerId, 
+            refresh_token: refreshToken
+          })
+        )
+        dispatch(checkAuthTimeout(expire))
       }
     } else {
       dispatch(authLogout())
