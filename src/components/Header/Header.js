@@ -39,7 +39,6 @@ class Header extends Component {
   };
 
   handleCloseMenu = () => {
-    this.props.directLogout()
     this.setState({ anchorEl: null });
   };
 
@@ -55,6 +54,10 @@ class Header extends Component {
   handleNotificationToggle = () => {
     this.props.toogleNotifications();
     if (this.state.searchExpanded) this.handleSearchExpandToggle();
+  }
+
+  handleLogout = () => {
+    this.props.directLogout()
   }
 
   render() {
@@ -152,7 +155,7 @@ class Header extends Component {
               </ListItemIcon>
               <ListItemText inset primary="Disable notifications" />
             </MenuItem>
-            <MenuItem onClick={this.handleCloseMenu}>
+            <MenuItem onClick={this.handleLogout}>
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>
