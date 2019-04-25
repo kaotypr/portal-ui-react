@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import Signin from './pages/Authentication/Signin'
 import Dashboard from './containers/Dashboard'
 import { Appload } from './pages'
 import Aux from './hoc/Aux'
 import * as actions from './stores/actions'
+import { 
+  NotFound, 
+  BackendError, 
+  Signin, 
+  Signup, 
+  PasswordReset, 
+  Lockscreen,
+} from './pages';
 
 class App extends Component {
   state = {
@@ -24,20 +31,28 @@ class App extends Component {
     const checked = this.props.checked // is authenticating proccess has done ? #default false , set to true after first checked neither auth success or not
     const isAuthenticated = this.props.isAuth // is user authenticated ? #default false
     // condition on first time mount, before componentDidMount
-    let NextComponent = <Appload/>
+    let NextComponent = Appload
     // condition on authenticated & has been checked & app has been mounted for load AppLoader 
     if (isAuthenticated && checked && this.state.mounted) {
-      NextComponent = <Dashboard/>
+      NextComponent = Dashboard
     } else {
       // condition on no longer on checking auth proccess & has been checked & app has been mounted for load AppLoader
       if (authenticating === false && checked && this.state.mounted) {
-        NextComponent = <Signin/>
+        NextComponent = Signin
       }
     }
 
     return (
       <Aux>
-        { NextComponent }
+        <Switch>
+          <Route exact path="/404" component={NotFound} />
+          <Route exact path="/500" component={BackendError} />
+          <Route exact path="/signin" component={Signin} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/forgot" component={PasswordReset} />
+          <Route exact path="/lockscreen" component={Lockscreen} />
+          <Route path="/" component={NextComponent} />
+        </Switch>
       </Aux>
     )
   }

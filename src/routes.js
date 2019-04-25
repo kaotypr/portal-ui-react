@@ -78,6 +78,22 @@ export default {
       component: Home
     },
     {
+      path: '/data',
+      name: 'List Data',
+      type: 'submenu',
+      icon: EqualizerIcon,
+      children: [{
+        path: '/checking',
+        name: 'List Data Checking',
+        component: Blank
+      },
+      {
+        path: '/validation',
+        name: 'List Data Validation',
+        component: Blank
+      }]
+    },
+    {
       path: '/apps',
       name: 'Apps',
       type: 'submenu',

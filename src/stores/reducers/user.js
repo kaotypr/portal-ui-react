@@ -7,6 +7,72 @@ const initialState = {
     { 
       path: '/', 
       nested: false
+    },
+    { 
+      path: '/asdasdasd', 
+      nested: false
+    },
+    { 
+      path: '/apps', 
+      nested: true,
+      childs: [
+        {
+          path: '/calendar', 
+          nested: false
+        },
+        {
+          path: '/media', 
+          nested: false
+        },
+        {
+          path: '/chat', 
+          nested: false
+        },
+      ] 
+    },
+    { 
+      path: '/pages', 
+      nested: true,
+      childs: [
+        {
+          path: '/invoice',
+          nested: false,
+        },
+        {
+          path: '/timeline',
+          nested: false,
+        },
+        {
+          path: '/blank',
+          nested: false,
+        },
+        {
+          path: '/pricing',
+          nested: false,
+        },
+      ]
+    },
+    {
+      path: '/apps',
+      nested: true,
+      children: [{
+          path: '/calendar',
+          nested: false,
+        },{
+          path: '/media',
+          nested: false,
+        }]
+    },
+    {
+      path: '/data',
+      nested: true,
+      children: [{
+          path: '/checking',
+          nested: false,
+        },{
+          path: '/validation',
+          nested: false,
+        }]
     }
   ]
 }

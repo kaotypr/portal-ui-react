@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -7,16 +7,6 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
 import AppProvider from './components/AppProvider/AppProvider';
-
-// import Dashboard from './containers/Dashboard';
-import { 
-  NotFound, 
-  BackendError, 
-  Signin, 
-  Signup, 
-  PasswordReset, 
-  Lockscreen,
-} from './pages';
 
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './stores/reducers'
@@ -43,15 +33,7 @@ const app = (
   <Provider store={store}>
     <AppProvider>
       <BrowserRouter basename={AppBasename}>
-        <Switch>
-          <Route exact path="/" component={App} />
-          <Route exact path="/error" component={BackendError} />
-          <Route exact path="/signin" component={Signin} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/forgot" component={PasswordReset} />
-          <Route exact path="/lockscreen" component={Lockscreen} />
-          <Route exact path="*" component={NotFound} />
-        </Switch>
+        <App/>
       </BrowserRouter>
     </AppProvider>
   </Provider>);
