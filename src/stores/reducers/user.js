@@ -8,27 +8,16 @@ const initialState = {
       path: '/', 
       nested: false
     },
-    { 
-      path: '/asdasdasd', 
-      nested: false
-    },
-    { 
-      path: '/apps', 
+    {
+      path: '/data',
       nested: true,
-      childs: [
-        {
-          path: '/calendar', 
-          nested: false
-        },
-        {
-          path: '/media', 
-          nested: false
-        },
-        {
-          path: '/chat', 
-          nested: false
-        },
-      ] 
+      children: [{
+          path: '/checking',
+          nested: false,
+        },{
+          path: '/validation',
+          nested: false,
+        }]
     },
     { 
       path: '/pages', 
@@ -60,17 +49,6 @@ const initialState = {
           nested: false,
         },{
           path: '/media',
-          nested: false,
-        }]
-    },
-    {
-      path: '/data',
-      nested: true,
-      children: [{
-          path: '/checking',
-          nested: false,
-        },{
-          path: '/validation',
           nested: false,
         }]
     }

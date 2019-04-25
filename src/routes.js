@@ -17,6 +17,11 @@ import BookmarkIcon from '@material-ui/icons/Bookmark';
 // Pages
 import {
   Home,
+
+  ListDataCheking,
+  ListDataValidation,
+
+
   Calendar,
   Chat,
   Media,
@@ -85,12 +90,12 @@ export default {
       children: [{
         path: '/checking',
         name: 'List Data Checking',
-        component: Blank
+        component: ListDataCheking
       },
       {
         path: '/validation',
         name: 'List Data Validation',
-        component: Blank
+        component: ListDataValidation
       }]
     },
     {
