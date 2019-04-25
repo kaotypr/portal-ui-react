@@ -1,12 +1,12 @@
 import React from 'react';
-import { Card, CardContent, Typography, CardHeader, TablePagination, Table, TableBody, TableCell, Checkbox, TableRow } from '@material-ui/core';
+import { Card, CardContent, Typography, CardHeader, TablePagination, Table, TableBody, TableCell, Checkbox, TableRow, TableHead, Tooltip, TableSortLabel } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 
 const styles = {
   root: {
     padding: '8px',
-    height: '96%',
+    height: '100%',
     maxHeight: '100%'
   },
   card: {
@@ -18,6 +18,72 @@ const styles = {
     fontSize: '20pt'
   }
 };
+
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+
+class EnhancedTableHead extends React.Component {
+  createSortHandler = property => event => {
+    this.props.onRequestSort(event, property);
+  };
+
+  render() {
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
+    const rows = [
+      { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
+      { id: 'nik', numeric: true, disablePadding: false, label: 'NIK' },
+      { id: 'email', numeric: false, disablePadding: false, label: 'Email' },
+      { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
+      { id: 'percentage', numeric: true, disablePadding: false, label: 'Percentage' },
+    ];
+    return (
+      <TableHead>
+        <TableRow>
+          <CustomTableCell padding="checkbox">
+            <Checkbox
+              indeterminate={numSelected > 0 && numSelected < rowCount}
+              checked={numSelected === rowCount}
+              onChange={onSelectAllClick}
+            />
+          </CustomTableCell>
+          {rows.map(
+            row => (
+              <CustomTableCell
+                key={row.id}
+                align={row.numeric ? 'right' : 'left'}
+                padding={row.disablePadding ? 'none' : 'default'}
+                sortDirection={orderBy === row.id ? order : false}
+              >
+                <Tooltip
+                  title="Sort"
+                  placement={row.numeric ? 'bottom-end' : 'bottom-start'}
+                  enterDelay={300}
+                >
+                  <TableSortLabel
+                    active={orderBy === row.id}
+                    direction={order}
+                    onClick={this.createSortHandler(row.id)}
+                  >
+                    {row.label}
+                  </TableSortLabel>
+                </Tooltip>
+              </CustomTableCell>
+            ),
+            this,
+          )}
+        </TableRow>
+      </TableHead>
+    );
+  }
+}
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -54,26 +120,54 @@ const ListDataCheking = props => {
   const component = new React.Component(props);
   component.state = {
     data: [
-      createData('Cupcake', 305, 3.7, 67, 4.3),
-      createData('Donut', 452, 25.0, 51, 4.9),
-      createData('Eclair', 262, 16.0, 24, 6.0),
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Gingerbread', 356, 16.0, 49, 3.9),
-      createData('Honeycomb', 408, 3.2, 87, 6.5),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Jelly Bean', 375, 0.0, 94, 0.0),
-      createData('KitKat', 518, 26.0, 65, 7.0),
-      createData('Lollipop', 392, 0.2, 98, 0.0),
-      createData('Marshmallow', 318, 0, 81, 2.0),
-      createData('Nougat', 360, 19.0, 9, 37.0),
-      createData('Oreo', 437, 18.0, 63, 4.0),
+      createData('Abadi Jaya', 1023912378734, 'AbadiJaya@gmail.com', 'Verified', 80),
+      createData('Bagus Kusuma', 345923782342, 'baguskum@gmail.com', 'Pending', 43),
+      createData('Ceri', 1023912378734, 'ceri009@gmail.com', 'Pending', 60),
+      createData('Hestika Wijaya', 1023912378734, 'hestwijay@gmail.com', 'Verified', 80),
+      createData('Deno Gutaga', 1023912378734, 'polariaGutaga@gmail.com', 'Verified', 81),
+      createData('Wulandari Polii', 1023912378734, 'wpolii@gmail.com', 'Pending', 86),
+      createData('Ksatria Indonesia', 1023912378734, 'kioriginal@gmail.com', 'Verified', 100),
+      createData('Putra Patinama', 1023912378734, 'putrapatinama90@gmail.com', 'Verified', 96.5),
+      createData('Ningrati ore', 1023912378734, 'nigratiore@gmail.com', 'Verified', 68.8),
+      createData('Lucy Latifah', 1023912378734, 'lusila@gmail.com', 'Verified', 83.7),
+      createData('Mohammad Iqbal', 1023912378734, 'mohiqbaliquerz@gmail.com', 'Denied', 12),
+      createData('Nuriwidaya Jurkam', 1023912378734, 'nuriwidjaya@gmail.com', 'Verified', 80),
     ],
     rowsPerPage: 10,
-    page: 1,
+    page: 0,
     order: 'asc',
     orderBy: 'calories',
     selected: []
   }
+
+  component.handleRequestSort = (event, property) => {
+    const orderBy = property;
+    let order = 'desc';
+
+    if (component.state.orderBy === property && component.state.order === 'desc') {
+      order = 'asc';
+    }
+
+    component.setState({ order, orderBy });
+  };
+
+  component.handleSelectAllClick = event => {
+    if (event.target.checked) {
+      component.setState(state => ({ selected: state.data.map(n => n.id) }));
+      return;
+    }
+    component.setState({ selected: [] });
+  };
+
+
+  component.handleChangePage = (event, page) => {
+    component.setState({ page });
+  };
+
+  component.handleChangeRowsPerPage = event => {
+    component.setState({ rowsPerPage: event.target.value });
+  };
+
 
   component.handleClick = (event, id) => {
     const { selected } = component.state;
@@ -97,7 +191,7 @@ const ListDataCheking = props => {
   };
 
   component.render = function() {
-    const { data, rowsPerPage, page, order, orderBy } = component.state
+    const { data, rowsPerPage, page, order, orderBy, selected } = component.state
 
     return (
       <div className={classes.root}>
@@ -114,6 +208,14 @@ const ListDataCheking = props => {
 
             <div className={classes.tableWrapper}>
               <Table className={classes.table} aria-labelledby="tableTitle">
+                <EnhancedTableHead
+                  numSelected={selected.length}
+                  order={order}
+                  orderBy={orderBy}
+                  onSelectAllClick={component.handleSelectAllClick}
+                  onRequestSort={component.handleRequestSort}
+                  rowCount={data.length}
+                />
                 <TableBody>
                   {stableSort(data, getSorting(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -151,6 +253,14 @@ const ListDataCheking = props => {
               count={data.length}
               rowsPerPage={rowsPerPage}
               page={page}
+              backIconButtonProps={{
+                'aria-label': 'Previous Page',
+              }}
+              nextIconButtonProps={{
+                'aria-label': 'Next Page',
+              }}
+              onChangePage={component.handleChangePage}
+              onChangeRowsPerPage={component.handleChangeRowsPerPage}
             />
 
 
