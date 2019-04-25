@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography, CardHeader, TablePagination } from '@material-ui/core';
+import { Card, CardContent, CardHeader, TablePagination } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -18,12 +18,6 @@ const styles = {
     fontSize: '20pt'
   }
 };
-
-let counter = 0;
-function createData(name, calories, fat, carbs, protein) {
-  counter += 1;
-  return { id: counter, name, calories, fat, carbs, protein };
-}
 
 const ListDataValidation = props => {
   const { classes } = props
