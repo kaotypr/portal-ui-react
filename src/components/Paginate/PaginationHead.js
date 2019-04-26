@@ -18,14 +18,9 @@ class PaginationHead extends React.Component {
   };
 
   render() {
+    console.log("[INPAGINATION HEAD]", this.props)
     const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
-    const rows = [
-      { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
-      { id: 'nik', numeric: true, disablePadding: false, label: 'NIK' },
-      { id: 'email', numeric: false, disablePadding: false, label: 'Email' },
-      { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
-      { id: 'percentage', numeric: true, disablePadding: false, label: 'Percentage' },
-    ];
+    const { rows } = this.props
     return (
       <TableHead>
         <TableRow>

@@ -1,18 +1,20 @@
 import React, { Fragment } from 'react'
 import PaginationHead from './PaginationHead'
-import PaginateBody from './PaginationBody'
+import PaginationBody from './PaginationBody'
 import { Table, TablePagination } from '@material-ui/core';
 
-class Paginate extends React.Component {
+class Pagination extends React.Component {
   constructor(props) {
+    console.log(props)
     super(props)
     this.state = {
       data: props.data,
-      rowsPerPage: this.props.rowsPerPage || 10,
-      page: this.props.page || 0,
-      order: this.props.order || 'asc',
-      orderBy: this.props.orderBy,
-      selected: []
+      rowsPerPage: props.rowsPerPage || 10,
+      page: props.page || 0,
+      order: props.order || 'asc',
+      orderBy: props.orderBy,
+      selected: [],
+      rows: props.rows
     }
 
     this.handleRequestSort = this.handleRequestSort.bind(this)
@@ -85,8 +87,9 @@ class Paginate extends React.Component {
               onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
               rowCount={this.state.data.length}
+              rows={this.state.rows}
             />
-            <PaginateBody
+            <PaginationBody
               data={this.state.data}
               rowsPerPage={this.state.rowsPerPage}
               page={this.state.page}
@@ -117,4 +120,4 @@ class Paginate extends React.Component {
   }
 }
 
-export default Paginate
+export default Pagination

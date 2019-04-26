@@ -49,6 +49,14 @@ const ListDataCheking = props => {
   component.render = function() {
     const { data } = component.state
 
+    const rows = [
+      { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
+      { id: 'nik', numeric: true, disablePadding: false, label: 'NIK' },
+      { id: 'email', numeric: false, disablePadding: false, label: 'Email' },
+      { id: 'status', numeric: false, disablePadding: false, label: 'Status' },
+      { id: 'percentage', numeric: true, disablePadding: false, label: 'Percentage' },
+    ];
+
     return (
       <div className={classes.root}>
         <Card square className={classes.card}>
@@ -60,7 +68,7 @@ const ListDataCheking = props => {
               subheader="Validation users data set"
             />
           <CardContent>
-            <Pagination data={data} classes={component.props.classes}/>
+            <Pagination data={data} classes={component.props.classes} rows={rows}/>
           </CardContent>
         </Card>
       </div>
