@@ -1,0 +1,65 @@
+import React from 'react'
+import { TableBody, TableRow, TableCell, Checkbox } from "@material-ui/core";
+
+
+const PaginationBody = props => {
+  const { data, rowsPerPage, page, order, orderBy } = props
+
+  function stableSort(array, cmp) {
+    const stabilizedThis = array.map((el, index) => [el, index]);
+    stabilizedThis.sort((a, b) => {
+      const order = cmp(a[0], b[0]);
+      if (order !== 0) return order;
+      return a[1] - b[1];
+    });
+    return stabilizedThis.map(el => el[0]);
+  }
+
+  function desc(a, b, orderBy) {
+    if (b[orderBy] < a[orderBy]) {
+      return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function getSorting(order, orderBy) {
+    return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
+  }
+  
+  return (
+    <TableBody>
+      {stableSort(data, getSorting(order, orderBy))
+        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+        .map(n => {
+          const isSelected = props.selected.indexOf(n.id) !== -1;
+          return (
+            <TableRow
+              hover
+              onClick={event => props.handleClick(event, n.id)}
+              role="checkbox"
+              aria-checked={isSelected}
+              tabIndex={-1}
+              key={n.id}
+              selected={isSelected}
+            >
+              <TableCell padding="checkbox">
+                <Checkbox checked={isSelected} />
+              </TableCell>
+              <TableCell component="th" scope="row" padding="none">
+                {n.name}
+              </TableCell>
+              <TableCell align="right">{n.calories}</TableCell>
+              <TableCell align="right">{n.fat}</TableCell>
+              <TableCell align="right">{n.carbs}</TableCell>
+              <TableCell align="right">{n.protein}</TableCell>
+            </TableRow>
+          );
+        })}
+    </TableBody>
+  )
+}
+
+export default PaginationBody
