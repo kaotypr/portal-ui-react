@@ -3,7 +3,7 @@ import { TableBody, TableRow, TableCell, Checkbox } from "@material-ui/core";
 
 
 const PaginationBody = props => {
-  const { data, rowsPerPage, page, order, orderBy } = props
+  const { data, rowsPerPage, page, order, orderBy, headerRows } = props
 
   function stableSort(array, cmp) {
     const stabilizedThis = array.map((el, index) => [el, index]);
@@ -48,13 +48,24 @@ const PaginationBody = props => {
               <TableCell padding="checkbox">
                 <Checkbox checked={isSelected} />
               </TableCell>
-              <TableCell component="th" scope="row" padding="none">
-                {n.name}
-              </TableCell>
-              <TableCell align="right">{n.calories}</TableCell>
+              {
+                headerRows.map(hr => {
+                  return (
+                    <TableCell 
+                      key={hr.key} 
+                      align="right"
+                      padding={hr.disablePadding ? 'none' : 'default'}
+                      sortDirection={orderBy === hr.key ? order : false}
+                    >
+                      {n[hr.key]}
+                    </TableCell>
+                  )}
+                )
+              }
+              {/* <TableCell align="right">{n.calories}</TableCell>
               <TableCell align="right">{n.fat}</TableCell>
               <TableCell align="right">{n.carbs}</TableCell>
-              <TableCell align="right">{n.protein}</TableCell>
+              <TableCell align="right">{n.protein}</TableCell> */}
             </TableRow>
           );
         })}

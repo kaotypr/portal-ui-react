@@ -34,10 +34,10 @@ class PaginationHead extends React.Component {
           {rows.map(
             row => (
               <CustomTableCell
-                key={row.id}
+                key={row.key}
                 align={row.numeric ? 'right' : 'left'}
                 padding={row.disablePadding ? 'none' : 'default'}
-                sortDirection={orderBy === row.id ? order : false}
+                sortDirection={orderBy === row.key ? order : false}
               >
                 <Tooltip
                   title="Sort"
@@ -45,9 +45,9 @@ class PaginationHead extends React.Component {
                   enterDelay={300}
                 >
                   <TableSortLabel
-                    active={orderBy === row.id}
+                    active={orderBy === row.key}
                     direction={order}
-                    onClick={this.createSortHandler(row.id)}
+                    onClick={this.createSortHandler(row.key)}
                   >
                     {row.label}
                   </TableSortLabel>

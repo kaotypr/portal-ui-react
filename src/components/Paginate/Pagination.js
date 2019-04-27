@@ -8,13 +8,11 @@ class Pagination extends React.Component {
     console.log(props)
     super(props)
     this.state = {
-      data: props.data,
       rowsPerPage: props.rowsPerPage || 10,
       page: props.page || 0,
       order: props.order || 'asc',
       orderBy: props.orderBy,
       selected: [],
-      rows: props.rows
     }
 
     this.handleRequestSort = this.handleRequestSort.bind(this)
@@ -37,7 +35,7 @@ class Pagination extends React.Component {
 
   handleSelectAllClick = event => {
     if (event.target.checked) {
-      this.setState(state => ({ selected: state.data.map(n => n.id) }));
+      this.setState(state => ({ selected: this.props.data.map(n => n.id) }));
       return;
     }
     this.setState({ selected: [] });
@@ -86,11 +84,12 @@ class Pagination extends React.Component {
               orderBy={this.state.orderBy}
               onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
-              rowCount={this.state.data.length}
-              rows={this.state.rows}
+              rowCount={this.props.data.length}
+              rows={this.props.rows}
             />
             <PaginationBody
-              data={this.state.data}
+              headerRows={this.props.rows}
+              data={this.props.data}
               rowsPerPage={this.state.rowsPerPage}
               page={this.state.page}
               order={this.state.order}
@@ -103,7 +102,7 @@ class Pagination extends React.Component {
         <TablePagination
           rowsPerPageOptions={[5, 10, 20]}
           component="div"
-          count={this.state.data.length}
+          count={this.props.data.length}
           rowsPerPage={this.state.rowsPerPage}
           page={this.state.page}
           backIconButtonProps={{
