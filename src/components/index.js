@@ -18,7 +18,7 @@ import NewsCard from './Cards/NewsCard';
 import ProfileCard from './Cards/ProfileCard';
 import StatCard from './Cards/StatCard';
 import CartCard from './Cards/CartCard';
-import WeatherCard from './Cards/WeatherCard';
+// import WeatherCard from './Cards/WeatherCard';
 import PostCard from './Cards/PostCard';
 import ProductCard from './Cards/ProductCard';
 
@@ -30,8 +30,8 @@ export {
   AppProvider,
   Wrapper,
   Workspace,
-  Header, Sidebar, NotificationCenter, ActivityStream, Timeline, Pricing,
-  ImageStatCard, MapCard, NewsCard, ProfileCard, StatCard, CartCard, WeatherCard, PostCard, ProductCard,
+  Header, Sidebar, ActivityStream, Timeline, Pricing,
+  ImageStatCard, MapCard, NotificationCenter, NewsCard, ProfileCard, StatCard, CartCard, PostCard, ProductCard,
   Message,
   Example
 }

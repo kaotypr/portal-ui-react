@@ -117,7 +117,6 @@ class Dashboard extends Component {
         selection["children"] = selectionchildren
       }
     });
-    console.log(username)
     const getRoutes = (
       <Switch>
         { filteredRoutes.map((item, index) => (

@@ -96,7 +96,6 @@ export const authCheckState = () => {
     dispatch(authStart())
     const expire = new Date(expirationTime)
     const expiresIn = (expire.getTime() - new Date().getTime()) / 1000
-    console.log(`will expired in ${parseInt(expiresIn, 10)} seconds`, )
     if (currentToken && userId && consumerId && refreshToken && expirationTime) {
       if (expire <= new Date()) {
         dispatch(authLogout())

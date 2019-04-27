@@ -1,7 +1,7 @@
 // Icons
 import ExploreIcon from '@material-ui/icons/Explore';
 import AppsIcon from '@material-ui/icons/Apps';
-import PhotoIcon from '@material-ui/icons/Photo';
+// import PhotoIcon from '@material-ui/icons/Photo';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import Looks3Icon from '@material-ui/icons/Looks3';
 import Looks4Icon from '@material-ui/icons/Looks4';
@@ -33,7 +33,7 @@ import {
   TimelinePage,
   Charts,
   Taskboard,
-  Widgets,
+  // Widgets,
   Lockscreen,
   PasswordReset,
   Signin,
@@ -134,13 +134,13 @@ export default {
         }
       ]
     },
-    {
-      path: '/widgets',
-      name: 'Widgets',
-      type: 'link',
-      icon: PhotoIcon,
-      component: Widgets
-    },
+    // {
+    //   path: '/widgets',
+    //   name: 'Widgets',
+    //   type: 'link',
+    //   icon: PhotoIcon,
+    //   component: Widgets
+    // },
     {
       path: '/material',
       name: 'Material',

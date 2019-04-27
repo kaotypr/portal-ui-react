@@ -33,11 +33,11 @@ class NotificationCenter extends Component {
 
   async componentDidMount() {
     const stocks = await getStocks('MSFT,FB,AAPL,GOOG,DAX');
-    const forecast = await getWeather('london', 'uk', 1);
+    // const forecast = await getWeather('london', 'uk', 1);
 
     if (this.mounted) {
       if (stocks) this.setState({ stocks });
-      if (forecast) this.setState({ forecast })
+      // if (forecast) this.setState({ forecast })
     }
   }
 
@@ -93,14 +93,16 @@ class NotificationCenter extends Component {
                 <Fragment>
                   <Divider />
                   <List component="nav" subheader={<ListSubheader disableSticky>Stocks</ListSubheader>}>
-                    { stocks['Stock Quotes'].map((stock, index) => (
+                    { stocks['Stock Quotes'] === undefined ? null :
+                      stocks['Stock Quotes'].map((stock, index) => (
                       <ListItem button key={index}>
                         <ListItemText primary={stock['1. symbol']} />
                         <ListItemSecondaryAction className="mx-1">
                           <Typography variant="caption">{formatPrice(stock['2. price'])}</Typography>
                         </ListItemSecondaryAction>
                       </ListItem>
-                    ))}
+                    ))
+                    }
                   </List>
                 </Fragment>
               }

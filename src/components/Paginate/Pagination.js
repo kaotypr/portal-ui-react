@@ -5,7 +5,6 @@ import { Table, TablePagination } from '@material-ui/core';
 
 class Pagination extends React.Component {
   constructor(props) {
-    console.log(props)
     super(props)
     this.state = {
       rowsPerPage: props.rowsPerPage || 10,

@@ -78,11 +78,10 @@ class ListDataCheking extends Component {
       this.setState({
         data: response.data.content
       })
-      console.log(this.state.data, response.data.content)
     })
     .catch(error => {
-      if (error.response.status === 500) {
-        this.props.history.push({pathname: '/error'})
+      if (error.response === undefined || error.response.status === 500) {
+        this.props.history.push({pathname: '/500'})
       } else {
         this.showAlert(
           "Terjadi kesalahan",
@@ -102,7 +101,7 @@ class ListDataCheking extends Component {
       { key: 'nik', numeric: true, disablePadding: false, label: 'NIK' },
       { key: 'email', numeric: false, disablePadding: false, label: 'Email' },
       { key: 'status', numeric: false, disablePadding: false, label: 'Status' },
-      { key: 'confidence', numeric: true, disablePadding: false, label: 'Percentage' }
+      { key: 'confidence', numeric: true, disablePadding: false, label: 'Percentage' },
     ];
     return (
       <div className={classes.root}>
@@ -119,7 +118,7 @@ class ListDataCheking extends Component {
                 title: classes.title,
               }}
               title="Users Data"
-              subheader="Validation users data set"
+              subheader="Cheking users data set"
             />
           <CardContent>
             <Pagination data={data} classes={this.props.classes} rows={rows}/>

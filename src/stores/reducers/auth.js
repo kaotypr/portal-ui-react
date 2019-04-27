@@ -37,7 +37,6 @@ const authFail = (state, error) => {
   if (error === undefined) {
     return 
   }
-  console.log({...error})
   return updateObject(state, {loading: false, error: error.response.data.error, checked: true})
 }
 

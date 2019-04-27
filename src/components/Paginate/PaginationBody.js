@@ -1,6 +1,6 @@
 import React from 'react'
-import { TableBody, TableRow, TableCell, Checkbox } from "@material-ui/core";
-
+import { TableBody, TableRow, TableCell, Checkbox, IconButton } from "@material-ui/core";
+import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 
 const PaginationBody = props => {
   const { data, rowsPerPage, page, order, orderBy, headerRows } = props
@@ -38,7 +38,6 @@ const PaginationBody = props => {
           return (
             <TableRow
               hover
-              onClick={event => props.handleClick(event, n.id)}
               role="checkbox"
               aria-checked={isSelected}
               tabIndex={-1}
@@ -46,11 +45,14 @@ const PaginationBody = props => {
               selected={isSelected}
             >
               <TableCell padding="checkbox">
-                <Checkbox checked={isSelected} />
+                <Checkbox 
+                  checked={isSelected}  
+                  onClick={event => props.handleClick(event, n.id)} />
               </TableCell>
               {
                 headerRows.map(hr => {
                   return (
+                    
                     <TableCell 
                       key={hr.key} 
                       align="right"
@@ -62,6 +64,13 @@ const PaginationBody = props => {
                   )}
                 )
               }
+              <TableCell 
+                padding="none"
+              >
+                <IconButton>
+                  <RemoveRedEyeIcon color="primary" />
+                </IconButton>
+              </TableCell>
               {/* <TableCell align="right">{n.calories}</TableCell>
               <TableCell align="right">{n.fat}</TableCell>
               <TableCell align="right">{n.carbs}</TableCell>

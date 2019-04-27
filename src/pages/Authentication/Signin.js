@@ -55,7 +55,6 @@ const Signin = (props) => {
 
   component.render = function(){
 
-    console.log("IS AUTHENTICATED ? ", component.props.isAuthenticated)
     if (component.props.isAuthenticated === true) {
       component.props.history.push({pathname: '/'})
     }

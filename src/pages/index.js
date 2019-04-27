@@ -31,7 +31,7 @@ import TimelinePage from './Pages/Timeline';
 import Taskboard from './Taskboard/Taskboard';
 
 // Widgets
-import Widgets from './Widgets/Widgets';
+// import Widgets from './Widgets/Widgets';
 
 // Form
 import Editor from './Forms/Editor';
@@ -95,7 +95,7 @@ export {
   PricingPage,
   TimelinePage,
   Taskboard,
-  Widgets,
+  // Widgets,
   Charts,
   Editor,
   Lockscreen,

@@ -18,7 +18,6 @@ class PaginationHead extends React.Component {
   };
 
   render() {
-    console.log("[INPAGINATION HEAD]", this.props)
     const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
     const { rows } = this.props
     return (
@@ -56,6 +55,9 @@ class PaginationHead extends React.Component {
             ),
             this,
           )}
+          <CustomTableCell padding="none">
+            Detail
+          </CustomTableCell>
         </TableRow>
       </TableHead>
     );
