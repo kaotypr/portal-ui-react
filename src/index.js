@@ -31,11 +31,11 @@ const store = createStore(rootReducer, enhancher)
 
 const app = (
   <Provider store={store}>
-    <AppProvider>
-      <BrowserRouter basename={AppBasename}>
+    <BrowserRouter basename={AppBasename}>
+      <AppProvider>
         <App/>
-      </BrowserRouter>
-    </AppProvider>
+      </AppProvider>
+    </BrowserRouter>
   </Provider>);
 
 ReactDOM.render(app, document.getElementById('root'));

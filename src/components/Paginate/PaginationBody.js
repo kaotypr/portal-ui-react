@@ -71,10 +71,6 @@ const PaginationBody = props => {
                   <RemoveRedEyeIcon color="primary" />
                 </IconButton>
               </TableCell>
-              {/* <TableCell align="right">{n.calories}</TableCell>
-              <TableCell align="right">{n.fat}</TableCell>
-              <TableCell align="right">{n.carbs}</TableCell>
-              <TableCell align="right">{n.protein}</TableCell> */}
             </TableRow>
           );
         })}
