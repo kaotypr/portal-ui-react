@@ -120,14 +120,31 @@ class Dashboard extends Component {
     const getRoutes = (
       <Switch>
         { filteredRoutes.map((item, index) => (
-            item.type === 'external' ? <Route exact path={item.path} component={item.component} name={item.name} key={index} />:
-            item.type === 'submenu' ? item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />):
-            <Route exact path={item.path} component={item.component} name={item.name} key={index} />
+            item.type === 'external' ? 
+              <Route exact path={item.path} component={item.component} name={item.name} key={index} /> :
+              item.type === 'submenu' ? 
+                item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />) :
+                <Route exact path={item.path} component={item.component} name={item.name} key={index} />
           ))
         }
         <Redirect to="/404" />
       </Switch>
     )
+    const sidebarRoutes = filteredRoutes.map(filtroute => {
+      let currentRoute = filtroute
+      const showOff = currentRoute.sidebar === false
+      if (showOff !== false) return undefined
+
+      if (currentRoute.children !== undefined && currentRoute.children.length > 0) {
+        const filtcurrChild = currentRoute.children.filter(filterchildroute => filterchildroute.sidebar !== false)
+        currentRoute.children = filtcurrChild
+      }
+
+      return currentRoute
+
+    })
+    const filtsidebarRoute = sidebarRoutes.filter(route => route !== undefined)
+
 
     return (
       <Fragment>
@@ -140,7 +157,7 @@ class Dashboard extends Component {
         />
         <div className={classNames(classes.panel, 'theme-dark')}>
           <Sidebar
-            routes={filteredRoutes}
+            routes={filtsidebarRoute}
             opened={opened}
             toggleDrawer={this.handleDrawerToggle}
           />

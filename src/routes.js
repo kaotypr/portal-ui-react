@@ -88,14 +88,15 @@ export default {
       type: 'submenu',
       icon: EqualizerIcon,
       children: [{
-        path: '/checking',
-        name: 'List Data Checking',
+        path: '/users',
+        name: 'List User Data',
         component: ListDataCheking
       },
       {
-        path: '/validation',
-        name: 'List Data Validation',
-        component: ListDataValidation
+        path: '/:id/users',
+        name: 'Detail User Data',
+        sidebar: false,
+        component: ListDataCheking
       }]
     },
     {
