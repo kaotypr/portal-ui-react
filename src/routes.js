@@ -18,8 +18,7 @@ import BookmarkIcon from '@material-ui/icons/Bookmark';
 import {
   Home,
 
-  ListDataCheking,
-  ListDataValidation,
+  ListUser,
 
 
   Calendar,
@@ -90,13 +89,13 @@ export default {
       children: [{
         path: '/users',
         name: 'List User Data',
-        component: ListDataCheking
+        component: ListUser
       },
       {
         path: '/:id/users',
         name: 'Detail User Data',
         sidebar: false,
-        component: ListDataCheking
+        component: ListUser
       }]
     },
     {
