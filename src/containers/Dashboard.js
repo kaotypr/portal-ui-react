@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -98,7 +98,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { classes, userAccessRoutes, username } = this.props;
+    const { classes, userAccessRoutes } = this.props;
     const { opened, notificationsOpen, openSpeedDial } = this.state;
     let filteredRoutes = []
     userAccessRoutes.forEach(allowed => {
@@ -121,29 +121,29 @@ class Dashboard extends Component {
       <Switch>
         { filteredRoutes.map((item, index) => (
             item.type === 'external' ? 
-              <Route exact path={item.path} component={item.component} name={item.name} key={index} /> :
+              <Route exact path={item.path} component={item.component} name={item.name} key={item.path} /> :
               item.type === 'submenu' ? 
                 item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />) :
-                <Route exact path={item.path} component={item.component} name={item.name} key={index} />
+                <Route exact path={item.path} component={item.component} name={item.name} key={item.path} />
           ))
         }
-        <Redirect to="/404" />
+        {/* <Redirect to="/404" /> */}
       </Switch>
     )
-    const sidebarRoutes = filteredRoutes.map(filtroute => {
-      let currentRoute = filtroute
-      const showOff = currentRoute.sidebar === false
-      if (showOff !== false) return undefined
+    // const sidebarRoutes = filteredRoutes.map(filtroute => {
+    //   let currentRoute = filtroute
+    //   const showOff = currentRoute.sidebar === false
+    //   if (showOff !== false) return undefined
 
-      if (currentRoute.children !== undefined && currentRoute.children.length > 0) {
-        const filtcurrChild = currentRoute.children.filter(filterchildroute => filterchildroute.sidebar !== false)
-        currentRoute.children = filtcurrChild
-      }
+    //   if (currentRoute.children !== undefined && currentRoute.children.length > 0) {
+    //     const filtcurrChild = currentRoute.children.filter(filterchildroute => filterchildroute.sidebar !== false)
+    //     currentRoute.children = filtcurrChild
+    //   }
 
-      return currentRoute
+    //   return currentRoute
 
-    })
-    const filtsidebarRoute = sidebarRoutes.filter(route => route !== undefined)
+    // })
+    // const filtsidebarRoute = sidebarRoutes.filter(route => route !== undefined)
 
 
     return (
@@ -157,7 +157,7 @@ class Dashboard extends Component {
         />
         <div className={classNames(classes.panel, 'theme-dark')}>
           <Sidebar
-            routes={filtsidebarRoute}
+            routes={filteredRoutes}
             opened={opened}
             toggleDrawer={this.handleDrawerToggle}
           />

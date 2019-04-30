@@ -60,13 +60,15 @@ class SidebarItem extends Component {
           </ListItem>
           <Collapse in={activeRoute === index ? true : false} timeout="auto" unmountOnExit>
             <List disablePadding>
-              {route.children.map((subitem, index) => (
-                  <NavLink to={`${route.path ? route.path : ''}${subitem.path ? subitem.path : ''}`} exact className={classes.menuLink} activeClassName={classes.menuActive} key={index}>
+              {route.children.map((subitem, index) => {
+                const submenuLinkClassName = (subitem.sidebar === false) ? classes.undisplay : classes.menuLink
+                return (
+                  <NavLink to={`${route.path ? route.path : ''}${subitem.path ? subitem.path : ''}`} exact className={submenuLinkClassName} activeClassName={classes.menuActive} key={index}>
                     <ListItem className={classes.menuSubItem} button>
                       <Typography variant="body1" className="flexSpacer">{capitalize(subitem.name)}</Typography>
                       {badge(subitem.badge)}
                     </ListItem>
-                  </NavLink>)
+                  </NavLink>)}
               )}
             </List>
           </Collapse>
@@ -74,8 +76,10 @@ class SidebarItem extends Component {
       )
     }
 
+    const menuLinkClassName = route.sidebar === false ? classes.undisplay : classes.menuLink
+
     return (
-      <NavLink to={route.path} exact className={classes.menuLink} activeClassName={classes.menuActive} key={index}>
+      <NavLink to={route.path} exact className={menuLinkClassName} activeClassName={classes.menuActive} key={index}>
         <ListItem className={classes.menuItem} button onClick={() => toggleMenu(index)}>
           <ListItemIcon>
             <route.icon className={classes.menuIcon} />

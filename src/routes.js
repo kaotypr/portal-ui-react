@@ -19,7 +19,7 @@ import {
   Home,
 
   ListUser,
-
+  DetailUser,
 
   Calendar,
   Chat,
@@ -92,10 +92,10 @@ export default {
         component: ListUser
       },
       {
-        path: '/:id/users',
+        path: '/users/:id',
         name: 'Detail User Data',
         sidebar: false,
-        component: ListUser
+        component: DetailUser
       }]
     },
     {
@@ -354,6 +354,7 @@ export default {
         {
           path: '/timeline',
           name: 'Timeline',
+          sidebar: false,
           component: TimelinePage
         },
         {
@@ -364,6 +365,7 @@ export default {
         {
           path: '/pricing',
           name: 'Pricing',
+          sidebar: false,
           component: PricingPage
         },
       ]

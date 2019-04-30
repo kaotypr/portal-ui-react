@@ -49,6 +49,9 @@ const SidebarItemStyles = theme => ({
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText,
   },
+  undisplay: {
+    display: 'none'
+  },
   error: {
     backgroundColor: theme.palette.error.main,
     color: theme.palette.error.contrastText,

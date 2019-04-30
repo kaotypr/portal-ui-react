@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { TableBody, TableRow, TableCell, Checkbox, IconButton } from "@material-ui/core";
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 
@@ -67,7 +68,9 @@ const PaginationBody = props => {
               <TableCell 
                 padding="none"
               >
-                <IconButton>
+                <IconButton onClick={() => {
+                  props.history.push({pathname: `/data/users/${n.id}`, state: { id: n.id }})
+                }}>
                   <RemoveRedEyeIcon color="primary" />
                 </IconButton>
               </TableCell>
@@ -78,4 +81,4 @@ const PaginationBody = props => {
   )
 }
 
-export default PaginationBody
+export default withRouter(PaginationBody)

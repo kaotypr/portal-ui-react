@@ -5,6 +5,7 @@ import Home from './Home/Home';
 
 // List Data
 import ListUser from './Users/ListUser'
+import DetailUser from './Users/DetailUser'
 
 // Apps
 import Calendar from './Apps/Calendar';
@@ -81,6 +82,8 @@ export {
   Appload,
   Home,
   ListUser,
+  DetailUser,
+  
   Calendar,
   Chat,
   Media,

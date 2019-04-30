@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardContent, CardHeader } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 import Pagination from '../../components/Paginate/Pagination'
 import axios from 'axios'
 import Alert from '../../utils/ui/Alert';
@@ -41,7 +42,7 @@ const styles = {
 //   createData('Mohammad Iqbal', 1023912378734, 'mohiqbaliquerz@gmail.com', 'Denied', 12),
 // ]
 
-class ListDataCheking extends Component {
+class ListUser extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -117,7 +118,7 @@ class ListDataCheking extends Component {
               classes={{
                 title: classes.title,
               }}
-              title="Users Data"
+              title="List User Data"
               subheader="Cheking users data set"
             />
           <CardContent>
@@ -129,4 +130,4 @@ class ListDataCheking extends Component {
   }
 }
 
-export default withStyles(styles)(ListDataCheking);
+export default withRouter(withStyles(styles)(ListUser));
