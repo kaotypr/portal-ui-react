@@ -69,7 +69,7 @@ const PaginationBody = props => {
                 padding="none"
               >
                 <IconButton onClick={() => {
-                  props.history.push({pathname: `/data/users/${n.id}`, state: { id: n.id }})
+                  props.history.push({pathname: `${props.match.path}/${n.id}`, params: { id: n.id }})
                 }}>
                   <RemoveRedEyeIcon color="primary" />
                 </IconButton>
