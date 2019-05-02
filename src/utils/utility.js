@@ -176,3 +176,15 @@ export const validateEmail = (email) => {
  *  @return {Boolean} is password match or not 
  */
 export const passwordMatch = (passwd, cpasswd) => passwd === cpasswd 
+
+/**
+ * @param {String} date_param the param date
+ * @return {String} new format as yyyy-mm-dd hh:mm:ss
+ */
+export const dateGlobalFormat = (date_param) => {
+  const fullyear = date_param.getFullYear()
+  const month = ((`${date_param.getMonth() + 1}`.length) > 1) ? (date_param.getMonth() + 1) : `0${(date_param.getMonth() + 1)}`
+  const date = (`${date_param.getDate()}`.length > 1) ? date_param.getDate() : `0${date_param.getDate()}`
+  let formatted_date = `${fullyear}-${month}-${date} ${date_param.getHours()}:${date_param.getMinutes()}:${date_param.getSeconds()}` 
+  return formatted_date
+}
