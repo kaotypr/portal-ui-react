@@ -19,28 +19,28 @@ const initialState = {
           nested: false,
         }]
     },
-    { 
-      path: '/pages', 
-      nested: true,
-      childs: [
-        {
-          path: '/invoice',
-          nested: false,
-        },
-        {
-          path: '/timeline',
-          nested: false,
-        },
-        {
-          path: '/blank',
-          nested: false,
-        },
-        {
-          path: '/pricing',
-          nested: false,
-        },
-      ]
-    },
+    // { 
+    //   path: '/pages', 
+    //   nested: true,
+    //   childs: [
+    //     {
+    //       path: '/invoice',
+    //       nested: false,
+    //     },
+    //     {
+    //       path: '/timeline',
+    //       nested: false,
+    //     },
+    //     {
+    //       path: '/blank',
+    //       nested: false,
+    //     },
+    //     {
+    //       path: '/pricing',
+    //       nested: false,
+    //     },
+    //   ]
+    // },
     // {
     //   path: '/apps',
     //   nested: true,
