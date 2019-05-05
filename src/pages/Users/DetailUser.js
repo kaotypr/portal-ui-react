@@ -19,7 +19,10 @@ const styles = {
   card: {
     maxWidth: '70%',
     padding: '8px',
-    margin: "auto",
+    marginTop: "auto",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: "8px",
     transition: "0.3s",
     boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     "&:hover": {
@@ -149,7 +152,8 @@ class DetailUser extends Component {
                     readOnly: true,
                   }}
                   fullWidth
-                  variant="filled"/>
+                  variant="filled"
+                />
 
                 <TextField
                   id="nama"
@@ -161,7 +165,8 @@ class DetailUser extends Component {
                     readOnly: true,
                   }}
                   fullWidth
-                  variant="filled"/>
+                  variant="filled"
+                />
 
                 <Grid container spacing={16}>
                   <Grid item xs={6} sm={6}>
@@ -175,7 +180,8 @@ class DetailUser extends Component {
                         readOnly: true,
                       }}
                       fullWidth
-                      variant="filled"/>
+                      variant="filled"
+                    />
                   </Grid>
                   <Grid item xs={6} sm={6}>
                     <TextField
@@ -188,7 +194,8 @@ class DetailUser extends Component {
                         readOnly: true,
                       }}
                       fullWidth
-                      variant="filled"/>
+                      variant="filled"
+                    />
                   </Grid>
                 </Grid>
 
@@ -218,7 +225,8 @@ class DetailUser extends Component {
                     readOnly: true,
                   }}
                   fullWidth
-                  variant="filled"/>
+                  variant="filled"
+                />
                 <TextField
                   id="provinsi"
                   label="Provinsi"
@@ -229,7 +237,8 @@ class DetailUser extends Component {
                     readOnly: true,
                   }}
                   fullWidth
-                  variant="filled"/>
+                  variant="filled"
+                />
                 <TextField
                   id="kota"
                   label="Kota/Kabupaten"
@@ -240,7 +249,8 @@ class DetailUser extends Component {
                     readOnly: true,
                   }}
                   fullWidth
-                  variant="filled"/>
+                  variant="filled"
+                />
 
                 <Grid container spacing={16}>
                   <Grid item xs={6} sm={6}>
@@ -254,7 +264,8 @@ class DetailUser extends Component {
                         readOnly: true,
                       }}
                       fullWidth
-                      variant="filled"/>
+                      variant="filled"
+                    />
                   </Grid>
                   <Grid item xs={6} sm={6}>
                     <TextField
@@ -267,7 +278,8 @@ class DetailUser extends Component {
                         readOnly: true,
                       }}
                       fullWidth
-                      variant="filled"/>
+                      variant="filled"
+                    />
                   </Grid>
                 </Grid>
 
@@ -284,7 +296,8 @@ class DetailUser extends Component {
                   multiline={true}
                   rows={2}
                   rowsMax={4}
-                  variant="filled"/>
+                  variant="filled"
+                />
 
                 <TextField
                   id="status_perkawinan"
@@ -296,7 +309,8 @@ class DetailUser extends Component {
                     readOnly: true,
                   }}
                   fullWidth
-                  variant="filled"/>
+                  variant="filled"
+                />
                 
                 <TextField
                   id="pekerjaan"
@@ -308,7 +322,8 @@ class DetailUser extends Component {
                     readOnly: true,
                   }}
                   fullWidth
-                  variant="filled"/>
+                  variant="filled"
+                />
 
                 <TextField
                   id="email"
@@ -320,7 +335,8 @@ class DetailUser extends Component {
                     readOnly: true,
                   }}
                   fullWidth
-                  variant="filled"/>
+                  variant="filled"
+                />
 
                 <TextField
                   id="nomor_handphone"
@@ -332,7 +348,8 @@ class DetailUser extends Component {
                     readOnly: true,
                   }}
                   fullWidth
-                  variant="filled"/>
+                  variant="filled"
+                />
 
                 <TextField
                   id="nomor_npwp"
@@ -344,12 +361,14 @@ class DetailUser extends Component {
                     readOnly: true,
                   }}
                   fullWidth
-                  variant="filled"/>
+                  variant="filled"
+                />
 
               </Grid>
 
-              <Grid item  xs={12} sm={6} className="text-sm-right text-xs-left">
+              <Grid item  xs={12} sm={6} className="text-sm-left text-xs-left">
                 <Card className={classes.card}>
+                  <CardHeader className={classes.title} title="KTP" subheader="Kartu Tanda Penduduk" />
                   <CardMedia
                     className={classes.media}
                     image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${nik}/photo/ktp` : ""}
@@ -357,6 +376,7 @@ class DetailUser extends Component {
                   />
                 </Card>
                 <Card className={classes.card}>
+                  <CardHeader className={classes.title} title="PASFOTO" subheader="Pasfoto Kartu Tanda Penduduk" />
                   <CardMedia
                     className={classes.media}
                     image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${nik}/photo/foto` : ""}
@@ -364,6 +384,7 @@ class DetailUser extends Component {
                   />
                 </Card>
                 <Card className={classes.card}>
+                  <CardHeader className={classes.title} title="NPWP" subheader="Nomor Pokok Wajib Pajak" />
                   <CardMedia
                     className={classes.media}
                     image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${nik}/photo/npwp` : ""}
@@ -371,6 +392,7 @@ class DetailUser extends Component {
                   />
                 </Card>
                 <Card className={classes.card}>
+                  <CardHeader className={classes.title} title="SELFIE" subheader="Foto Selfie" />                  
                   <CardMedia
                     className={classes.media}
                     image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${nik}/photo/selfie` : ""}
@@ -378,6 +400,7 @@ class DetailUser extends Component {
                   />
                 </Card>
                 <Card className={classes.card}>
+                  <CardHeader className={classes.title} title="SELFIE & KTP" subheader="Foto Selfie Dengan KTP" />
                   <CardMedia
                     className={classes.media}
                     image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${nik}/photo/selfiektp` : ""}
