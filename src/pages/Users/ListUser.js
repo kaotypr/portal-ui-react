@@ -67,7 +67,7 @@ class ListUser extends Component {
   }
 
   requestData() {
-    let url = `${process.env.REACT_APP_PORTAL_API}/users`
+    let url = `${process.env.REACT_APP_PORTAL_API}/users?limit=100`
     var config = {
       headers: {
         'Content-Type': 'application/json'
