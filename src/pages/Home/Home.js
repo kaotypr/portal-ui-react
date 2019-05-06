@@ -24,6 +24,7 @@ import NotificationsOffIcon from '@material-ui/icons/NotificationsOff';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Wrapper, NewsCard, StatCard } from '../../components';
 import { mockFeed } from '../../utils/mock';
+import axios from 'axios'
 
 let id = 0;
 function createData(name, date, progress) {
@@ -42,6 +43,11 @@ const data = [
 class Home extends Component {
   state = {
     anchorEl: null,
+    backgroundColor: ['#f44336', '#9c27b0', '#ffeb3b', '#4caf50', '#2196f'],
+    gagal: 0,
+    terverifikasi: 0,
+    pending: 0,
+    total: 0
   };
 
   handleClick = event => {
@@ -52,8 +58,44 @@ class Home extends Component {
     this.setState({ anchorEl: null });
   };
 
+  // COMPONENT DID MOUNT
+  componentDidMount() {
+    this.requestData()
+  }
+
+  requestData() {
+    let url = `${process.env.REACT_APP_PORTAL_API}/dashboard`
+    var config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    axios.get(url, config)
+    .then(response => {
+      this.setState({
+        total: response.data.total_data_kyc,
+        gagal: response.data.total_gagal,
+        pending: response.data.total_pending,
+        terverifikasi: response.data.total_terverifikasi
+      })
+    })
+    .catch(error => {
+      if (error.response === undefined || error.response.status === 500) {
+        this.props.history.push({pathname: '/500'})
+      } else {
+        this.showAlert(
+          "Terjadi kesalahan",
+          error.response.data.error,
+          { secondoption: "Tutup" },
+          { secondhandler: () => this.setState({openalert: false}) }
+        )
+      }
+    })
+  }
+
   render() {
-    const { anchorEl } = this.state;
+    const { anchorEl, gagal, terverifikasi, pending, total } = this.state;
     const chartMenu = (
       <Menu
         id="chart-menu"
@@ -91,7 +133,7 @@ class Home extends Component {
     const exampledatapie = {
       labels: ['Gagal Terverifikasi', 'Terverifikasi', 'Pending'],
       datasets: [{
-        data: [300, 50, 100],
+        data: [gagal, terverifikasi, pending],
         backgroundColor: ['#f44336', '#9c27b0', '#ffeb3b', '#4caf50', '#2196f']
       }]
     }
@@ -111,7 +153,7 @@ class Home extends Component {
             <StatCard
               type="fill"
               title="Total"
-              value={450}
+              value={total}
               icon={<LocalOfferIcon />}
               color="#3f51b5"
             />
@@ -120,7 +162,7 @@ class Home extends Component {
             <StatCard
               type="fill"
               title="Terverifikasi"
-              value={50}
+              value={terverifikasi}
               icon={<LocalOfferIcon />}
               color="#9c27b0"
             />
@@ -129,7 +171,7 @@ class Home extends Component {
             <StatCard
               type="fill"
               title="Gagal"
-              value={300}
+              value={gagal}
               icon={<LocalOfferIcon />}
               color="#f44336"
             />
@@ -138,7 +180,7 @@ class Home extends Component {
             <StatCard
               type="fill"
               title="Pending"
-              value={100}
+              value={pending}
               icon={<LocalOfferIcon />}
               color="#ffd740"
             />
