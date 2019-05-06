@@ -23,13 +23,13 @@ class PaginationHead extends React.Component {
     return (
       <TableHead>
         <TableRow>
-          <CustomTableCell padding="checkbox">
+          {/* <CustomTableCell padding="checkbox">
             <Checkbox
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={numSelected === rowCount}
               onChange={onSelectAllClick}
             />
-          </CustomTableCell>
+          </CustomTableCell> */}
           {rows.map(
             row => (
               <CustomTableCell

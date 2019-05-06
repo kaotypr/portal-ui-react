@@ -45,11 +45,11 @@ const PaginationBody = props => {
               key={n.id}
               selected={isSelected}
             >
-              <TableCell padding="checkbox">
+              {/* <TableCell padding="checkbox">
                 <Checkbox 
                   checked={isSelected}  
                   onClick={event => props.handleClick(event, n.id)} />
-              </TableCell>
+              </TableCell> */}
               {
                 headerRows.map(hr => {
                   return (
