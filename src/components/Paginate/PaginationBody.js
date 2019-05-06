@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { TableBody, TableRow, TableCell, Checkbox, IconButton } from "@material-ui/core";
+import { TableBody, TableRow, TableCell, IconButton } from "@material-ui/core";
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 
 const PaginationBody = props => {

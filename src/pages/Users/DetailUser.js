@@ -98,7 +98,8 @@ class DetailUser extends Component {
   }
 
   render() {
-    const { classes } = this.props 
+    const { classes } = this.props
+    const { id: currentUserId } = this.props.match.params
     const { 
       tanggal_registrasi, 
       tanggal_verifikasi, 
@@ -371,7 +372,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="KTP" subheader="Kartu Tanda Penduduk" />
                   <CardMedia
                     className={classes.media}
-                    image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${nik}/photo/ktp` : ""}
+                    image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${currentUserId}/image/ktp` : ""}
                     title="KTP Image"
                   />
                 </Card>
@@ -379,7 +380,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="PASFOTO" subheader="Pasfoto Kartu Tanda Penduduk" />
                   <CardMedia
                     className={classes.media}
-                    image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${nik}/photo/foto` : ""}
+                    image={currentUserId ? `${process.env.REACT_APP_PORTAL_API}/user/${currentUserId}/image/foto` : ""}
                     title="KTP Image"
                   />
                 </Card>
@@ -387,7 +388,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="NPWP" subheader="Nomor Pokok Wajib Pajak" />
                   <CardMedia
                     className={classes.media}
-                    image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${nik}/photo/npwp` : ""}
+                    image={currentUserId ? `${process.env.REACT_APP_PORTAL_API}/user/${currentUserId}/image/npwp` : ""}
                     title="KTP Image"
                   />
                 </Card>
@@ -395,7 +396,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="SELFIE" subheader="Foto Selfie" />                  
                   <CardMedia
                     className={classes.media}
-                    image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${nik}/photo/selfie` : ""}
+                    image={currentUserId ? `${process.env.REACT_APP_PORTAL_API}/user/${currentUserId}/image/selfie` : ""}
                     title="KTP Image"
                   />
                 </Card>
@@ -403,7 +404,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="SELFIE & KTP" subheader="Foto Selfie Dengan KTP" />
                   <CardMedia
                     className={classes.media}
-                    image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${nik}/photo/selfiektp` : ""}
+                    image={currentUserId ? `${process.env.REACT_APP_PORTAL_API}/user/${currentUserId}/image/selfiektp` : ""}
                     title="KTP Image"
                   />
                 </Card>

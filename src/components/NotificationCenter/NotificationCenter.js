@@ -15,7 +15,9 @@ import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import format from 'date-fns/format';
 import NotificationCenterStyles from '../../styles/NotificationCenter';
-import { formatPrice, getStocks, getWeather, getWeatherIcon } from '../../helpers';
+import { formatPrice, getStocks, 
+  // getWeather, 
+  getWeatherIcon } from '../../helpers';
 import { mockNotifications, mockTodo, mockStats } from '../../utils/mock';
 
 class NotificationCenter extends Component {

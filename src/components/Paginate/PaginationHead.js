@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableCell, Checkbox, TableRow, TableHead, Tooltip, TableSortLabel } from '@material-ui/core';
+import { TableCell, TableRow, TableHead, Tooltip, TableSortLabel } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const CustomTableCell = withStyles(theme => ({
@@ -18,7 +18,7 @@ class PaginationHead extends React.Component {
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
+    const { order, orderBy } = this.props;
     const { rows } = this.props
     return (
       <TableHead>
