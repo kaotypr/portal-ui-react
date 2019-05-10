@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-const token = localStorage.getItem('token')
 const portalHost = process.env.REACT_APP_API_PORTAL_HOST 
 const portalPort = process.env.REACT_APP_API_PORTAL_PORT
 const portalProtocol = process.env.REACT_APP_API_PORTAL_PROTOCOL
 export const portalBaseURL = `${portalProtocol}://${portalHost}${portalPort}`
-export const TokenizedURL = uri => `${portalBaseURL}/api/portal${uri}?jwt=${token}`
+export const TokenizedURL = uri => `${portalBaseURL}/api/portal${uri}?jwt=${localStorage.getItem('token')}`
 
 export const portalInstances = axios.create({
   baseURL: `${portalBaseURL}/api/portal`,
