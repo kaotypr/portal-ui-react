@@ -1,6 +1,6 @@
 import React, { Component }  from 'react'
 import { withRouter } from 'react-router-dom';
-import axios from 'axios'
+import axios, { TokenizedURL } from '../../axios.instances'
 
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardContent, Grid, Typography, TextField, RadioGroup, Radio, FormControlLabel, FormLabel, FormControl, CardMedia } from '@material-ui/core';
@@ -66,8 +66,8 @@ class DetailUser extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params
-    const url = `${process.env.REACT_APP_PORTAL_API}/user/${id}`
-    axios.get(url)
+
+    axios.get(`/user/${id}`)
       .then(response => {
         const updateState = {
           tanggal_registrasi: response.data.identity.created_at || "",
@@ -372,7 +372,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="KTP" subheader="Kartu Tanda Penduduk" />
                   <CardMedia
                     className={classes.media}
-                    image={nik ? `${process.env.REACT_APP_PORTAL_API}/user/${currentUserId}/image/ktp` : ""}
+                    image={nik ? TokenizedURL(`/user/${currentUserId}/image/ktp`) : ""}
                     title="KTP Image"
                   />
                 </Card>
@@ -380,7 +380,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="PASFOTO" subheader="Pasfoto Kartu Tanda Penduduk" />
                   <CardMedia
                     className={classes.media}
-                    image={currentUserId ? `${process.env.REACT_APP_PORTAL_API}/user/${currentUserId}/image/foto` : ""}
+                    image={currentUserId ? TokenizedURL(`/user/${currentUserId}/image/foto`) : ""}
                     title="KTP Image"
                   />
                 </Card>
@@ -388,7 +388,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="NPWP" subheader="Nomor Pokok Wajib Pajak" />
                   <CardMedia
                     className={classes.media}
-                    image={currentUserId ? `${process.env.REACT_APP_PORTAL_API}/user/${currentUserId}/image/npwp` : ""}
+                    image={currentUserId ? TokenizedURL(`/user/${currentUserId}/image/npwp`) : ""}
                     title="KTP Image"
                   />
                 </Card>
@@ -396,7 +396,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="SELFIE" subheader="Foto Selfie" />                  
                   <CardMedia
                     className={classes.media}
-                    image={currentUserId ? `${process.env.REACT_APP_PORTAL_API}/user/${currentUserId}/image/selfie` : ""}
+                    image={currentUserId ? TokenizedURL(`/user/${currentUserId}/image/selfie`) : ""}
                     title="KTP Image"
                   />
                 </Card>
@@ -404,7 +404,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="SELFIE & KTP" subheader="Foto Selfie Dengan KTP" />
                   <CardMedia
                     className={classes.media}
-                    image={currentUserId ? `${process.env.REACT_APP_PORTAL_API}/user/${currentUserId}/image/selfiektp` : ""}
+                    image={currentUserId ? TokenizedURL(`/user/${currentUserId}/image/selfiektp`) : ""}
                     title="KTP Image"
                   />
                 </Card>

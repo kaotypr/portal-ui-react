@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import Pagination from '../../components/Paginate/Pagination'
-import axios from 'axios'
+import axios from '../../axios.instances'
 import Alert from '../../utils/ui/Alert';
 
 const styles = {
@@ -67,14 +67,7 @@ class ListUser extends Component {
   }
 
   requestData() {
-    let url = `${process.env.REACT_APP_PORTAL_API}/users?limit=1000`
-    var config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-
-    axios.get(url, config)
+    axios.get('/users?limit=1000')
     .then(response => {
       this.setState({
         data: response.data.content

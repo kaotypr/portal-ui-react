@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios'
 
 import { withStyles } from '@material-ui/core/styles';
@@ -239,9 +239,10 @@ const Signup = (props) => {
 }
 
 const wrapped_withStyles_Signup = withStyles(SessionStyles)(Signup);
+const wrapped_withRouter_signup = withRouter(wrapped_withStyles_Signup)
 
 Signup.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default wrapped_withStyles_Signup
+export default wrapped_withRouter_signup
