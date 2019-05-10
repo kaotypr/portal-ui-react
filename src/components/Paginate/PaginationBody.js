@@ -1,7 +1,17 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { TableBody, TableRow, TableCell, IconButton } from "@material-ui/core";
+import { TableBody, TableRow, TableCell, IconButton, TextField, withStyles } from "@material-ui/core";
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
+
+const FilterTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 8,
+  },
+}))(TableCell);
 
 const PaginationBody = props => {
   const { data, rowsPerPage, page, order, orderBy, headerRows } = props
@@ -32,6 +42,30 @@ const PaginationBody = props => {
   
   return (
     <TableBody>
+      <TableRow
+        hover
+        tabIndex={-1}
+        style={{backgroundColor: '#e8f0fe'}}
+      >
+        {headerRows.map(hr => {
+            return (
+              <FilterTableCell 
+                key={hr.key} 
+                align="right"
+                padding="default"
+                sortDirection={orderBy === hr.key ? order : false}
+              >
+                <TextField
+                  label={`Filter ${hr.label}`}
+                  id="margin-none"
+                  style={{padding: '8px'}}
+                  defaultValue=""
+                />
+              </FilterTableCell>)
+          })
+        }
+        <TableCell></TableCell>
+      </TableRow>
       {stableSort(data, getSorting(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map(n => {
@@ -39,17 +73,11 @@ const PaginationBody = props => {
           return (
             <TableRow
               hover
-              role="checkbox"
               aria-checked={isSelected}
               tabIndex={-1}
               key={n.id}
               selected={isSelected}
             >
-              {/* <TableCell padding="checkbox">
-                <Checkbox 
-                  checked={isSelected}  
-                  onClick={event => props.handleClick(event, n.id)} />
-              </TableCell> */}
               {
                 headerRows.map(hr => {
                   return (
