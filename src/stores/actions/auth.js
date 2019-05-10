@@ -1,6 +1,6 @@
 import * as _act from '../../constants/actionType'
 
-import axios from 'axios'
+import axios from '../../axios.instances'
 
 const loginSuccess = (responseData) => {
   const expiresIn = new Date(responseData.expiration_time)
@@ -67,12 +67,10 @@ export const authLogin = (authData, identifier) => {
       password: authData.password,
       remember: authData.remember // to get userId token and refreshToken for re-extend expires Time login session 
     }
-
-    let url = `${process.env.REACT_APP_PORTAL_API}/signin`
     
     dispatch(authStart(authData))
 
-    axios.post(url, payload)
+    axios.post('/signin', payload)
       .then(response => {
         dispatch(loginSuccess(response.data))
         const expire = new Date(response.data.expiration_time)
@@ -80,6 +78,7 @@ export const authLogin = (authData, identifier) => {
         dispatch(checkAuthTimeout(expiresIn))
       })
       .catch(error => {
+        console.log({...error})
         dispatch(authFail(error))
       })
   }
