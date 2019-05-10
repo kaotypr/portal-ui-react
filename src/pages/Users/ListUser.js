@@ -9,7 +9,6 @@ import Alert from '../../utils/ui/Alert';
 const styles = {
   root: {
     padding: '8px',
-    height: '100%',
     maxHeight: '100%'
   },
   card: {
