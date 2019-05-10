@@ -42,6 +42,7 @@ class DetailUser extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      id: "",
       tanggal_registrasi: "",
       tanggal_verifikasi: "",
       nik: "",
@@ -70,6 +71,7 @@ class DetailUser extends Component {
     axios.get(`/user/${id}`)
       .then(response => {
         const updateState = {
+          id: id,
           tanggal_registrasi: response.data.identity.created_at || "",
           tanggal_verifikasi: response.data.identity.created_at || "",
           nik: response.data.identity.nik || "",
@@ -99,7 +101,6 @@ class DetailUser extends Component {
 
   render() {
     const { classes } = this.props
-    const { id: currentUserId } = this.props.match.params
     const { 
       tanggal_registrasi, 
       tanggal_verifikasi, 
@@ -117,9 +118,15 @@ class DetailUser extends Component {
       pekerjaan,
       email,
       nomor_handphone,
-      nomor_npwp
+      nomor_npwp,
+      id: currentUserId,
     } = this.state
-
+    const defaultImage = "http://calgarypma.ca/wp-content/uploads/2018/01/default-thumbnail-300x225.jpg"
+    const imageUrl_ktp =  nik ? TokenizedURL(`/user/${currentUserId}/image/ktp`) : defaultImage
+    const imageUrl_foto =  nik ? TokenizedURL(`/user/${currentUserId}/image/foto`) : defaultImage
+    const imageUrl_npwp =  nik ? TokenizedURL(`/user/${currentUserId}/image/npwp`) : defaultImage
+    const imageUrl_selfie =  nik ? TokenizedURL(`/user/${currentUserId}/image/selfie`) : defaultImage
+    const imageUrl_selfiektp =  nik ? TokenizedURL(`/user/${currentUserId}/image/selfiektp`) : defaultImage
 
     return (
       <div className={classes.root}>
@@ -372,7 +379,7 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="KTP" subheader="Kartu Tanda Penduduk" />
                   <CardMedia
                     className={classes.media}
-                    image={nik ? TokenizedURL(`/user/${currentUserId}/image/ktp`) : ""}
+                    image={imageUrl_ktp}
                     title="KTP Image"
                   />
                 </Card>
@@ -380,32 +387,32 @@ class DetailUser extends Component {
                   <CardHeader className={classes.title} title="PASFOTO" subheader="Pasfoto Kartu Tanda Penduduk" />
                   <CardMedia
                     className={classes.media}
-                    image={currentUserId ? TokenizedURL(`/user/${currentUserId}/image/foto`) : ""}
-                    title="KTP Image"
+                    image={imageUrl_foto}
+                    title="Photo Image"
                   />
                 </Card>
                 <Card className={classes.card}>
                   <CardHeader className={classes.title} title="NPWP" subheader="Nomor Pokok Wajib Pajak" />
                   <CardMedia
                     className={classes.media}
-                    image={currentUserId ? TokenizedURL(`/user/${currentUserId}/image/npwp`) : ""}
-                    title="KTP Image"
+                    image={imageUrl_npwp}
+                    title="NPWP Image"
                   />
                 </Card>
                 <Card className={classes.card}>
                   <CardHeader className={classes.title} title="SELFIE" subheader="Foto Selfie" />                  
                   <CardMedia
                     className={classes.media}
-                    image={currentUserId ? TokenizedURL(`/user/${currentUserId}/image/selfie`) : ""}
-                    title="KTP Image"
+                    image={imageUrl_selfie}
+                    title="Selfie Image"
                   />
                 </Card>
                 <Card className={classes.card}>
                   <CardHeader className={classes.title} title="SELFIE & KTP" subheader="Foto Selfie Dengan KTP" />
                   <CardMedia
                     className={classes.media}
-                    image={currentUserId ? TokenizedURL(`/user/${currentUserId}/image/selfiektp`) : ""}
-                    title="KTP Image"
+                    image={imageUrl_selfiektp}
+                    title="Selfie with KTP Image"
                   />
                 </Card>
               </Grid>
