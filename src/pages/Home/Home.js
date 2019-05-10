@@ -24,7 +24,7 @@ import NotificationsOffIcon from '@material-ui/icons/NotificationsOff';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Wrapper, NewsCard, StatCard } from '../../components';
 import { mockFeed } from '../../utils/mock';
-import axios from 'axios'
+import axios from '../../axios.instances'
 
 let id = 0;
 function createData(name, date, progress) {
@@ -64,14 +64,7 @@ class Home extends Component {
   }
 
   requestData() {
-    let url = `${process.env.REACT_APP_PORTAL_API}/dashboard`
-    var config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-
-    axios.get(url, config)
+    axios.get('/dashboard')
     .then(response => {
       this.setState({
         total: response.data.total_data_kyc,
