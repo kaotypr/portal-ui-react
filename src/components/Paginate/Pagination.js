@@ -1,7 +1,20 @@
 import React, { Fragment } from 'react'
 import PaginationHead from './PaginationHead'
 import PaginationBody from './PaginationBody'
-import { Table, TablePagination } from '@material-ui/core';
+import { Table, TablePagination, withStyles } from '@material-ui/core';
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+  },
+  table: {
+    minWidth: 1020,
+  },
+  tableWrapper: {
+    overflowX: 'auto',
+  },
+});
 
 class Pagination extends React.Component {
   constructor(props) {
@@ -155,4 +168,4 @@ class Pagination extends React.Component {
   }
 }
 
-export default Pagination
+export default withStyles(styles)(Pagination)
