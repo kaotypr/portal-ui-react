@@ -80,7 +80,7 @@ class ListUser extends Component {
       { key: 'nik', numeric: true, disablePadding: false, label: 'NIK', filter: '' },
       // { key: 'email', numeric: false, disablePadding: false, label: 'Email', filter: '' },
       { key: 'status', numeric: false, disablePadding: false, label: 'Status', filter: '' },
-      { key: 'confidence', numeric: true, disablePadding: false, label: 'Percentage', filter: '' },
+      { key: 'confidence', numeric: true, disablePadding: false, label: 'Percentage', filter: '', getval : (val) => parseFloat(val).toFixed(2) },
     ];
     return (
       <div className={classes.root}>

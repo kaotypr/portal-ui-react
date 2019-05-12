@@ -10,6 +10,7 @@ const FilterTableCell = withStyles(theme => ({
   },
   body: {
     fontSize: 8,
+    paddingLeft: '15px'
   },
 }))(TableCell);
 
@@ -52,7 +53,6 @@ const PaginationBody = props => {
               <FilterTableCell 
                 key={hr.key} 
                 align="right"
-                padding="default"
                 sortDirection={orderBy === hr.key ? order : false}
               >
                 <TextField
