@@ -7,11 +7,14 @@ class Pagination extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      data: props.data || [],
+      showedData: props.data || [],
       rowsPerPage: props.rowsPerPage || 10,
       page: props.page || 0,
       order: props.order || 'asc',
       orderBy: props.orderBy,
       selected: [],
+      rows: props.rows
     }
 
     this.handleRequestSort = this.handleRequestSort.bind(this)
@@ -19,6 +22,38 @@ class Pagination extends React.Component {
     this.handleChangePage = this.handleChangePage.bind(this)
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleFilter = this.handleFilter.bind(this)
+  }
+
+  componentDidUpdate() {
+    if (this.props.data !== undefined && this.props.data.length > 0) {
+      if (this.state.data !== this.props.data) {
+        this.setState({data: this.props.data, showedData: this.props.data})
+      }
+    }
+  }
+
+  handleFilter(event, rowPoint) {
+    let currentRows = [...this.state.rows]
+    const filterObject = {}
+    currentRows.forEach(row => {
+      filterObject[row.key] = row.filter
+      if (row.key === rowPoint) {
+        filterObject[row.key] = event.target.value
+        row.filter = event.target.value
+      }
+    });
+    this.setState({ rows: currentRows })
+
+    let showedData = [...this.state.data]
+    console.log(filterObject)
+    for (const key in filterObject) {
+      showedData = showedData.filter(function(item) {
+        return `${item[key]}`.toLocaleLowerCase().includes(`${filterObject[key]}`.toLocaleLowerCase());
+      })
+    }
+
+    this.setState({showedData: showedData})
   }
 
   handleRequestSort(event, property) {
@@ -73,6 +108,7 @@ class Pagination extends React.Component {
 
   render() {
     const { classes } = this.props
+    const { showedData } = this.state
     return (
       <Fragment>
         <div className={classes.tableWrapper}>
@@ -83,12 +119,13 @@ class Pagination extends React.Component {
               orderBy={this.state.orderBy}
               onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
-              rowCount={this.props.data.length}
-              rows={this.props.rows}
+              rowCount={showedData.length}
+              rows={this.state.rows}
             />
             <PaginationBody
-              headerRows={this.props.rows}
-              data={this.props.data}
+              filterHandler={this.handleFilter}
+              headerRows={this.state.rows}
+              data={showedData}
               rowsPerPage={this.state.rowsPerPage}
               page={this.state.page}
               order={this.state.order}
@@ -101,7 +138,7 @@ class Pagination extends React.Component {
         <TablePagination
           rowsPerPageOptions={[5, 10, 20]}
           component="div"
-          count={this.props.data.length}
+          count={showedData.length}
           rowsPerPage={this.state.rowsPerPage}
           page={this.state.page}
           backIconButtonProps={{

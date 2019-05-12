@@ -90,11 +90,11 @@ class ListUser extends Component {
     const { data } = this.state
     const { classes } = this.props
     const rows = [
-      { key: 'nama_lengkap', numeric: false, disablePadding: false, label: 'Name' },
-      { key: 'nik', numeric: true, disablePadding: false, label: 'NIK' },
-      // { key: 'email', numeric: false, disablePadding: false, label: 'Email' },
-      { key: 'status', numeric: false, disablePadding: false, label: 'Status' },
-      { key: 'confidence', numeric: true, disablePadding: false, label: 'Percentage' },
+      { key: 'nama_lengkap', numeric: false, disablePadding: false, label: 'Name', filter: '' },
+      { key: 'nik', numeric: true, disablePadding: false, label: 'NIK', filter: '' },
+      // { key: 'email', numeric: false, disablePadding: false, label: 'Email', filter: '' },
+      { key: 'status', numeric: false, disablePadding: false, label: 'Status', filter: '' },
+      { key: 'confidence', numeric: true, disablePadding: false, label: 'Percentage', filter: '' },
     ];
     return (
       <div className={classes.root}>

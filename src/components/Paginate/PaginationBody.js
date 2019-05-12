@@ -14,7 +14,7 @@ const FilterTableCell = withStyles(theme => ({
 }))(TableCell);
 
 const PaginationBody = props => {
-  const { data, rowsPerPage, page, order, orderBy, headerRows } = props
+  const { data, rowsPerPage, page, order, orderBy, headerRows, filterHandler } = props
 
   function stableSort(array, cmp) {
     const stabilizedThis = array.map((el, index) => [el, index]);
@@ -56,10 +56,11 @@ const PaginationBody = props => {
                 sortDirection={orderBy === hr.key ? order : false}
               >
                 <TextField
+                  onChange={(e) => filterHandler(e, hr.key)}
                   label={`Filter ${hr.label}`}
-                  id="margin-none"
+                  id={`filter_field-${hr.key}`}
                   style={{padding: '8px'}}
-                  defaultValue=""
+                  value={hr.filter}
                 />
               </FilterTableCell>)
           })
