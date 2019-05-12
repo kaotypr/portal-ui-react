@@ -1,20 +1,7 @@
 import React, { Fragment } from 'react'
 import PaginationHead from './PaginationHead'
 import PaginationBody from './PaginationBody'
-import { Table, TablePagination, withStyles } from '@material-ui/core';
-
-const styles = theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-  },
-  table: {
-    minWidth: 1020,
-  },
-  tableWrapper: {
-    overflowX: 'auto',
-  },
-});
+import { Table, TablePagination } from '@material-ui/core';
 
 class Pagination extends React.Component {
   constructor(props) {
@@ -59,7 +46,6 @@ class Pagination extends React.Component {
     this.setState({ rows: currentRows })
 
     let showedData = [...this.state.data]
-    console.log(filterObject)
     for (const key in filterObject) {
       showedData = showedData.filter(function(item) {
         return `${item[key]}`.toLocaleLowerCase().includes(`${filterObject[key]}`.toLocaleLowerCase());
@@ -168,4 +154,4 @@ class Pagination extends React.Component {
   }
 }
 
-export default withStyles(styles)(Pagination)
+export default Pagination

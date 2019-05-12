@@ -59,7 +59,7 @@ const PaginationBody = props => {
                   onChange={(e) => filterHandler(e, hr.key)}
                   label={`Filter ${hr.label}`}
                   id={`filter_field-${hr.key}`}
-                  style={{padding: '8px'}}
+                  style={{padding: '8px', maxWidth: '150px'}}
                   value={hr.filter}
                 />
               </FilterTableCell>)
@@ -70,13 +70,13 @@ const PaginationBody = props => {
       {stableSort(data, getSorting(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map(n => {
-          const isSelected = props.selected.indexOf(n.id) !== -1;
+          const isSelected = props.selected.indexOf(n._id) !== -1;
           return (
             <TableRow
               hover
               aria-checked={isSelected}
               tabIndex={-1}
-              key={n.id}
+              key={n._id}
               selected={isSelected}
             >
               {
@@ -89,7 +89,7 @@ const PaginationBody = props => {
                       padding={hr.disablePadding ? 'none' : 'default'}
                       sortDirection={orderBy === hr.key ? order : false}
                     >
-                      {n[hr.key]}
+                      { hr.getval !== undefined ? hr.getval(n[hr.key])  : n[hr.key]}
                     </TableCell>
                   )}
                 )
@@ -98,7 +98,7 @@ const PaginationBody = props => {
                 padding="none"
               >
                 <IconButton onClick={() => {
-                  props.history.push({pathname: `${props.match.path}/${n.id}`, params: { id: n.id }})
+                  props.history.push({pathname: `${props.match.path}/${n._id}`, params: { id: n._id }})
                 }}>
                   <RemoveRedEyeIcon color="primary" />
                 </IconButton>

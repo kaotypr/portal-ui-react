@@ -7,6 +7,9 @@ import Home from './Home/Home';
 import ListUser from './Users/ListUser'
 import DetailUser from './Users/DetailUser'
 
+// Clients
+import ListClient from './Clients/ListClients'
+
 // Apps
 import Calendar from './Apps/Calendar';
 import Chat from './Apps/Chat';
@@ -83,6 +86,7 @@ export {
   Home,
   ListUser,
   DetailUser,
+  ListClient,
   
   Calendar,
   Chat,

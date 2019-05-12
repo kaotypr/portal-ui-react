@@ -27,7 +27,7 @@ const styles = {
   },
 };
 
-class ListUser extends Component {
+class ListClients extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -52,7 +52,7 @@ class ListUser extends Component {
   }
 
   requestData() {
-    axios.get('/users?limit=1000')
+    axios.get('/clients?limit=1000')
     .then(response => {
       this.setState({
         data: response.data.content
@@ -60,7 +60,8 @@ class ListUser extends Component {
     })
     .catch(error => {
       if (error.response === undefined || error.response.status === 500) {
-        this.props.history.push({pathname: '/500'})
+        console.log({...error})
+        // this.props.history.push({pathname: '/500'})
       } else {
         this.showAlert(
           "Terjadi kesalahan",
@@ -76,11 +77,12 @@ class ListUser extends Component {
     const { data } = this.state
     const { classes } = this.props
     const rows = [
-      { key: 'nama_lengkap', numeric: false, disablePadding: false, label: 'Name', filter: '' },
-      { key: 'nik', numeric: true, disablePadding: false, label: 'NIK', filter: '' },
-      // { key: 'email', numeric: false, disablePadding: false, label: 'Email', filter: '' },
-      { key: 'status', numeric: false, disablePadding: false, label: 'Status', filter: '' },
-      { key: 'confidence', numeric: true, disablePadding: false, label: 'Percentage', filter: '' },
+      { key: 'id_perusahaan', numeric: false, disablePadding: false, label: 'ID Client', filter: '' },
+      { key: 'nama', numeric: true, disablePadding: false, label: 'Nama Client', filter: '' },
+      { key: 'pic', numeric: false, disablePadding: false, label: 'PIC', filter: '' },
+      { key: 'no_telepon', numeric: false, disablePadding: false, label: 'Nomor Telepon', filter: '' },
+      { key: 'email', numeric: false, disablePadding: false, label: 'Email', filter: '' },
+      { key: 'status_client', numeric: true, disablePadding: false, label: 'Status', filter: '', getval: (val) => (val === true) ? 'Aktif' : 'Tidak Aftif' },
     ];
     return (
       <div className={classes.root}>
@@ -108,4 +110,4 @@ class ListUser extends Component {
   }
 }
 
-export default withRouter(withStyles(styles)(ListUser));
+export default withRouter(withStyles(styles)(ListClients));

@@ -21,6 +21,8 @@ import {
   ListUser,
   DetailUser,
 
+  ListClient,
+
   Calendar,
   Chat,
   Media,
@@ -96,6 +98,17 @@ export default {
         name: 'Detail User Data',
         sidebar: false,
         component: DetailUser
+      }]
+    },
+    {
+      path: '/dataclient',
+      name: 'Data Client',
+      type: 'submenu',
+      icon: PagesIcon,
+      children: [{
+        path: '/list',
+        name: 'List User Data',
+        component: ListClient
       }]
     },
     {

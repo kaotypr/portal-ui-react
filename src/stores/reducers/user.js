@@ -19,6 +19,14 @@ const initialState = {
           nested: false,
         }]
     },
+    {
+      path: '/dataclient',
+      nested: true,
+      children: [{
+          path: '/list',
+          nested: false,
+        }]
+    },
     // { 
     //   path: '/pages', 
     //   nested: true,
