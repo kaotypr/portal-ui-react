@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import { Card, CardContent, CardHeader } from '@material-ui/core';
+import { Card, CardContent, CardHeader, Button } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import Pagination from '../../components/Paginate/Pagination'
 import axios from '../../axios.instances'
 import Alert from '../../utils/ui/Alert';
 
-const styles = {
+const styles = theme => ({
   root: {
     padding: '8px',
     maxHeight: '100%'
+  },
+  headerWrap: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  headerAction: {
+    display: 'flex',
+    padding: '24px',
   },
   card: {
     padding: '8px',
@@ -25,7 +34,10 @@ const styles = {
   tableWrapper: {
     overflowX: 'auto',
   },
-};
+  extendedIcon: {
+    marginLeft: theme.spacing.unit,
+  },
+});
 
 class ListClients extends Component {
   constructor(props) {
@@ -94,13 +106,21 @@ class ListClients extends Component {
           firsthandler={this.state.firsthandler}
         />
         <Card square className={classes.card}>
-          <CardHeader
+          <div className={classes.headerWrap}>
+            <CardHeader
               classes={{
                 title: classes.title,
               }}
               title="List Clients"
               subheader="Cheking users data set"
             />
+            <div className={classes.headerAction}>
+              <Button variant="contained" color="primary" className={classes.button}>
+                Tambah Data
+                <AddIcon className={classes.extendedIcon} />
+              </Button>
+            </div>
+          </div>
           <CardContent>
             <Pagination data={data} classes={this.props.classes} rows={rows}/>
           </CardContent>

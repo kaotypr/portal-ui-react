@@ -107,7 +107,7 @@ export default {
       icon: PagesIcon,
       children: [{
         path: '/list',
-        name: 'List User Data',
+        name: 'List Client Data',
         component: ListClient
       }]
     },
