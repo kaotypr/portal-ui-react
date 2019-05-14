@@ -34,7 +34,7 @@ class PaginationHead extends React.Component {
             row => (
               <CustomTableCell
                 key={row.key}
-                align={row.numeric ? 'right' : 'left'}
+                align="left"
                 padding={row.disablePadding ? 'none' : 'default'}
                 sortDirection={orderBy === row.key ? order : false}
               >
@@ -55,7 +55,7 @@ class PaginationHead extends React.Component {
             ),
             this,
           )}
-          <CustomTableCell padding="none">
+          <CustomTableCell align="center" padding="default">
             Detail
           </CustomTableCell>
         </TableRow>

@@ -1,13 +1,11 @@
 import React, { Component }  from 'react'
 import { withRouter } from 'react-router-dom';
-import axios from '../../axios.instances'
 
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import CollectionsIcon from '@material-ui/icons/Collections';
 
 import { Card, CardHeader, CardContent, Grid, Typography, TextField, CardMedia, Button } from '@material-ui/core';
-import * as utils from '../../utils/utility'
 
 
 const styles = {

@@ -1,18 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { TableBody, TableRow, TableCell, IconButton, TextField, withStyles } from "@material-ui/core";
+import { TableBody, TableRow, TableCell, IconButton, TextField } from "@material-ui/core";
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
-
-const FilterTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 8,
-    paddingLeft: '15px'
-  },
-}))(TableCell);
 
 const PaginationBody = props => {
   const { data, rowsPerPage, page, order, orderBy, headerRows, filterHandler } = props
@@ -45,24 +34,25 @@ const PaginationBody = props => {
     <TableBody>
       <TableRow
         hover
-        tabIndex={-1}
-        style={{backgroundColor: '#e8f0fe'}}
       >
         {headerRows.map(hr => {
             return (
-              <FilterTableCell 
+              <TableCell 
                 key={hr.key} 
-                align="right"
+                align="center"
                 sortDirection={orderBy === hr.key ? order : false}
+                style={{padding: '2px 10px 5px 10px'}}
               >
                 <TextField
+                  fullWidth
                   onChange={(e) => filterHandler(e, hr.key)}
                   label={`Filter ${hr.label}`}
                   id={`filter_field-${hr.key}`}
-                  style={{padding: '8px', maxWidth: '150px'}}
+                  margin="dense"
                   value={hr.filter}
+                  variant="outlined"
                 />
-              </FilterTableCell>)
+              </TableCell>)
           })
         }
         <TableCell></TableCell>
@@ -85,7 +75,7 @@ const PaginationBody = props => {
                     
                     <TableCell 
                       key={hr.key} 
-                      align="right"
+                      align="left"
                       padding={hr.disablePadding ? 'none' : 'default'}
                       sortDirection={orderBy === hr.key ? order : false}
                     >
@@ -95,7 +85,7 @@ const PaginationBody = props => {
                 )
               }
               <TableCell 
-                padding="none"
+                padding="default"
               >
                 <IconButton onClick={() => {
                   props.history.push({pathname: `${props.match.path}/${n._id}`, params: { id: n._id }})
