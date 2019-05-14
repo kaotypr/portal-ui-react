@@ -92,7 +92,7 @@ const Item = (props) => {
   )
 }
 
-Item.proptypes = {
+Item.propTypes = {
   classes: PropTypes.object.isRequired,
   message: PropTypes.shape({
     from: PropTypes.string,

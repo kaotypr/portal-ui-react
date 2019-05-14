@@ -48,7 +48,7 @@ class Detail extends Component {
                   <span className={star <= product.rating ? null : classes.inactive} key={star}>&#9733;</span>
                 ))}
                 <span className="px-1">({ product.rating }) Votes</span>
-                <a>{ product.rating } customer reviews</a>
+                <a href="/portal/rating">{ product.rating } customer reviews</a>
               </Typography>
 
               <Typography variant="title" className="mt-1" gutterBottom>
