@@ -22,6 +22,8 @@ import {
   DetailUser,
 
   ListClient,
+  DetailClient,
+  AddClient,
   
   OcrLogList,
 
@@ -111,6 +113,18 @@ export default {
         path: '/list',
         name: 'List Client',
         component: ListClient
+      },
+      {
+        path: '/client/:id',
+        name: 'Detail Client',
+        sidebar: false,
+        component: DetailClient
+      },
+      {
+        path: '/add',
+        name: 'Add Client',
+        sidebar: false,
+        component: AddClient
       }]
     },
     {

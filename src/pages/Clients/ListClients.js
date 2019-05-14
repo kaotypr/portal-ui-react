@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardContent, CardHeader, Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import Pagination from '../../components/Paginate/Pagination'
 import axios from '../../axios.instances'
 import Alert from '../../utils/ui/Alert';
@@ -115,10 +115,12 @@ class ListClients extends Component {
               subheader="Cheking users data set"
             />
             <div className={classes.headerAction}>
-              <Button variant="contained" color="primary" className={classes.button}>
-                Tambah Data
-                <AddIcon className={classes.extendedIcon} />
-              </Button>
+              <Link to='/dataclient/add'>
+                <Button variant="contained" color="primary" className={classes.button}>
+                  Tambah Data
+                  <AddIcon className={classes.extendedIcon} />
+                </Button>
+              </Link>
             </div>
           </div>
           <CardContent>

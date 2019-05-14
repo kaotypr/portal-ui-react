@@ -9,6 +9,8 @@ import DetailUser from './Users/DetailUser'
 
 // Clients
 import ListClient from './Clients/ListClients'
+import DetailClient from './Clients/DetailClient'
+import AddClient from './Clients/AddClient'
 
 // Ocr
 import OcrLogList from './Ocr/OcrLogList'
@@ -89,7 +91,11 @@ export {
   Home,
   ListUser,
   DetailUser,
+  
   ListClient,
+  DetailClient,
+  AddClient,
+
   OcrLogList,
   
   Calendar,
