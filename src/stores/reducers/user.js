@@ -27,6 +27,14 @@ const initialState = {
           nested: false,
         }]
     },
+    {
+      path: '/ocr',
+      nested: true,
+      children: [{
+          path: '/loglist',
+          nested: false,
+        }]
+    },
     // { 
     //   path: '/pages', 
     //   nested: true,

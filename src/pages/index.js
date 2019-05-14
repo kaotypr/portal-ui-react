@@ -10,6 +10,9 @@ import DetailUser from './Users/DetailUser'
 // Clients
 import ListClient from './Clients/ListClients'
 
+// Ocr
+import OcrLogList from './Ocr/OcrLogList'
+
 // Apps
 import Calendar from './Apps/Calendar';
 import Chat from './Apps/Chat';
@@ -87,6 +90,7 @@ export {
   ListUser,
   DetailUser,
   ListClient,
+  OcrLogList,
   
   Calendar,
   Chat,

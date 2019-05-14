@@ -22,6 +22,8 @@ import {
   DetailUser,
 
   ListClient,
+  
+  OcrLogList,
 
   Calendar,
   Chat,
@@ -109,6 +111,17 @@ export default {
         path: '/list',
         name: 'List Client Data',
         component: ListClient
+      }]
+    },
+    {
+      path: '/ocr',
+      name: 'Ocr',
+      type: 'submenu',
+      icon: ViewColumnIcon,
+      children: [{
+        path: '/loglist',
+        name: 'OCR Log List',
+        component: OcrLogList
       }]
     },
     {
