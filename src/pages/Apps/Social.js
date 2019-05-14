@@ -55,8 +55,8 @@ class Social extends Component {
                     <Typography variant="title" gutterBottom>Gerald <b>Morris</b></Typography>
                     <Typography variant="caption" gutterBottom>gerald@morris.com</Typography>
                     <Typography variant="body1" gutterBottom>Human Resources Manager</Typography>
-                    <Typography variant="body1" gutterBottom><a>email@contact.com</a></Typography>
-                    <Typography variant="body1" gutterBottom><a>www.example.com</a></Typography>
+                    <Typography variant="body1" gutterBottom><a href="#email">email@contact.com</a></Typography>
+                    <Typography variant="body1" gutterBottom><a href="#site">www.example.com</a></Typography>
                     <Button variant="raised" color="primary">Edit Profile</Button>
                   </Grid>
                   <Grid item xs={5}>

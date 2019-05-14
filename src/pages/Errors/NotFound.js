@@ -12,7 +12,7 @@ const NotFound = (props) => {
       <div className={classes.content}>
         <Typography className={classes.title}>404</Typography>
         <Typography className={classes.subtitle}>Page not found!</Typography>
-        <Typography variant="caption">Sorry, but the page you were trying to view does not exist. <a>Report this error?</a></Typography>
+        <Typography variant="caption">Sorry, but the page you were trying to view does not exist. <a href="/portal/report">Report this error?</a></Typography>
       </div>
     </div>
   );

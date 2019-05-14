@@ -44,7 +44,7 @@ const Invoice = () => {
       <Card>
         <CardContent>
           <Typography variant="title" gutterBottom className="font-weight-bold">INVOICE</Typography>
-          <Typography variant="body1" className="mb-1"><a>company@address.com</a></Typography>
+          <Typography variant="body1" className="mb-1"><a href="#email">company@address.com</a></Typography>
           <Grid container spacing={24} alignItems="flex-start" direction="row" justify="space-between">
             <Grid item xs={12} sm={6}>
               <Typography variant="body2" gutterBottom>Client</Typography>

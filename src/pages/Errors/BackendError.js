@@ -11,7 +11,7 @@ const BackendError = (props) => {
       <div className={classes.content}>
         <Typography className={classes.title}>500</Typography>
         <Typography className={classes.subtitle}>We have an internal server error!</Typography>
-        <Typography variant="caption">Sorry, but the page you were trying to view does not exist. <a>Report this error?</a></Typography>
+        <Typography variant="caption">Sorry, but the page you were trying to view does not exist. <a href="/portal/report">Report this error?</a></Typography>
       </div>
     </div>
   );
