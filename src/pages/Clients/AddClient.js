@@ -56,8 +56,11 @@ const styles = {
   InputFile: {
     display: 'none'
   },
-  iconPreview: {
+  iconHide: {
     display: 'none'
+  },
+  iconShow: {
+    display: 'block'
   }
 };
 
@@ -74,12 +77,14 @@ class AddClient extends Component {
       kecamatan: "",
       kelurahan: "",
       alamat: "",
+      iconURL: ""
     }
 
     this.iconChooserInput = React.createRef();
 
     this.formChangeHandler = this.formChangeHandler.bind(this)
     this.iconChooserHandler = this.iconChooserHandler.bind(this)
+    this.iconChangeHandler = this.iconChangeHandler.bind(this)
   }
 
   formChangeHandler(event) {
@@ -89,6 +94,13 @@ class AddClient extends Component {
 
   iconChooserHandler(event) {
     this.iconChooserInput.current.click()
+  }
+
+  iconChangeHandler(event) {
+    // console.log(this.iconChooserInput.current.files)
+    this.setState({
+      iconURL: URL.createObjectURL(this.iconChooserInput.current.files[0])
+    })
   }
 
   render() {
@@ -103,8 +115,13 @@ class AddClient extends Component {
       kecamatan,
       kelurahan,
       alamat,
+      iconURL
     } = this.state
     const defaultImage = "http://calgarypma.ca/wp-content/uploads/2018/01/default-thumbnail-300x225.jpg"
+
+    const iconPreviewURL = iconURL === "" ? defaultImage :  iconURL
+    const iconClassName = iconURL === "" ? classes.iconHide :  classes.iconShow
+
 
     return (
       <div className={classes.root}>
@@ -249,14 +266,14 @@ class AddClient extends Component {
                         Pilih Icon 
                         <CollectionsIcon className={classes.extendedIcon} />
                       </Button>
-                      <input ref={this.iconChooserInput} id="iconchooser_input" name="iconchooser_input" className={classes.InputFile} type="file"/>
+                      <input onChange={this.iconChangeHandler} ref={this.iconChooserInput} id="iconchooser_input" name="iconchooser_input" className={classes.InputFile} type="file"/>
                     </div>
                   </div>
                   <CardMedia
                     id="icon_preview"
                     name="icon_preview"
-                    className={`${classes.media} ${classes.iconPreview}`}
-                    image={defaultImage}
+                    className={`${classes.media} ${iconClassName}`}
+                    image={iconPreviewURL}
                     title="KTP Image"
                   />
                 </Card>
