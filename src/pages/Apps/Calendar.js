@@ -68,7 +68,7 @@ const CustomToolbar = (toolbar) => {
     <AppBar position="static" style={{zIndex: 1000}}>
       <Toolbar className="calendar-toolbar">
         <Hidden mdUp>
-          <Typography variant="title" color="inherit" className="flexSpacer px-1">{label()}</Typography>
+          <Typography variant="h6" color="inherit" className="flexSpacer px-1">{label()}</Typography>
           <IconButton aria-label="Previous" color="inherit" onClick={goToBack}><ChevronLeftIcon /></IconButton>
           <IconButton aria-label="Today" color="inherit" onClick={goToCurrent}><TodayIcon /></IconButton>
           <IconButton aria-label="Next" color="inherit" onClick={goToNext}><ChevronRightIcon /> </IconButton>
@@ -76,7 +76,7 @@ const CustomToolbar = (toolbar) => {
       </Toolbar>
       <Hidden smDown>
         <Toolbar className="calendar-toolbar">
-          <Typography variant="title" color="inherit" className="flexSpacer px-1">{label()}</Typography>
+          <Typography variant="h6" color="inherit" className="flexSpacer px-1">{label()}</Typography>
           <Button color="inherit" onClick={goToDayView}>Day</Button>
           <Button color="inherit" onClick={goToWeekView}>Week</Button>
           <Button color="inherit" onClick={goToMonthView}>Month</Button>

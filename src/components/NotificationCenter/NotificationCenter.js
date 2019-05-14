@@ -88,8 +88,8 @@ class NotificationCenter extends Component {
           { tab === 0 &&
             <Fragment>
               <div className={classes.padding}>
-                <Typography variant="display1" gutterBottom>{format(today, 'dddd')}</Typography>
-                <Typography variant="subheading">{format(today, 'MMM Do YY')}</Typography>
+                <Typography variant="h4" gutterBottom>{format(today, 'dddd')}</Typography>
+                <Typography variant="subtitle1">{format(today, 'MMM Do YY')}</Typography>
               </div>
               { stocks &&
                 <Fragment>
@@ -115,7 +115,7 @@ class NotificationCenter extends Component {
                     <ListItem button>
                       <ListItemText primary={forecast.city.country} secondary={forecast.city.name} />
                       <ListItemSecondaryAction className="mx-1">
-                        <Typography variant="title">
+                        <Typography variant="h6">
                           { <Fragment>
                               <i className={classNames(getWeatherIcon(forecast.list[0].weather[0].icon), 'text-lg mx-1')}></i>
                               {forecast.list[0].main.temp}

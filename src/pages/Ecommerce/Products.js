@@ -118,7 +118,7 @@ class Products extends Component {
                 onClick={() => this.handleDrawerToggle()}>
                 <MenuIcon />
               </IconButton>
-              <Typography variant="title" color="inherit" noWrap>
+              <Typography variant="h6" color="inherit" noWrap>
                 Products
               </Typography>
             </Toolbar>

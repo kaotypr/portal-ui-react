@@ -38,7 +38,7 @@ const StatCard = (props) => {
           {before}
           <Grid item>
             <div className={ type === 'fill' ? 'pr-1' : 'px-1' }>
-              <Typography variant="title" className={ type === 'fill' ? classes.lightText : null }>{value}</Typography>
+              <Typography variant="h6" className={ type === 'fill' ? classes.lightText : null }>{value}</Typography>
               <Typography variant="caption" className={ type === 'fill' ? classes.lightText : null }>{title}</Typography>
             </div>
           </Grid>

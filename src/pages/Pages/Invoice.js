@@ -43,17 +43,17 @@ const Invoice = () => {
     <Wrapper>
       <Card>
         <CardContent>
-          <Typography variant="title" gutterBottom className="font-weight-bold">INVOICE</Typography>
+          <Typography variant="h6" gutterBottom className="font-weight-bold">INVOICE</Typography>
           <Typography variant="body1" className="mb-1"><a href="#email">company@address.com</a></Typography>
           <Grid container spacing={24} alignItems="flex-start" direction="row" justify="space-between">
             <Grid item xs={12} sm={6}>
-              <Typography variant="body2" gutterBottom>Client</Typography>
+              <Typography variant="body1" gutterBottom>Client</Typography>
               <Typography variant="body1">Invoice No: #0001</Typography>
               <Typography variant="body1">Date issued: 01 Jun 2017</Typography>
               <Typography variant="body1">Due date: 31 May 2017</Typography>
             </Grid>
             <Grid item  xs={12} sm={6} className="text-sm-right text-xs-left">
-              <Typography variant="body2" gutterBottom>Company LLC</Typography>
+              <Typography variant="body1" gutterBottom>Company LLC</Typography>
               <Typography variant="body1">company@address.com</Typography>
               <Typography variant="body1">1234 Main</Typography>
               <Typography variant="body1">Apt. 4B</Typography>
@@ -91,19 +91,19 @@ const Invoice = () => {
           <Grid container spacing={8}>
             <Grid item xs={6} sm={3} className="mt-xs mb-xs">
               <Typography variant="caption" className="font-weight-bold text-uppercase">Subtotal</Typography>
-              <Typography variant="headline">{formatPrice(getSubTotal())}</Typography>
+              <Typography variant="h5">{formatPrice(getSubTotal())}</Typography>
             </Grid>
             <Grid item xs={6} sm={3} className="mt-xs mb-xs text-sm-right text-md-left">
               <Typography variant="caption" className="font-weight-bold text-uppercase">Tax (15%)</Typography>
-              <Typography variant="headline">{formatPrice(getCalculatedTax())}</Typography>
+              <Typography variant="h5">{formatPrice(getCalculatedTax())}</Typography>
             </Grid>
             <Grid item xs={6} sm={3} className="mt-xs mb-xs">
               <Typography variant="caption" className="font-weight-bold text-uppercase">Discount</Typography>
-              <Typography variant="headline">$0.00</Typography>
+              <Typography variant="h5">$0.00</Typography>
             </Grid>
             <Grid item xs={6} sm={3} className="mt-xs mb-xs text-xs-left text-sm-right">
               <Typography variant="caption" className="font-weight-bold text-uppercase">Total</Typography>
-              <Typography variant="headline">{formatPrice(getTotal())}</Typography>
+              <Typography variant="h5">{formatPrice(getTotal())}</Typography>
             </Grid>
           </Grid>
         </CardContent>

@@ -52,7 +52,7 @@ class Social extends Component {
               <CardContent>
                 <Grid container spacing={24}>
                   <Grid item xs={7}>
-                    <Typography variant="title" gutterBottom>Gerald <b>Morris</b></Typography>
+                    <Typography variant="h6" gutterBottom>Gerald <b>Morris</b></Typography>
                     <Typography variant="caption" gutterBottom>gerald@morris.com</Typography>
                     <Typography variant="body1" gutterBottom>Human Resources Manager</Typography>
                     <Typography variant="body1" gutterBottom><a href="#email">email@contact.com</a></Typography>
@@ -77,22 +77,22 @@ class Social extends Component {
               <CardContent className="text-xs-center">
                 <Grid container spacing={24}>
                   <Grid item xs={4}>
-                    <Typography variant="title" gutterBottom>23,8K</Typography>
+                    <Typography variant="h6" gutterBottom>23,8K</Typography>
                     <Typography variant="caption">Followers</Typography>
                   </Grid>
                   <Grid item xs={4}>
-                    <Typography variant="title" gutterBottom>569</Typography>
+                    <Typography variant="h6" gutterBottom>569</Typography>
                     <Typography variant="caption">Following</Typography>
                   </Grid>
                   <Grid item xs={4}>
-                    <Typography variant="title" gutterBottom>67</Typography>
+                    <Typography variant="h6" gutterBottom>67</Typography>
                     <Typography variant="caption">Posts</Typography>
                   </Grid>
                 </Grid>
               </CardContent>
               <Divider />
               <CardContent>
-                <Typography variant="subheading" gutterBottom>
+                <Typography variant="subtitle1" gutterBottom>
                   About
                 </Typography>
                 <Typography>
@@ -144,7 +144,7 @@ class Social extends Component {
               { tab === 1 &&
                 <TabContainer>
                   <CardContent>
-                    <Typography variant="title" gutterBottom>Basic Information</Typography>
+                    <Typography variant="h6" gutterBottom>Basic Information</Typography>
                     <Grid container spacing={24} alignItems="flex-start" direction="row" justify="space-between">
                       <Grid item>
                         <div className="mb-1">
@@ -194,7 +194,7 @@ class Social extends Component {
                   </CardContent>
                   <Divider />
                   <CardContent>
-                    <Typography variant="title" gutterBottom>Bio</Typography>
+                    <Typography variant="h6" gutterBottom>Bio</Typography>
                     <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam quis risus eget urna mollis ornare vel eu leo.</Typography>
                   </CardContent>
                 </TabContainer>

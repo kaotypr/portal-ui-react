@@ -28,6 +28,8 @@ const logger = store => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const enhancher = composeEnhancers(applyMiddleware(logger, thunk))
 const store = createStore(rootReducer, enhancher)
+// mterial ui next typography consid
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 const app = (
   <Provider store={store}>

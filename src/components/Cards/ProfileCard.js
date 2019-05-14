@@ -44,7 +44,7 @@ const ProfileCard = (props) => {
             </IconButton>
           </Grid>
         </Grid>
-        <Typography variant="title" gutterBottom>{name}</Typography>
+        <Typography variant="h6" gutterBottom>{name}</Typography>
         <Typography variant="caption">{location}</Typography>
       </CardContent>
       <Divider />
@@ -58,7 +58,7 @@ const ProfileCard = (props) => {
         >
           { stats.map((stat, index) => (
             <Grid item xs className="text-xs-center" key={index} >
-              <Typography variant="title">{stat.value}</Typography>
+              <Typography variant="h6">{stat.value}</Typography>
               <Typography variant="caption">{stat.title}</Typography>
             </Grid>
           ))}

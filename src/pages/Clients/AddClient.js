@@ -2,7 +2,7 @@ import React, { Component }  from 'react'
 import { withRouter } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
+import SaveIcon from '@material-ui/icons/Save';
 import CollectionsIcon from '@material-ui/icons/Collections';
 
 import { Card, CardHeader, CardContent, Grid, Typography, TextField, CardMedia, Button } from '@material-ui/core';
@@ -86,7 +86,6 @@ class AddClient extends Component {
   }
 
   formChangeHandler(event) {
-    console.log(event)
     this.setState({[event.target.name]: event.target.value});
   }
 
@@ -135,7 +134,9 @@ class AddClient extends Component {
             <Grid container spacing={24} alignItems="flex-start" direction="row" justify="space-between">
               <Grid item xs={12} sm={6}>
                 <Grid item xs={6} sm={6}>
-                  <Typography align='left' className={classes.headline} variant='headline' gutterBottom>Data Perusahaan</Typography>
+                  <Typography align='left' className={classes.headline} variant='h5' gutterBottom>
+                    Data Perusahaan
+                  </Typography>
                 </Grid>
                 <TextField
                   id="id_perusahaan"
@@ -186,7 +187,7 @@ class AddClient extends Component {
                 />
 
                 <Grid item xs={6} sm={6}>
-                  <Typography align='left' className={classes.headline} variant='headline' gutterBottom>Alamat Perusahaan</Typography>
+                  <Typography align='left' className={classes.headline} variant='h5' gutterBottom>Alamat Perusahaan</Typography>
                 </Grid>
 
                 <TextField
@@ -243,14 +244,14 @@ class AddClient extends Component {
                   margin="normal"
                   fullWidth
                   multiline={true}
-                  rows={2}
-                  rowsMax={4}
+                  rows={3}
+                  rowsMax={5}
                   variant="filled"
                 />
 
                 <Button style={{marginTop: '30px'}} variant="contained" color="primary" className={classes.button}>
                   Submit
-                  <AddIcon className={classes.extendedIcon} />
+                  <SaveIcon className={classes.extendedIcon} />
                 </Button>
 
               </Grid>
@@ -272,7 +273,7 @@ class AddClient extends Component {
                     name="icon_preview"
                     className={`${classes.media} ${iconClassName}`}
                     image={iconPreviewURL}
-                    title="KTP Image"
+                    title="Icon Perusahaan"
                   />
                 </Card>
               </Grid>

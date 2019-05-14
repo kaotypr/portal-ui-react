@@ -28,7 +28,7 @@ const ImageStatCard = (props) => {
         >
           { stats.map((stat, index) => (
             <Grid item xs className={classes.center} key={index} >
-              <Typography variant="title" gutterBottom>{stat.value}</Typography>
+              <Typography variant="h6" gutterBottom>{stat.value}</Typography>
               <Typography variant="caption">{stat.title}</Typography>
             </Grid>
           ))}

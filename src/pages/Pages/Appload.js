@@ -12,7 +12,7 @@ const Appload = (props) => {
     <div className={classes.session}>
       <div className={classes.content}>
         <CircularProgress className={classes.progress} thickness={4} size={50} color="primary"/>
-        <Typography component="h2" variant="display1" gutterBottom>
+        <Typography component="h2" variant="h3" gutterBottom>
           <br/>
           load portal
         </Typography>

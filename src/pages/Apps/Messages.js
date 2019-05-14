@@ -48,7 +48,7 @@ class Messages extends Component {
                 onClick={() => this.handleDrawerToggle()}>
                 <MenuIcon />
               </IconButton>
-              <Typography variant="title" color="inherit" noWrap>Messages</Typography>
+              <Typography variant="h6" color="inherit" noWrap>Messages</Typography>
             </Toolbar>
           </AppBar>
         </Hidden>

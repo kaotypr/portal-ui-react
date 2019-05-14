@@ -41,8 +41,8 @@ class Detail extends Component {
               <div className={classes.imageHeader}></div>
             </Grid>
             <Grid item xs={12} sm={6} md={7} className="pa-1">
-              <Typography variant="headline">{ product.name }</Typography>
-              <Typography variant="subheading">{ product.description }</Typography>
+              <Typography variant="h5">{ product.name }</Typography>
+              <Typography variant="subtitle1">{ product.description }</Typography>
               <Typography gutterBottom>
                 { [1, 2, 3, 4, 5].map(star => (
                   <span className={star <= product.rating ? null : classes.inactive} key={star}>&#9733;</span>
@@ -51,7 +51,7 @@ class Detail extends Component {
                 <a href="/portal/rating">{ product.rating } customer reviews</a>
               </Typography>
 
-              <Typography variant="title" className="mt-1" gutterBottom>
+              <Typography variant="h6" className="mt-1" gutterBottom>
                 <span>{ formatPrice(product.price) }</span>
                 {product.discounted && <span className={classNames(classes.inactive, "strikethrough text-sm")}>{formatPrice(product.discount)}</span>}
                 <span className={classNames(classes.inactive, "text-xs")}>*excluding tax</span>
@@ -118,7 +118,7 @@ class Detail extends Component {
             </Tabs>
             { tab === 0 &&
               <CardContent>
-                <Typography variant="title" gutterBottom>Donec sed odio dui.</Typography>
+                <Typography variant="h6" gutterBottom>Donec sed odio dui.</Typography>
                 <Typography gutterBottom>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</Typography>
                 <Typography>Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</Typography>
               </CardContent>

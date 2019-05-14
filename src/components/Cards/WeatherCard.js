@@ -74,12 +74,12 @@ class WeatherCard extends Component {
                 justify={'space-between'}
               >
                 <Grid item>
-                  <Typography variant="title">{`${forecast.city.name}, ${forecast.city.country}`}</Typography>
-                  <Typography variant="subheading">{format((current.dt * 1000), 'MMMM Do YYYY, h:mm:ss a')}</Typography>
+                  <Typography variant="h6">{`${forecast.city.name}, ${forecast.city.country}`}</Typography>
+                  <Typography variant="subtitle1">{format((current.dt * 1000), 'MMMM Do YYYY, h:mm:ss a')}</Typography>
                   <Typography variant="caption">{capitalize(current.weather[0].description)}</Typography>
                 </Grid>
                 <Grid item className="text-xs-right">
-                  <Typography variant="display1">
+                  <Typography variant="h4">
                     <span>{current.main.temp}</span>
                   </Typography>
                 </Grid>

@@ -57,7 +57,7 @@ const ProductCard = (props) => {
             { discounted &&
               <Typography variant="caption" className="strikethrough" component="span">{ formatPrice(discount) }</Typography>
             }
-            <Typography variant="title" className={classes.mainPrice}> { formatPrice(price) }</Typography>
+            <Typography variant="h6" className={classes.mainPrice}> { formatPrice(price) }</Typography>
           </Grid>
         </Grid>
       </CardContent>

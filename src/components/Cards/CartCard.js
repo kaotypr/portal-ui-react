@@ -18,7 +18,7 @@ const CartCard = (props) => {
     <Card>
       <Grid container spacing={0} alignItems="center" className="pa-1">
         <Grid item className="flexSpacer">
-          <Typography variant="subheading">{title}</Typography>
+          <Typography variant="subtitle1">{title}</Typography>
         </Grid>
         <Grid item>
           <Button variant="contained" color="primary">
