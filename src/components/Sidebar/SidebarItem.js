@@ -33,7 +33,7 @@ class SidebarItem extends Component {
 
     if (route.type === 'external') {
       return (
-        <a href={route.path} target="_blank" key={index} className={classes.menuLink}>
+        <a href={route.path} target="_blank" rel="noopener noreferrer" key={index} className={classes.menuLink}>
           <ListItem className={classes.menuItem} button>
             <ListItemIcon>
               <route.icon className={classes.menuIcon} />
