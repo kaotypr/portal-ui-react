@@ -38,7 +38,7 @@ class OcrLogList extends Component {
 
   // COMPONENT DID MOUNT
   componentDidMount() {
-    this.requestData()
+    // this.requestData()
   }
 
   showAlert(title, content, options, handlers) {
@@ -76,11 +76,11 @@ class OcrLogList extends Component {
     const { data } = this.state
     const { classes } = this.props
     const rows = [
-      { key: 'nama_lengkap', numeric: false, disablePadding: false, label: 'Name', filter: '' },
-      { key: 'nik', numeric: true, disablePadding: false, label: 'NIK', filter: '' },
-      // { key: 'email', numeric: false, disablePadding: false, label: 'Email', filter: '' },
-      { key: 'status', numeric: false, disablePadding: false, label: 'Status', filter: '' },
-      { key: 'confidence', numeric: true, disablePadding: false, label: 'Percentage', filter: '', getval : (val) => parseFloat(val).toFixed(2) },
+      { key: 'trace_number', numeric: false, disablePadding: false, label: 'Trace Number', filter: '' },
+      { key: 'client_id', numeric: true, disablePadding: false, label: 'ID Client', filter: '' },
+      { key: 'client_name', numeric: false, disablePadding: false, label: 'Nama Client', filter: '' },
+      { key: 'created_at', numeric: false, disablePadding: false, label: 'Created Date', filter: '' },
+      { key: 'status', numeric: true, disablePadding: false, label: 'Status', filter: ''},
     ];
     return (
       <div className={classes.root}>

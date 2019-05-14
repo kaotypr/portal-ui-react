@@ -109,7 +109,7 @@ export default {
       icon: PagesIcon,
       children: [{
         path: '/list',
-        name: 'List Client Data',
+        name: 'List Client',
         component: ListClient
       }]
     },
@@ -120,7 +120,7 @@ export default {
       icon: ViewColumnIcon,
       children: [{
         path: '/loglist',
-        name: 'OCR Log List',
+        name: 'Logs',
         component: OcrLogList
       }]
     },
