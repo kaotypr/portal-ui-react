@@ -27,7 +27,6 @@ import {
   
   OcrLogList,
 
-  Calendar,
   Chat,
   Media,
   Messages,
@@ -148,11 +147,6 @@ export default {
         value: '5'
       },
       children: [{
-          path: '/calendar',
-          name: 'Calendar',
-          component: Calendar
-        },
-        {
           path: '/media',
           name: 'Media',
           component: Media

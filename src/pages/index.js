@@ -16,7 +16,6 @@ import AddClient from './Clients/AddClient'
 import OcrLogList from './Ocr/OcrLogList'
 
 // Apps
-import Calendar from './Apps/Calendar';
 import Chat from './Apps/Chat';
 import Media from './Apps/Media';
 import Messages from './Apps/Messages';
@@ -98,7 +97,6 @@ export {
 
   OcrLogList,
   
-  Calendar,
   Chat,
   Media,
   Messages,
