@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import Hidden from '@material-ui/core/Hidden'
 import SpeedDial from '@material-ui/lab/SpeedDial'
@@ -127,7 +126,7 @@ class Dashboard extends Component {
               <Route exact path={item.path} component={item.component} name={item.name} key={item.path} />
         ))
         }
-        {/* <Redirect to="/404" /> */}
+        <Redirect to="/404" />
       </Switch>
     )
     // const sidebarRoutes = filteredRoutes.map(filtroute => {

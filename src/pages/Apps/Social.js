@@ -57,7 +57,7 @@ class Social extends Component {
                     <Typography variant="body1" gutterBottom>Human Resources Manager</Typography>
                     <Typography variant="body1" gutterBottom><a href="#email">email@contact.com</a></Typography>
                     <Typography variant="body1" gutterBottom><a href="#site">www.example.com</a></Typography>
-                    <Button variant="raised" color="primary">Edit Profile</Button>
+                    <Button variant="contained" color="primary">Edit Profile</Button>
                   </Grid>
                   <Grid item xs={5}>
                     <div className="text-xs-center">
@@ -118,7 +118,7 @@ class Social extends Component {
                   <LocationOnIcon />
                 </IconButton>
                 <span className="flexSpacer"></span>
-                <Button variant="raised" color="primary">
+                <Button variant="contained" color="primary">
                   Post
                 </Button>
               </CardActions>
