@@ -8,7 +8,7 @@ import thunk from 'redux-thunk'
 
 import AppProvider from './components/AppProvider/AppProvider';
 
-import registerServiceWorker from './registerServiceWorker';
+import * as serviceWorker from './serviceWorker';
 import rootReducer from './stores/reducers'
 import AppBasename from './constants/appBasename'
 import * as Util from './utils/utility'
@@ -42,4 +42,4 @@ const app = (
 
 ReactDOM.render(app, document.getElementById('root'));
 
-registerServiceWorker();
+serviceWorker.unregister()
