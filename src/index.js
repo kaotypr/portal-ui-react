@@ -1,17 +1,16 @@
 import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom'
-
+import { BrowserRouter } from 'react-router-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
-import AppProvider from './components/AppProvider/AppProvider'
+import AppProvider from '@components/AppProvider/AppProvider'
 
 import * as serviceWorker from './serviceWorker'
-import rootReducer from './stores/reducers'
-import AppBasename from './constants/appBasename'
-import * as Util from './utils/utility'
+import rootReducer from '@reducers'
+import AppBasename from '@constants/appBasename'
+import * as Util from '@utils/utility'
 import App from './App'
 
 const logger = store => {
