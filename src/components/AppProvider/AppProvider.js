@@ -36,7 +36,6 @@ class AppProvider extends Component {
           fontSize: '0.8125rem',
         },
         button: {
-          fontWeight: 400,
           textTransform: 'initial'
         }
       },

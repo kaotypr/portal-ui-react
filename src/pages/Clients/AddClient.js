@@ -1,10 +1,11 @@
 import React, { Component }  from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+import axios from '../../axios.instances'
 
 import { withStyles } from '@material-ui/core/styles';
 import SaveIcon from '@material-ui/icons/Save';
+import BackSpaceIcon from '@material-ui/icons/Backspace';
 import CollectionsIcon from '@material-ui/icons/Collections';
-
 import { Card, CardHeader, CardContent, Grid, Typography, TextField, CardMedia, Button } from '@material-ui/core';
 
 
@@ -75,7 +76,8 @@ class AddClient extends Component {
       kecamatan: "",
       kelurahan: "",
       alamat: "",
-      iconURL: ""
+      iconURL: "",
+      icon: null
     }
 
     this.iconChooserInput = React.createRef();
@@ -83,6 +85,7 @@ class AddClient extends Component {
     this.formChangeHandler = this.formChangeHandler.bind(this)
     this.iconChooserHandler = this.iconChooserHandler.bind(this)
     this.iconChangeHandler = this.iconChangeHandler.bind(this)
+    this.submitHandler = this.submitHandler.bind(this)
   }
 
   formChangeHandler(event) {
@@ -96,8 +99,55 @@ class AddClient extends Component {
   iconChangeHandler(event) {
     // console.log(this.iconChooserInput.current.files)
     this.setState({
+      icon: this.iconChooserInput.current.files[0],
       iconURL: URL.createObjectURL(this.iconChooserInput.current.files[0])
     })
+  }
+
+  submitHandler(event) {
+    event.preventDefault()
+  
+    const headers = {
+      "Content-Type": "multipart/form-data"
+    }
+
+    const postData = this.loopObjectToFormData({
+      id_perusahaan: this.state.id_perusahaan,
+      nama: this.state.nama_perusahaan,
+      nomor_telepon: this.state.nomor_telepon,
+      email: this.state.email,
+      provinsi: this.state.provinsi,
+      kota: this.state.kota,
+      kecamatan: this.state.kecamatan,
+      kelurahan: this.state.kelurahan,
+      alamat: this.state.id_perusahaan,
+      icon: this.state.icon
+    })
+
+    for(var pair of postData.entries()) {
+      console.log(pair[0]+ ', '+ pair[1]); 
+   }
+    
+
+    axios.post('/client', postData, headers)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log({...error})
+      })
+  }
+
+  loopObjectToFormData(obj) {
+    let formData = new FormData();
+    
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        formData.append(key, obj[key])
+      }
+    }
+
+    return formData
   }
 
   render() {
@@ -163,6 +213,7 @@ class AddClient extends Component {
                 />
 
                 <TextField
+                  type="number"
                   id="nomor_telepon"
                   name="nomor_telepon"
                   onChange={(event) => this.formChangeHandler(event)}
@@ -227,7 +278,7 @@ class AddClient extends Component {
                   id="kelurahan"
                   name="kelurahan"
                   onChange={(event) => this.formChangeHandler(event)}
-                  label="Kecamatan"
+                  label="Kelurahan"
                   value={kelurahan}
                   className={classes.textField}
                   margin="normal"
@@ -248,11 +299,6 @@ class AddClient extends Component {
                   rowsMax={5}
                   variant="filled"
                 />
-
-                <Button style={{marginTop: '30px'}} variant="contained" color="primary" className={classes.button}>
-                  Submit
-                  <SaveIcon className={classes.extendedIcon} />
-                </Button>
 
               </Grid>
 
@@ -276,6 +322,20 @@ class AddClient extends Component {
                     title="Icon Perusahaan"
                   />
                 </Card>
+              </Grid>
+            </Grid>
+            <Grid container alignItems="center"  direction="row-reverse" justify="center" style={{padding: '30px', display: 'flex'}}>
+              <Grid item container xs={4} sm={4} justify="space-between">
+                <Link to='/dataclient/list'>
+                  <Button variant="contained" color="primary" className={classes.button}>
+                    Cancel
+                    <BackSpaceIcon className={classes.extendedIcon} />
+                  </Button>
+                </Link>
+                <Button onClick={this.submitHandler} variant="contained" color="primary" className={classes.button}>
+                  Submit
+                  <SaveIcon className={classes.extendedIcon} />
+                </Button>
               </Grid>
             </Grid>
           </CardContent>
