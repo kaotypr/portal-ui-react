@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { TableBody, TableRow, TableCell, IconButton, TextField } from '@material-ui/core'
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye'
@@ -98,6 +99,17 @@ const PaginationBody = props => {
         })}
     </TableBody>
   )
+}
+
+PaginationBody.propTypes = {
+  data: PropTypes.array,
+  rowsPerPage: PropTypes.number,
+  page: PropTypes.number,
+  order: PropTypes.string,
+  orderBy: PropTypes.any,
+  headerRows: PropTypes.any,
+  filterHandler: PropTypes.func,
+  selected: PropTypes.any
 }
 
 export default withRouter(PaginationBody)

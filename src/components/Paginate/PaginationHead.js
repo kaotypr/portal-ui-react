@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { TableCell, TableRow, TableHead, Tooltip, TableSortLabel } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -62,6 +63,13 @@ class PaginationHead extends React.Component {
       </TableHead>
     )
   }
+}
+
+PaginationHead.propTypes = {
+  onRequestSort: PropTypes.func,
+  order: PropTypes.bool,
+  orderBy: PropTypes.any,
+  rows: PropTypes.array 
 }
 
 export default PaginationHead

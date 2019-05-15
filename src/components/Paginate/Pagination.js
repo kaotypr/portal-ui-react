@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import PaginationHead from './PaginationHead'
 import PaginationBody from './PaginationBody'
 import { Table, TablePagination } from '@material-ui/core'
@@ -131,7 +132,7 @@ class Pagination extends React.Component {
               orderBy={this.state.orderBy}
               selected={this.state.selected}
               handleClick={this.handleClick}
-             />
+            />
           </Table>
         </div>
         <TablePagination
@@ -152,6 +153,15 @@ class Pagination extends React.Component {
       </Fragment>
     )
   }
+}
+
+Pagination.propTypes = {
+  data: PropTypes.array,
+  rowsPerPage: PropTypes.number,
+  page: PropTypes.number,
+  order: PropTypes.string,
+  orderBy: PropTypes.any,
+  rows: PropTypes.any
 }
 
 export default Pagination
