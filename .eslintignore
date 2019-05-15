@@ -1,0 +1,11 @@
+/src/components/Demo/**/*.js
+/src/components/Demo/**/*.jsx
+
+/src/utils/demos/**/*.js
+/src/utils/demos/**/*.jsx
+
+/src/utils/mock/**/*.js
+/src/utils/mock/**/*.jsx
+
+/src/pages/Material/**/*.js
+/src/pages/Material/**/*.jsx
