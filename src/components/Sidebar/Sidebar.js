@@ -92,11 +92,11 @@ class Sidebar extends Component {
 
 Sidebar.propTypes = {
   classes: PropTypes.object.isRequired,
-  opened: PropTypes.func,
+  opened: PropTypes.bool,
   toggleDrawer: PropTypes.func,
   closeDrawer: PropTypes.func,
   openDrawer: PropTypes.func,
-  routes: PropTypes.object
+  routes: PropTypes.array
 }
 
 const SidebarWithRouter = withRouter(Sidebar)

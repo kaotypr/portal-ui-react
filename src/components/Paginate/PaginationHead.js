@@ -67,7 +67,7 @@ class PaginationHead extends React.Component {
 
 PaginationHead.propTypes = {
   onRequestSort: PropTypes.func,
-  order: PropTypes.bool,
+  order: PropTypes.string,
   orderBy: PropTypes.any,
   rows: PropTypes.array 
 }
