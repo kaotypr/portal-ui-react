@@ -38,7 +38,7 @@ const Example = (props) => {
   )
 }
 
-Example.prototypes = {
+Example.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired
 }

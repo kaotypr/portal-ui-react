@@ -4,18 +4,19 @@ import classNames from 'classnames'
 import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 
-import { withStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import TextField from '@material-ui/core/TextField'
-import Checkbox from '@material-ui/core/Checkbox'
-import Typography from '@material-ui/core/Typography'
+import { 
+  withStyles,
+  Card, 
+  CardContent, 
+  Button, 
+  FormControlLabel, 
+  TextField, 
+  Checkbox, 
+  Typography } from '@material-ui/core'
 
-import * as utils from '../../utils/utility'
-import SessionStyles from '../../styles/Session'
-import Alert from '../../utils/ui/Alert'
+import * as utils from '@utils/utility'
+import SessionStyles from '@styles/Session'
+import Alert from '@components/ui/Alert'
 
 const Signup = (props) => {
   const component = new React.Component(props)

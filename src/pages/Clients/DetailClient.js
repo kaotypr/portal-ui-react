@@ -1,11 +1,11 @@
 import React, { Component }  from 'react'
 import { withRouter } from 'react-router-dom'
-import axios, { TokenizedURL } from '../../axios.instances'
 
-import { withStyles } from '@material-ui/core/styles'
-import { Card, CardHeader, CardContent, Grid, Typography, TextField, RadioGroup, Radio, FormControlLabel, FormLabel, FormControl, CardMedia } from '@material-ui/core'
-import * as utils from '../../utils/utility'
-import Alert from '../../utils/ui/Alert'
+import { withStyles, Card, CardHeader, CardContent, Grid, Typography, TextField, RadioGroup, Radio, FormControlLabel, FormLabel, FormControl, CardMedia } from '@material-ui/core'
+
+import axios, { TokenizedURL } from '@root/axios.instances'
+import * as utils from '@utils/utility'
+import Alert from '@components/ui/Alert'
 
 
 const styles = {

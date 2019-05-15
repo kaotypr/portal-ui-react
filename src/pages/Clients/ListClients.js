@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Card, CardContent, CardHeader, Button } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
-import { withStyles } from '@material-ui/core/styles'
 import { withRouter, Link } from 'react-router-dom'
-import Pagination from '../../components/Paginate/Pagination'
-import axios from '../../axios.instances'
-import Alert from '../../utils/ui/Alert'
+
+import { withStyles, Card, CardContent, CardHeader, Button } from '@material-ui/core'
+
+import Pagination from '@components/Paginate/Pagination'
+import axios from '@root/axios.instances'
+import Alert from '@components/ui/Alert'
 
 const styles = theme => ({
   root: {
