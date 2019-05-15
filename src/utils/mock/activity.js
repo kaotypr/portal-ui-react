@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@material-ui/core/Avatar'
 
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import AssignmentIcon from '@material-ui/icons/Assignment'
 
-import pink from '@material-ui/core/colors/pink';
-import green from '@material-ui/core/colors/green';
+import pink from '@material-ui/core/colors/pink'
+import green from '@material-ui/core/colors/green'
 
 const styles = {
   pinkAvatar: {
@@ -16,7 +16,7 @@ const styles = {
     color: '#fff',
     backgroundColor: green[500],
   }
-};
+}
 
 export default [{
   title: 'Vestibulum Fusce Purus',
@@ -43,4 +43,4 @@ export default [{
   subtitle: 'Inceptos Vulputate',
   avatar: <Avatar alt="" src="/static/images/face3.jpg" />,
   body: 'Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. Curabitur blandit tempus porttitor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.',
-}];
+}]

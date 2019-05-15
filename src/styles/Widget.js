@@ -1,4 +1,4 @@
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { fade } from '@material-ui/core/styles/colorManipulator'
 
 const WidgetStyles = theme => ({
   media: {
@@ -51,6 +51,6 @@ const WidgetStyles = theme => ({
       background: `linear-gradient(to right, ${fade(theme.palette.background.paper, 0)}, ${theme.palette.background.paper} 50%)`,
     }
   }
-});
+})
 
-export default WidgetStyles;
+export default WidgetStyles

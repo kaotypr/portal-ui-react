@@ -1,18 +1,18 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import { Wrapper } from '../../components';
-import { formatPrice } from '../../helpers';
-import { mockInvoice } from '../../utils/mock';
+import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Divider from '@material-ui/core/Divider'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import { Wrapper } from '../../components'
+import { formatPrice } from '../../helpers'
+import { mockInvoice } from '../../utils/mock'
 
 const CustomTableCell = withStyles(theme => ({
   body: {
@@ -20,23 +20,23 @@ const CustomTableCell = withStyles(theme => ({
     paddingTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit
   }
-}))(TableCell);
+}))(TableCell)
 
 const Invoice = () => {
   const getSubTotal = () => {
-    let total = 0.00;
+    let total = 0.00
     for (let i = 1; i < mockInvoice.length; i++) {
-      total += (mockInvoice[i].price * mockInvoice[i].quantity);
+      total += (mockInvoice[i].price * mockInvoice[i].quantity)
     }
-    return total;
+    return total
   }
 
   const getCalculatedTax = () => {
-    return ((15 * getSubTotal()) / 100);
+    return ((15 * getSubTotal()) / 100)
   }
 
   const getTotal = () => {
-    return (getSubTotal() + getCalculatedTax());
+    return (getSubTotal() + getCalculatedTax())
   }
 
   return (
@@ -117,7 +117,7 @@ const Invoice = () => {
         </CardContent>
       </Card>
     </Wrapper>
-  );
+  )
 }
 
-export default Invoice;
+export default Invoice

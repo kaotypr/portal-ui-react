@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import SessionStyles from '../../styles/Session';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import SessionStyles from '../../styles/Session'
 
 const Appload = (props) => {
-  const { classes } = props;
+  const { classes } = props
 
   return (
     <div className={classes.session}>
@@ -20,11 +20,11 @@ const Appload = (props) => {
         <Typography variant="caption">Sorry, but the page you were trying to view does not exist. <a>Report this error?</a></Typography> */}
       </div>
     </div>
-  );
+  )
 }
 
 Appload.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(SessionStyles)(Appload);
+export default withStyles(SessionStyles)(Appload)

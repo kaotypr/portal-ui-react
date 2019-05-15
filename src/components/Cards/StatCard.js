@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Grid from '@material-ui/core/Grid';
-import StatCardStyles from '../../styles/StatCard';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import Grid from '@material-ui/core/Grid'
+import StatCardStyles from '../../styles/StatCard'
 
 const StatCard = (props) => {
-  const { classes, type, title, value, icon, color } = props;
+  const { classes, type, title, value, icon, color } = props
 
-  let before = null;
-  let after = null;
+  let before = null
+  let after = null
 
   const cardIcon = (
     <Grid item className={type === 'fill' ? classes.iconFloat : null }>
@@ -20,10 +20,10 @@ const StatCard = (props) => {
         {icon}
       </IconButton>
     </Grid>
-  );
+  )
 
   if (icon) {
-    type === 'fill' ? after = cardIcon : before = cardIcon;
+    type === 'fill' ? after = cardIcon : before = cardIcon
   }
 
   return (
@@ -46,18 +46,18 @@ const StatCard = (props) => {
         </Grid>
       </CardContent>
     </Card>
-  );
+  )
 }
 
 StatCard.propTypes = {
   classes: PropTypes.object.isRequired,
   type: PropTypes.oneOf([
-    "fill"
+    'fill'
   ]),
   title: PropTypes.string,
   value: PropTypes.number,
   icon: PropTypes.element,
   color: PropTypes.string
-};
+}
 
-export default withStyles(StatCardStyles)(StatCard);
+export default withStyles(StatCardStyles)(StatCard)

@@ -1,37 +1,37 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
-import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import TextField from '@material-ui/core/TextField'
+import Checkbox from '@material-ui/core/Checkbox'
+import Typography from '@material-ui/core/Typography'
+import { Link } from 'react-router-dom'
 
 import * as actions from '../../stores/actions'
 
-import SessionStyles from '../../styles/Session';
+import SessionStyles from '../../styles/Session'
 
 const Signin = (props) => {
-  const component = new React.Component(props);
-  const { classes } = props;
+  const component = new React.Component(props)
+  const { classes } = props
   component.state = {
-    username: "",
-    password: "",
+    username: '',
+    password: '',
     remember: false
   }
 
   function handleChange(event) {
-    component.setState({[event.target.name]: event.target.value});
+    component.setState({[event.target.name]: event.target.value})
   }
 
   function handleRemember(event) {
-    component.setState({[event.target.name]: !component.state.remember});
+    component.setState({[event.target.name]: !component.state.remember})
   }
 
   function validateForm() {
@@ -39,7 +39,7 @@ const Signin = (props) => {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     if (!validateForm()) {
       return
     }
@@ -53,7 +53,7 @@ const Signin = (props) => {
     props.authLogin(authData)
   }
 
-  component.render = function(){
+  component.render = function render(){
 
     if (component.props.isAuthenticated === true) {
       component.props.history.push({pathname: '/'})
@@ -119,7 +119,7 @@ const Signin = (props) => {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   return component
@@ -146,10 +146,10 @@ Signin.propTypes = {
   authenticating: PropTypes.bool,
   error: PropTypes.string,
   checked: PropTypes.bool
-};
+}
 
 
-const wrapped_withStyles_signin = withStyles(SessionStyles)(Signin);
+const wrapped_withStyles_signin = withStyles(SessionStyles)(Signin)
 const wrapped_connect_signin = connect(mapStateToProps, mapDispatchToProps)(wrapped_withStyles_signin)
 const wrapped_withRouter_signin = withRouter(wrapped_connect_signin)
 

@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider';
-import PhoneIcon from '@material-ui/icons/Phone';
-import EmailIcon from '@material-ui/icons/Email';
-import WidgetStyles from '../../styles/Widget';
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import Avatar from '@material-ui/core/Avatar'
+import Divider from '@material-ui/core/Divider'
+import PhoneIcon from '@material-ui/icons/Phone'
+import EmailIcon from '@material-ui/icons/Email'
+import WidgetStyles from '../../styles/Widget'
 
 const ProfileCard = (props) => {
-  const { classes, name, image, location, stats } = props;
+  const { classes, name, image, location, stats } = props
   return (
     <Card className="text-xs-center">
       <CardContent className={classNames(classes.content, 'px-0')}>
@@ -65,7 +65,7 @@ const ProfileCard = (props) => {
         </Grid>
       </CardContent>
     </Card>
-  );
+  )
 }
 
 ProfileCard.propTypes = {
@@ -79,6 +79,6 @@ ProfileCard.propTypes = {
       value: PropTypes.number
     })
   ).isRequired
-};
+}
 
-export default withStyles(WidgetStyles)(ProfileCard);
+export default withStyles(WidgetStyles)(ProfileCard)

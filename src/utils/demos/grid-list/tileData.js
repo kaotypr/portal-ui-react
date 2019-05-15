@@ -64,6 +64,6 @@ const tileData = [
     title: 'Bike',
     author: 'danfador',
   },
-];
+]
 
-export default tileData;
+export default tileData

@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import StreamStyles from '../../styles/Stream';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardContent from '@material-ui/core/CardContent'
+import StreamStyles from '../../styles/Stream'
 
 const ActivityStream = (props) => {
-  const { classes, title, stream } = props;
+  const { classes, title, stream } = props
   return (
     <div className={classes.stream}>
       <div className={classes.card}>
@@ -29,7 +29,7 @@ const ActivityStream = (props) => {
         </Card>
       ))}
     </div>
-  );
+  )
 }
 
 ActivityStream.propTypes = {
@@ -43,6 +43,6 @@ ActivityStream.propTypes = {
       body: PropTypes.string
     })
   ).isRequired
-};
+}
 
-export default withStyles(StreamStyles)(ActivityStream);
+export default withStyles(StreamStyles)(ActivityStream)

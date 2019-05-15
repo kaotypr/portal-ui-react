@@ -1,14 +1,14 @@
 /* eslint-disable react/prefer-stateless-function */
 
-import React from 'react';
-import MaskedInput from 'react-text-mask';
-import NumberFormat from 'react-number-format';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
+import React from 'react'
+import MaskedInput from 'react-text-mask'
+import NumberFormat from 'react-number-format'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Input from '@material-ui/core/Input'
+import InputLabel from '@material-ui/core/InputLabel'
+import TextField from '@material-ui/core/TextField'
+import FormControl from '@material-ui/core/FormControl'
 
 const styles = theme => ({
   container: {
@@ -18,10 +18,10 @@ const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit,
   },
-});
+})
 
 function TextMaskCustom(props) {
-  const { inputRef, ...other } = props;
+  const { inputRef, ...other } = props
 
   return (
     <MaskedInput
@@ -31,15 +31,15 @@ function TextMaskCustom(props) {
       placeholderChar={'\u2000'}
       showMask
     />
-  );
+  )
 }
 
 TextMaskCustom.propTypes = {
   inputRef: PropTypes.func.isRequired,
-};
+}
 
 function NumberFormatCustom(props) {
-  const { inputRef, onChange, ...other } = props;
+  const { inputRef, onChange, ...other } = props
 
   return (
     <NumberFormat
@@ -50,18 +50,18 @@ function NumberFormatCustom(props) {
           target: {
             value: values.value,
           },
-        });
+        })
       }}
       thousandSeparator
       prefix="$"
     />
-  );
+  )
 }
 
 NumberFormatCustom.propTypes = {
   inputRef: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-};
+}
 
 class FormattedInputs extends React.Component {
   state = {
@@ -72,12 +72,12 @@ class FormattedInputs extends React.Component {
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
-    });
+    })
   };
 
   render() {
-    const { classes } = this.props;
-    const { textmask, numberformat } = this.state;
+    const { classes } = this.props
+    const { textmask, numberformat } = this.state
 
     return (
       <div className={classes.container}>
@@ -101,12 +101,12 @@ class FormattedInputs extends React.Component {
           }}
         />
       </div>
-    );
+    )
   }
 }
 
 FormattedInputs.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(FormattedInputs);
+export default withStyles(styles)(FormattedInputs)

@@ -1,35 +1,36 @@
-import React, { Component } from 'react';
-import { Pie } from 'react-chartjs-2';
-import Grid from '@material-ui/core/Grid';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import SettingsIcon from '@material-ui/icons/Settings';
-import MoreIcon from '@material-ui/icons/More';
-import NotificationsOffIcon from '@material-ui/icons/NotificationsOff';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { Wrapper, NewsCard, StatCard } from '../../components';
-import { mockFeed } from '../../utils/mock';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Pie } from 'react-chartjs-2'
+import Grid from '@material-ui/core/Grid'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import IconButton from '@material-ui/core/IconButton'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardHeader from '@material-ui/core/CardHeader'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import LocalOfferIcon from '@material-ui/icons/LocalOffer'
+import SettingsIcon from '@material-ui/icons/Settings'
+import MoreIcon from '@material-ui/icons/More'
+import NotificationsOffIcon from '@material-ui/icons/NotificationsOff'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import { Wrapper, NewsCard, StatCard } from '../../components'
+import { mockFeed } from '../../utils/mock'
 import axios from '../../axios.instances'
 
-let id = 0;
+let id = 0
 function createData(name, date, progress) {
-  id += 1;
-  return { id, name, date, progress };
+  id += 1
+  return { id, name, date, progress }
 }
 
 const data = [
@@ -38,7 +39,7 @@ const data = [
   createData('Development', 'March 30', 54),
   createData('Testing and delivery', 'April 12', 34),
   createData('Ongoing maintanance', 'May 28', 56),
-];
+]
 
 class Home extends Component {
   state = {
@@ -51,11 +52,11 @@ class Home extends Component {
   };
 
   handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
+    this.setState({ anchorEl: event.currentTarget })
   };
 
   handleClose = () => {
-    this.setState({ anchorEl: null });
+    this.setState({ anchorEl: null })
   };
 
   // COMPONENT DID MOUNT
@@ -65,30 +66,30 @@ class Home extends Component {
 
   requestData() {
     axios.get('/dashboard')
-    .then(response => {
-      this.setState({
-        total: response.data.total_data_kyc,
-        gagal: response.data.total_gagal,
-        pending: response.data.total_pending,
-        terverifikasi: response.data.total_terverifikasi
+      .then(response => {
+        this.setState({
+          total: response.data.total_data_kyc,
+          gagal: response.data.total_gagal,
+          pending: response.data.total_pending,
+          terverifikasi: response.data.total_terverifikasi
+        })
       })
-    })
-    .catch(error => {
-      if (error.response === undefined || error.response.status === 500) {
-        this.props.history.push({pathname: '/500'})
-      } else {
-        this.showAlert(
-          "Terjadi kesalahan",
-          error.response.data.error,
-          { secondoption: "Tutup" },
-          { secondhandler: () => this.setState({openalert: false}) }
-        )
-      }
-    })
+      .catch(error => {
+        if (error.response === undefined || error.response.status === 500) {
+          this.props.history.push({pathname: '/500'})
+        } else {
+          this.showAlert(
+            'Terjadi kesalahan',
+            error.response.data.error,
+            { secondoption: 'Tutup' },
+            { secondhandler: () => this.setState({openalert: false}) }
+          )
+        }
+      })
   }
 
   render() {
-    const { anchorEl, gagal, terverifikasi, pending, total } = this.state;
+    const { anchorEl, gagal, terverifikasi, pending, total } = this.state
     const chartMenu = (
       <Menu
         id="chart-menu"
@@ -121,7 +122,7 @@ class Home extends Component {
           <ListItemText inset primary="Remove panel" />
         </MenuItem>
       </Menu>
-    );
+    )
 
     const exampledatapie = {
       labels: ['Gagal Terverifikasi', 'Terverifikasi', 'Pending'],
@@ -137,7 +138,7 @@ class Home extends Component {
       legend: {
         display: false
       }
-    };
+    }
 
     return (
       <Wrapper>
@@ -182,9 +183,9 @@ class Home extends Component {
           <Grid item xs={12} sm={12} md={4} key={10}>
             <Card>
               <CardHeader
-                subheader={"Total Data KYC"}
+                subheader={'Total Data KYC'}
                 action={
-                  <IconButton id={`4-menu-button`} onClick={this.handleClick}>
+                  <IconButton id={'4-menu-button'} onClick={this.handleClick}>
                     <MoreVertIcon />
                   </IconButton>
                 }
@@ -235,4 +236,8 @@ class Home extends Component {
   }
 }
 
-export default Home;
+Home.propTypes = {
+  history: PropTypes.object
+}
+
+export default Home

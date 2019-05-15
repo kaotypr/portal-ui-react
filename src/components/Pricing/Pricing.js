@@ -1,19 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardHeader from '@material-ui/core/CardHeader';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
-import PricingStyles from '../../styles/Pricing';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardHeader from '@material-ui/core/CardHeader'
+import Button from '@material-ui/core/Button'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Typography from '@material-ui/core/Typography'
+import PricingStyles from '../../styles/Pricing'
 
 const Pricing = (props) => {
-  const { classes, title, subtitle, price, features } = props;
+  const { classes, title, subtitle, price, features } = props
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -44,7 +45,7 @@ const Pricing = (props) => {
         <Button variant="raised" color="secondary" className={classes.centered}>Choose plan</Button>
       </CardActions>
     </Card>
-  );
+  )
 }
 
 Pricing.prototypes = {
@@ -58,6 +59,6 @@ Pricing.prototypes = {
       available: PropTypes.bool,
     })
   )
-};
+}
 
-export default withStyles(PricingStyles)(Pricing);
+export default withStyles(PricingStyles)(Pricing)

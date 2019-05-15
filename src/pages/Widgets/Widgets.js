@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Avatar from '@material-ui/core/Avatar';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import red from '@material-ui/core/colors/red';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import PhoneIcon from '@material-ui/icons/Phone';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import EmailIcon from '@material-ui/icons/Email';
-import { Wrapper, ImageStatCard, MapCard, NewsCard, ProfileCard, StatCard, CartCard, WeatherCard, PostCard } from '../../components';
-import { mockFeed } from '../../utils/mock';
+import React, { Component } from 'react'
+import Grid from '@material-ui/core/Grid'
+import Avatar from '@material-ui/core/Avatar'
+import GridList from '@material-ui/core/GridList'
+import GridListTile from '@material-ui/core/GridListTile'
+import red from '@material-ui/core/colors/red'
+import LocalOfferIcon from '@material-ui/icons/LocalOffer'
+import PhoneIcon from '@material-ui/icons/Phone'
+import NotificationsIcon from '@material-ui/icons/Notifications'
+import EmailIcon from '@material-ui/icons/Email'
+import { Wrapper, ImageStatCard, MapCard, NewsCard, ProfileCard, StatCard, CartCard, WeatherCard, PostCard } from '../../components'
+import { mockFeed } from '../../utils/mock'
 
 class Widgets extends Component {
   state = {
@@ -31,7 +31,7 @@ class Widgets extends Component {
   }
 
   render() {
-    const { feed, stats } = this.state;
+    const { feed, stats } = this.state
 
     return (
       <Wrapper>
@@ -224,4 +224,4 @@ class Widgets extends Component {
   }
 }
 
-export default Widgets;
+export default Widgets

@@ -7,7 +7,7 @@ const initialState = {
   userId: false,
   token: false,
   refreshToken: null,
-  expiresIn: "",
+  expiresIn: '',
   error: null,
   redirectPath: '/'
 }

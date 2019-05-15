@@ -1,4 +1,4 @@
-import { infoColor, warningColor } from './variables';
+import { infoColor, warningColor } from './variables'
 
 const TimelineStyles = theme => ({
   timeline: {
@@ -173,6 +173,6 @@ const TimelineStyles = theme => ({
   danger: {
     backgroundColor: theme.palette.error.main,
   }
-});
+})
 
-export default TimelineStyles;
+export default TimelineStyles

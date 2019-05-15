@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepButton from '@material-ui/core/StepButton';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Stepper from '@material-ui/core/Stepper'
+import Step from '@material-ui/core/Step'
+import StepButton from '@material-ui/core/StepButton'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
   root: {
@@ -24,22 +24,22 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
-});
+})
 
 function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad']
 }
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return 'Step 1: Select campaign settings...';
+      return 'Step 1: Select campaign settings...'
     case 1:
-      return 'Step 2: What is an ad group anyways?';
+      return 'Step 2: What is an ad group anyways?'
     case 2:
-      return 'Step 3: This is the bit I really care about!';
+      return 'Step 3: This is the bit I really care about!'
     default:
-      return 'Unknown step';
+      return 'Unknown step'
   }
 }
 
@@ -51,66 +51,66 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
   };
 
   totalSteps = () => {
-    return getSteps().length;
+    return getSteps().length
   };
 
   isStepOptional = step => {
-    return step === 1;
+    return step === 1
   };
 
   handleSkip = () => {
-    const { activeStep } = this.state;
+    const { activeStep } = this.state
     if (!this.isStepOptional(activeStep)) {
       // You probably want to guard against something like this
       // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
+      throw new Error('You can\'t skip a step that isn\'t optional.')
     }
 
     this.setState(state => {
-      const skipped = new Set(state.skipped.values());
-      skipped.add(activeStep);
+      const skipped = new Set(state.skipped.values())
+      skipped.add(activeStep)
       return {
         activeStep: state.activeStep + 1,
         skipped,
-      };
-    });
+      }
+    })
   };
 
   handleNext = () => {
-    let activeStep;
+    let activeStep
 
     if (this.isLastStep() && !this.allStepsCompleted()) {
       // It's the last step, but not all steps have been completed
       // find the first step that has been completed
-      const steps = getSteps();
-      activeStep = steps.findIndex((step, i) => !this.state.completed.has(i));
+      const steps = getSteps()
+      activeStep = steps.findIndex((step, i) => !this.state.completed.has(i))
     } else {
-      activeStep = this.state.activeStep + 1;
+      activeStep = this.state.activeStep + 1
     }
     this.setState({
       activeStep,
-    });
+    })
   };
 
   handleBack = () => {
     this.setState(state => ({
       activeStep: state.activeStep - 1,
-    }));
+    }))
   };
 
   handleStep = step => () => {
     this.setState({
       activeStep: step,
-    });
+    })
   };
 
   handleComplete = () => {
     // eslint-disable-next-line react/no-access-state-in-setstate
-    const completed = new Set(this.state.completed);
-    completed.add(this.state.activeStep);
+    const completed = new Set(this.state.completed)
+    completed.add(this.state.activeStep)
     this.setState({
       completed,
-    });
+    })
 
     /**
      * Sigh... it would be much nicer to replace the following if conditional with
@@ -118,7 +118,7 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
      * thus we have to resort to not being very DRY.
      */
     if (completed.size !== this.totalSteps() - this.skippedSteps()) {
-      this.handleNext();
+      this.handleNext()
     }
   };
 
@@ -127,49 +127,49 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
       activeStep: 0,
       completed: new Set(),
       skipped: new Set(),
-    });
+    })
   };
 
   skippedSteps() {
-    return this.state.skipped.size;
+    return this.state.skipped.size
   }
 
   isStepSkipped(step) {
-    return this.state.skipped.has(step);
+    return this.state.skipped.has(step)
   }
 
   isStepComplete(step) {
-    return this.state.completed.has(step);
+    return this.state.completed.has(step)
   }
 
   completedSteps() {
-    return this.state.completed.size;
+    return this.state.completed.size
   }
 
   allStepsCompleted() {
-    return this.completedSteps() === this.totalSteps() - this.skippedSteps();
+    return this.completedSteps() === this.totalSteps() - this.skippedSteps()
   }
 
   isLastStep() {
-    return this.state.activeStep === this.totalSteps() - 1;
+    return this.state.activeStep === this.totalSteps() - 1
   }
 
   render() {
-    const { classes } = this.props;
-    const steps = getSteps();
-    const { activeStep } = this.state;
+    const { classes } = this.props
+    const steps = getSteps()
+    const { activeStep } = this.state
 
     return (
       <div className={classes.root}>
         <Stepper alternativeLabel nonLinear activeStep={activeStep}>
           {steps.map((label, index) => {
-            const props = {};
-            const buttonProps = {};
+            const props = {}
+            const buttonProps = {}
             if (this.isStepOptional(index)) {
-              buttonProps.optional = <Typography variant="caption">Optional</Typography>;
+              buttonProps.optional = <Typography variant="caption">Optional</Typography>
             }
             if (this.isStepSkipped(index)) {
-              props.completed = false;
+              props.completed = false
             }
             return (
               <Step key={label} {...props}>
@@ -181,7 +181,7 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
                   {label}
                 </StepButton>
               </Step>
-            );
+            )
           })}
         </Stepper>
         <div>
@@ -213,15 +213,15 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
                 </Button>
                 {this.isStepOptional(activeStep) &&
                   !this.state.completed.has(this.state.activeStep) && (
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleSkip}
-                      className={classes.button}
-                    >
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={this.handleSkip}
+                    className={classes.button}
+                  >
                       Skip
-                    </Button>
-                  )}
+                  </Button>
+                )}
                 {activeStep !== steps.length &&
                   (this.state.completed.has(this.state.activeStep) ? (
                     <Typography variant="caption" className={classes.completed}>
@@ -237,12 +237,12 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
           )}
         </div>
       </div>
-    );
+    )
   }
 }
 
 HorizontalNonLinearAlternativeLabelStepper.propTypes = {
   classes: PropTypes.object,
-};
+}
 
-export default withStyles(styles)(HorizontalNonLinearAlternativeLabelStepper);
+export default withStyles(styles)(HorizontalNonLinearAlternativeLabelStepper)

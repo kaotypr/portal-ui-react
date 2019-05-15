@@ -1,17 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import Avatar from '@material-ui/core/Avatar';
-import WidgetStyles from '../../styles/Widget';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Divider from '@material-ui/core/Divider'
+import Avatar from '@material-ui/core/Avatar'
+import WidgetStyles from '../../styles/Widget'
 
 const NewsCard = (props) => {
-  const { classes, feed, subtitle, title } = props;
+  const { classes, feed, subtitle, title } = props
   return (
     <Card>
       <CardHeader
@@ -35,7 +36,7 @@ const NewsCard = (props) => {
         ))}
       </List>
     </Card>
-  );
+  )
 }
 
 NewsCard.propTypes = {
@@ -49,6 +50,6 @@ NewsCard.propTypes = {
     })
   ).isRequired,
   subtitle: PropTypes.string,
-};
+}
 
-export default withStyles(WidgetStyles)(NewsCard);
+export default withStyles(WidgetStyles)(NewsCard)

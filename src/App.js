@@ -14,7 +14,7 @@ import {
   Signup, 
   PasswordReset, 
   Lockscreen,
-} from './pages';
+} from './pages'
 
 class App extends Component {
   state = {

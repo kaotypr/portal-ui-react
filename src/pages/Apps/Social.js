@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import IconButton from '@material-ui/core/IconButton';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
-import InsertLinkIcon from '@material-ui/icons/InsertLink';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import { Wrapper, ActivityStream } from '../../components';
-import SocialStyles from '../../styles/Social';
-import { mockActivity } from '../../utils/mock';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Divider from '@material-ui/core/Divider'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Avatar from '@material-ui/core/Avatar'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import IconButton from '@material-ui/core/IconButton'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import GridList from '@material-ui/core/GridList'
+import GridListTile from '@material-ui/core/GridListTile'
+import GridListTileBar from '@material-ui/core/GridListTileBar'
+import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
+import InsertLinkIcon from '@material-ui/icons/InsertLink'
+import LocationOnIcon from '@material-ui/icons/LocationOn'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import { Wrapper, ActivityStream } from '../../components'
+import SocialStyles from '../../styles/Social'
+import { mockActivity } from '../../utils/mock'
 
 const TabContainer = (props) => (
   <Typography component="div" className="pa-0">
     {props.children}
   </Typography>
-);
+)
 
 class Social extends Component {
   state = {
@@ -37,12 +37,12 @@ class Social extends Component {
   };
 
   handleTabToggle = (event, tab) => {
-    this.setState({ tab });
+    this.setState({ tab })
   };
 
   render() {
-    const { classes } = this.props;
-    const { tab } = this.state;
+    const { classes } = this.props
+    const { tab } = this.state
 
     return (
       <Wrapper>
@@ -229,6 +229,7 @@ class Social extends Component {
 
 Social.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+  children: PropTypes.node
+}
 
-export default withStyles(SocialStyles)(Social);
+export default withStyles(SocialStyles)(Social)

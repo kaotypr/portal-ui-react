@@ -29,6 +29,6 @@ const SocialStyles = theme => ({
     outline: 0,
     backgroundColor: theme.palette.background.paper,
   }
-});
+})
 
-export default SocialStyles;
+export default SocialStyles

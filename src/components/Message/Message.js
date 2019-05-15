@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import List from '@material-ui/core/List';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import List from '@material-ui/core/List'
 import Item from './Item'
 
 class Message extends Component {
@@ -9,13 +9,13 @@ class Message extends Component {
   }
 
   handleMessageToggle = (index) => {
-    if (this.state.activeMessage === index) index = undefined;
-    this.setState({ activeMessage: index });
+    if (this.state.activeMessage === index) index = undefined
+    this.setState({ activeMessage: index })
   }
 
   render() {
-    const { messages } = this.props;
-    const { activeMessage } = this.state;
+    const { messages } = this.props
+    const { activeMessage } = this.state
     return (
       <List component="div" disablePadding={true}>
         { messages && messages.map( (message, index) => (
@@ -32,7 +32,7 @@ class Message extends Component {
   }
 }
 
-Message.prototypes = {
+Message.propTypes = {
   messages: PropTypes.arrayOf(
     PropTypes.shape({
       from: PropTypes.string,
@@ -42,6 +42,6 @@ Message.prototypes = {
       body: PropTypes.string
     })
   ).isRequired,
-};
+}
 
-export default Message;
+export default Message

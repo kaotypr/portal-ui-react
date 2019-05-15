@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import { Wrapper, Example } from '../../components';
+import { Wrapper, Example } from '../../components'
 
 const demos = [
   {
@@ -67,6 +67,6 @@ const Buttons = () => (
       />
     ))}
   </Wrapper>
-);
+)
 
-export default Buttons;
+export default Buttons

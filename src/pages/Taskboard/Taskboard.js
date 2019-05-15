@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
-import Column from './Column';
-import reorder, { reorderQuoteMap } from './reorder';
-import TaskboardStyles from '../../styles/Taskboard';
-import { mockTaskboard } from '../../utils/mock';
+import Column from './Column'
+import reorder, { reorderQuoteMap } from './reorder'
+import TaskboardStyles from '../../styles/Taskboard'
+import { mockTaskboard } from '../../utils/mock'
 
 class Taskboard extends Component {
 
@@ -19,18 +19,18 @@ class Taskboard extends Component {
 
     // dropped nowhere
     if (!result.destination) {
-      return;
+      return
     }
 
-    const source = result.source;
-    const destination = result.destination;
+    const source = result.source
+    const destination = result.destination
 
     // did not move anywhere - can bail early
     if (
       source.droppableId === destination.droppableId &&
       source.index === destination.index
     ) {
-      return;
+      return
     }
 
     // reordering column
@@ -39,29 +39,29 @@ class Taskboard extends Component {
         this.state.ordered,
         source.index,
         destination.index,
-      );
+      )
 
       this.setState({
         ordered,
-      });
+      })
 
-      return;
+      return
     }
 
     const data = reorderQuoteMap({
       quoteMap: this.state.columns,
       source,
       destination,
-    });
+    })
 
     this.setState({
       columns: data.quoteMap,
-    });
+    })
   };
 
   render() {
-    const { columns, ordered} = this.state;
-    const { classes } = this.props;
+    const { columns, ordered} = this.state
+    const { classes } = this.props
 
     return (
       <DragDropContext
@@ -86,12 +86,12 @@ class Taskboard extends Component {
           )}
         </Droppable>
       </DragDropContext>
-    );
+    )
   }
 }
 
 Taskboard.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(TaskboardStyles)(Taskboard);
+export default withStyles(TaskboardStyles)(Taskboard)

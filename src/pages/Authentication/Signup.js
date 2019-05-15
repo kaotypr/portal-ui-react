@@ -1,50 +1,50 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Link, withRouter } from 'react-router-dom';
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
-import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import TextField from '@material-ui/core/TextField'
+import Checkbox from '@material-ui/core/Checkbox'
+import Typography from '@material-ui/core/Typography'
 
-import * as utils from '../../utils/utility';
-import SessionStyles from '../../styles/Session';
+import * as utils from '../../utils/utility'
+import SessionStyles from '../../styles/Session'
 import Alert from '../../utils/ui/Alert'
 
 const Signup = (props) => {
-  const component = new React.Component(props);
+  const component = new React.Component(props)
   component.state = {
-    username: "",
-    email: "",
-    password: "",
-    cpassword: "",
+    username: '',
+    email: '',
+    password: '',
+    cpassword: '',
     agreed: false,
     openalert: false,
-    alertitle: "",
-    alertcontent: "",
-    firstoption: "",
-    secondoption: "",
+    alertitle: '',
+    alertcontent: '',
+    firstoption: '',
+    secondoption: '',
     firsthandler: null,
     secondhandler: null
-  };
+  }
 
   function handleChange(event) {
-    component.setState({[event.target.name]: event.target.value});
+    component.setState({[event.target.name]: event.target.value})
   }
 
   function handleAgreement(event) {
-    component.setState({[event.target.name]: !component.state.agreed});
+    component.setState({[event.target.name]: !component.state.agreed})
   }
 
   function validateForm() {
 
-    const usernamevalid = (component.state.username !== "")
+    const usernamevalid = (component.state.username !== '')
     if (!usernamevalid) {
       alert('Username tidak boleh kosong')
       return false
@@ -56,7 +56,7 @@ const Signup = (props) => {
       return false
     } 
 
-    const passwordNotempty = component.state.password !== ""
+    const passwordNotempty = component.state.password !== ''
     const passwordMatch = utils.passwordMatch(component.state.password, component.state.cpassword)
     if (!passwordMatch || !passwordNotempty) {
       alert('Password tidak sesuai')
@@ -85,7 +85,7 @@ const Signup = (props) => {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     if (!validateForm()) {
       return
     }
@@ -105,36 +105,36 @@ const Signup = (props) => {
     }
 
     axios.post(url, payload, config)
-    .then(response => {
-      showAlert(
-        "Sukses",
-        `Username ${response.data.username} berhasil didaftarkan. \n Login untuk melanjutkan ?`,
-        { 
-          firstoption: "Tutup", 
-          secondoption: "Lanjutkan"
-        },
-        { 
-          firsthandler: () => component.setState({openalert: false}), 
-          secondhandler: () => props.history.push({pathname: '/signin'})
-        }
-      )
-    })
-    .catch(error => {
-      if (error.response.status === 500) {
-        props.history.push({pathname: '/error'})
-      } else {
+      .then(response => {
         showAlert(
-          "Terjadi kesalahan",
-          error.response.data.error,
-          { secondoption: "Tutup" },
-          { secondhandler: () => component.setState({openalert: false}) }
+          'Sukses',
+          `Username ${response.data.username} berhasil didaftarkan. \n Login untuk melanjutkan ?`,
+          { 
+            firstoption: 'Tutup', 
+            secondoption: 'Lanjutkan'
+          },
+          { 
+            firsthandler: () => component.setState({openalert: false}), 
+            secondhandler: () => props.history.push({pathname: '/signin'})
+          }
         )
-      }
-    })
+      })
+      .catch(error => {
+        if (error.response.status === 500) {
+          props.history.push({pathname: '/error'})
+        } else {
+          showAlert(
+            'Terjadi kesalahan',
+            error.response.data.error,
+            { secondoption: 'Tutup' },
+            { secondhandler: () => component.setState({openalert: false}) }
+          )
+        }
+      })
   }
 
-  const { classes } = props;
-  component.render = function() {
+  const { classes } = props
+  component.render = function render() {
     return (
       <Fragment>
         <Alert 
@@ -232,17 +232,17 @@ const Signup = (props) => {
         </div>
       </Fragment>
 
-    );
+    )
   }
 
   return component
 }
 
-const wrapped_withStyles_Signup = withStyles(SessionStyles)(Signup);
+const wrapped_withStyles_Signup = withStyles(SessionStyles)(Signup)
 const wrapped_withRouter_signup = withRouter(wrapped_withStyles_Signup)
 
 Signup.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
 export default wrapped_withRouter_signup

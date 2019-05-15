@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Autosuggest from 'react-autosuggest';
-import match from 'autosuggest-highlight/match';
-import parse from 'autosuggest-highlight/parse';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import Popper from '@material-ui/core/Popper';
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Autosuggest from 'react-autosuggest'
+import match from 'autosuggest-highlight/match'
+import parse from 'autosuggest-highlight/parse'
+import TextField from '@material-ui/core/TextField'
+import Paper from '@material-ui/core/Paper'
+import MenuItem from '@material-ui/core/MenuItem'
+import Popper from '@material-ui/core/Popper'
+import { withStyles } from '@material-ui/core/styles'
 
 const suggestions = [
   { label: 'Afghanistan' },
@@ -44,18 +44,18 @@ const suggestions = [
   { label: 'Brazil' },
   { label: 'British Indian Ocean Territory' },
   { label: 'Brunei Darussalam' },
-];
+]
 
 function renderInputComponent(inputProps) {
-  const { classes, inputRef = () => {}, ref, ...other } = inputProps;
+  const { classes, inputRef = () => {}, ref, ...other } = inputProps
 
   return (
     <TextField
       fullWidth
       InputProps={{
         inputRef: node => {
-          ref(node);
-          inputRef(node);
+          ref(node)
+          inputRef(node)
         },
         classes: {
           input: classes.input,
@@ -63,12 +63,12 @@ function renderInputComponent(inputProps) {
       }}
       {...other}
     />
-  );
+  )
 }
 
 function renderSuggestion(suggestion, { query, isHighlighted }) {
-  const matches = match(suggestion.label, query);
-  const parts = parse(suggestion.label, matches);
+  const matches = match(suggestion.label, query)
+  const parts = parse(suggestion.label, matches)
 
   return (
     <MenuItem selected={isHighlighted} component="div">
@@ -82,34 +82,34 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
             <strong key={String(index)} style={{ fontWeight: 300 }}>
               {part.text}
             </strong>
-          );
+          )
         })}
       </div>
     </MenuItem>
-  );
+  )
 }
 
 function getSuggestions(value) {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-  let count = 0;
+  const inputValue = value.trim().toLowerCase()
+  const inputLength = inputValue.length
+  let count = 0
 
   return inputLength === 0
     ? []
     : suggestions.filter(suggestion => {
-        const keep =
-          count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue;
+      const keep =
+          count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue
 
-        if (keep) {
-          count += 1;
-        }
+      if (keep) {
+        count += 1
+      }
 
-        return keep;
-      });
+      return keep
+    })
 }
 
 function getSuggestionValue(suggestion) {
-  return suggestion.label;
+  return suggestion.label
 }
 
 const styles = theme => ({
@@ -138,7 +138,7 @@ const styles = theme => ({
   divider: {
     height: theme.spacing.unit * 2,
   },
-});
+})
 
 class IntegrationAutosuggest extends React.Component {
   popperNode = null;
@@ -152,23 +152,23 @@ class IntegrationAutosuggest extends React.Component {
   handleSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: getSuggestions(value),
-    });
+    })
   };
 
   handleSuggestionsClearRequested = () => {
     this.setState({
       suggestions: [],
-    });
+    })
   };
 
   handleChange = name => (event, { newValue }) => {
     this.setState({
       [name]: newValue,
-    });
+    })
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     const autosuggestProps = {
       renderInputComponent,
@@ -177,7 +177,7 @@ class IntegrationAutosuggest extends React.Component {
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
       getSuggestionValue,
       renderSuggestion,
-    };
+    }
 
     return (
       <div className={classes.root}>
@@ -211,7 +211,7 @@ class IntegrationAutosuggest extends React.Component {
             value: this.state.popper,
             onChange: this.handleChange('popper'),
             inputRef: node => {
-              this.popperNode = node;
+              this.popperNode = node
             },
             InputLabelProps: {
               shrink: true,
@@ -234,12 +234,12 @@ class IntegrationAutosuggest extends React.Component {
           )}
         />
       </div>
-    );
+    )
   }
 }
 
 IntegrationAutosuggest.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(IntegrationAutosuggest);
+export default withStyles(styles)(IntegrationAutosuggest)

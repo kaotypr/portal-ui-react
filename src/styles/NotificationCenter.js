@@ -1,4 +1,4 @@
-import { notificationCenterWidth } from './variables';
+import { notificationCenterWidth } from './variables'
 
 const NotificationCenterStyles = theme => ({
   drawerPaper: {
@@ -60,6 +60,6 @@ const NotificationCenterStyles = theme => ({
       paddingBottom: theme.spacing.unit * 2,
     },
   }
-});
+})
 
-export default NotificationCenterStyles;
+export default NotificationCenterStyles

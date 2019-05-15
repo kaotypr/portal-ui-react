@@ -1,14 +1,14 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import ReactDOM from 'react-dom'
 
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
-import AppProvider from './components/AppProvider/AppProvider';
+import AppProvider from './components/AppProvider/AppProvider'
 
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker'
 import rootReducer from './stores/reducers'
 import AppBasename from './constants/appBasename'
 import * as Util from './utils/utility'
@@ -29,7 +29,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const enhancher = composeEnhancers(applyMiddleware(logger, thunk))
 const store = createStore(rootReducer, enhancher)
 // mterial ui next typography consid
-window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true
 
 const app = (
   <Provider store={store}>
@@ -38,8 +38,8 @@ const app = (
         <App/>
       </AppProvider>
     </BrowserRouter>
-  </Provider>);
+  </Provider>)
 
-ReactDOM.render(app, document.getElementById('root'));
+ReactDOM.render(app, document.getElementById('root'))
 
 serviceWorker.unregister()

@@ -1,34 +1,35 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Typography from '@material-ui/core/Typography';
-import Collapse from '@material-ui/core/Collapse';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import SidebarItemStyles from '../../styles/SidebarItem';
-import { capitalize } from '../../helpers';
+/* eslint-disable react/prop-types */
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { NavLink } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import Typography from '@material-ui/core/Typography'
+import Collapse from '@material-ui/core/Collapse'
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
+import SidebarItemStyles from '../../styles/SidebarItem'
+import { capitalize } from '../../helpers'
 
 class SidebarItem extends Component {
 
   componentDidMount() {
-    if (!this.props.currentPath || this.props.activeRoute === this.props.index || this.props.route.path === '/') return;
+    if (!this.props.currentPath || this.props.activeRoute === this.props.index || this.props.route.path === '/') return
     this.props.toggleMenu(this.props.index)
   }
 
   render() {
-    const { classes, route, index, activeRoute, toggleMenu } = this.props;
+    const { classes, route, index, activeRoute, toggleMenu } = this.props
 
     const badge = (badge) => {
-      if (!badge) return;
+      if (!badge) return
       const badgeClassName = classNames(classes.badge, {
         [classes[`${badge.type}`]]: badge.type !== 'default',
-      });
-      return <Typography className={classNames(classes.badge, badgeClassName)} component="div">{badge.value}</Typography>;
+      })
+      return <Typography className={classNames(classes.badge, badgeClassName)} component="div">{badge.value}</Typography>
     }
 
     if (route.type === 'external') {
@@ -42,7 +43,7 @@ class SidebarItem extends Component {
             {badge(route.badge)}
           </ListItem>
         </a>
-      );
+      )
     }
 
     if (route.type === 'submenu') {
@@ -98,6 +99,6 @@ SidebarItem.prototypes = {
   index: PropTypes.number,
   activeRoute: PropTypes.number,
   toggleMenu: PropTypes.func
-};
+}
 
-export default withStyles(SidebarItemStyles)(SidebarItem);
+export default withStyles(SidebarItemStyles)(SidebarItem)

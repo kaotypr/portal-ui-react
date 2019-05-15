@@ -1,16 +1,17 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 
-import TaskItem from './TaskItem';
-import TaskboardStyles from '../../styles/Taskboard';
+import TaskItem from './TaskItem'
+import TaskboardStyles from '../../styles/Taskboard'
 
 class InnerTaskList extends React.Component {
   shouldComponentUpdate(nextProps) {
     if (nextProps.tasks !== this.props.tasks) {
-      return true;
+      return true
     }
-    return false;
+    return false
   }
 
   render() {
@@ -28,20 +29,20 @@ class InnerTaskList extends React.Component {
           />
         )}
       </Draggable>
-    ));
+    ))
   }
 }
 
 class InnerList extends React.Component {
   render() {
-    const { tasks, dropProvided } = this.props;
+    const { tasks, dropProvided } = this.props
 
     return (
       <div ref={dropProvided.innerRef}>
         <InnerTaskList tasks={tasks} />
         {dropProvided.placeholder}
       </div>
-    );
+    )
   }
 }
 
@@ -56,7 +57,7 @@ class TaskList extends React.Component {
       listId,
       tasks,
       title
-    } = this.props;
+    } = this.props
 
     return (
       <Droppable
@@ -65,8 +66,7 @@ class TaskList extends React.Component {
         isDropDisabled={isDropDisabled}
       >
         {(
-          dropProvided,
-          dropSnapshot,
+          dropProvided
         ) => (
           <InnerList
             tasks={tasks}
@@ -75,8 +75,8 @@ class TaskList extends React.Component {
           />
         )}
       </Droppable>
-    );
+    )
   }
 }
 
-export default withStyles(TaskboardStyles)(TaskList);
+export default withStyles(TaskboardStyles)(TaskList)

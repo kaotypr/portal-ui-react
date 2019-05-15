@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import WidgetStyles from '../../styles/Widget';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Typography from '@material-ui/core/Typography'
+import WidgetStyles from '../../styles/Widget'
 
 const ImageStatCard = (props) => {
-  const { classes, title, image, imageHeight, stats } = props;
+  const { classes, title, image, imageHeight, stats } = props
   return (
     <Card>
       <CardMedia
@@ -35,7 +35,7 @@ const ImageStatCard = (props) => {
         </Grid>
       </CardContent>
     </Card>
-  );
+  )
 }
 
 ImageStatCard.propTypes = {
@@ -49,6 +49,6 @@ ImageStatCard.propTypes = {
       value: PropTypes.number
     })
   ).isRequired
-};
+}
 
-export default withStyles(WidgetStyles)(ImageStatCard);
+export default withStyles(WidgetStyles)(ImageStatCard)

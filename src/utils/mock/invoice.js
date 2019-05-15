@@ -18,4 +18,4 @@ export default [{
   'subtitle': 'PSD to HTML Conversion (3 pages)',
   'price': 958.00,
   'quantity': 1
-}];
+}]

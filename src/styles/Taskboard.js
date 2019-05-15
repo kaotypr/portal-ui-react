@@ -1,4 +1,4 @@
-import { infoColor, warningColor } from './variables';
+import { infoColor, warningColor } from './variables'
 
 const TaskboardStyles = theme => ({
   taskboard: {
@@ -105,6 +105,6 @@ const TaskboardStyles = theme => ({
     overflowX: 'hidden',
     overflowY: 'auto'
   }
-});
+})
 
-export default TaskboardStyles;
+export default TaskboardStyles

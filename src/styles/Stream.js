@@ -29,6 +29,6 @@ const StreamStyles = theme => ({
       paddingLeft: '80px'
     },
   },
-});
+})
 
-export default StreamStyles;
+export default StreamStyles

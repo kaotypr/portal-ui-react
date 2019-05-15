@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import WidgetStyles from '../../styles/Widget';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardMedia from '@material-ui/core/CardMedia'
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import ShareIcon from '@material-ui/icons/Share'
+import WidgetStyles from '../../styles/Widget'
 
 const PostCard = (props) => {
-  const { classes, title, subtitle, text, image, imageHeight, avatar } = props;
+  const { classes, title, subtitle, text, image, imageHeight, avatar } = props
   return (
     <Card>
       <CardHeader
@@ -43,7 +43,7 @@ const PostCard = (props) => {
         <Button>Download</Button>
       </CardActions>
     </Card>
-  );
+  )
 }
 
 PostCard.propTypes = {
@@ -54,6 +54,6 @@ PostCard.propTypes = {
   image: PropTypes.string,
   imageHeight: PropTypes.number,
   avatar: PropTypes.element,
-};
+}
 
-export default withStyles(WidgetStyles)(PostCard);
+export default withStyles(WidgetStyles)(PostCard)

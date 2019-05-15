@@ -6,14 +6,14 @@ export default () => {
     discounted: [false, false, false, true][Math.floor(Math.random() * 4)],
     discount: parseFloat((Math.random() * (0.00 - 10.00) + 10.00).toFixed(2)),
     name: [
-        'Blouse',
-        'Casual Shirt',
-        'Plaid Shirt',
-        'Long Sleeve',
-        'Denim Jacked',
-        'Fur Coat',
-        'Crop Top',
-        'Stripe Tee'][Math.floor(Math.random() * 8)],
+      'Blouse',
+      'Casual Shirt',
+      'Plaid Shirt',
+      'Long Sleeve',
+      'Denim Jacked',
+      'Fur Coat',
+      'Crop Top',
+      'Stripe Tee'][Math.floor(Math.random() * 8)],
     description: ['B & W', 'Grey', 'Black', 'Green', 'Black'][Math.floor(Math.random() * 5)]
   }
 }

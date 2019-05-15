@@ -70,7 +70,7 @@ const EcommerceStyles = theme => ({
       height: '100%',
       borderStyle: 'solid',
       borderColor: 'rgba(0,0,0,.38)',
-      content: "''",
+      content: '\'\'',
       transition: 'transform 300ms',
       right: 0,
       bottom: 0,
@@ -115,6 +115,6 @@ const EcommerceStyles = theme => ({
   mainPrice: {
     color: 'green'
   }
-});
+})
 
-export default EcommerceStyles;
+export default EcommerceStyles

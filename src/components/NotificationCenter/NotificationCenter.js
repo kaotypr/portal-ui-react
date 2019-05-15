@@ -1,24 +1,24 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
-import format from 'date-fns/format';
-import NotificationCenterStyles from '../../styles/NotificationCenter';
+import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import ListSubheader from '@material-ui/core/ListSubheader'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import Drawer from '@material-ui/core/Drawer'
+import Divider from '@material-ui/core/Divider'
+import format from 'date-fns/format'
+import NotificationCenterStyles from '../../styles/NotificationCenter'
 import { formatPrice, getStocks, 
   // getWeather, 
-  getWeatherIcon } from '../../helpers';
-import { mockNotifications, mockTodo, mockStats } from '../../utils/mock';
+  getWeatherIcon } from '../../helpers'
+import { mockNotifications, mockTodo, mockStats } from '../../utils/mock'
 
 class NotificationCenter extends Component {
   state = {
@@ -30,27 +30,27 @@ class NotificationCenter extends Component {
   mounted = true;
 
   handleTabToggle = (event, tab) => {
-    this.setState({ tab });
+    this.setState({ tab })
   };
 
   async componentDidMount() {
-    const stocks = await getStocks('MSFT,FB,AAPL,GOOG,DAX');
+    const stocks = await getStocks('MSFT,FB,AAPL,GOOG,DAX')
     // const forecast = await getWeather('london', 'uk', 1);
 
     if (this.mounted) {
-      if (stocks) this.setState({ stocks });
+      if (stocks) this.setState({ stocks })
       // if (forecast) this.setState({ forecast })
     }
   }
 
   componentWillUnmount() {
-    this.mounted = false;
+    this.mounted = false
   }
 
   render() {
-    const { classes, notificationsOpen, toogleNotifications } = this.props;
-    const { tab, stocks, forecast } = this.state;
-    const today = Date.now();
+    const { classes, notificationsOpen, toogleNotifications } = this.props
+    const { tab, stocks, forecast } = this.state
+    const today = Date.now()
     return (
       <Drawer
         variant="temporary"
@@ -97,13 +97,13 @@ class NotificationCenter extends Component {
                   <List component="nav" subheader={<ListSubheader disableSticky>Stocks</ListSubheader>}>
                     { stocks['Stock Quotes'] === undefined ? null :
                       stocks['Stock Quotes'].map((stock, index) => (
-                      <ListItem button key={index}>
-                        <ListItemText primary={stock['1. symbol']} />
-                        <ListItemSecondaryAction className="mx-1">
-                          <Typography variant="caption">{formatPrice(stock['2. price'])}</Typography>
-                        </ListItemSecondaryAction>
-                      </ListItem>
-                    ))
+                        <ListItem button key={index}>
+                          <ListItemText primary={stock['1. symbol']} />
+                          <ListItemSecondaryAction className="mx-1">
+                            <Typography variant="caption">{formatPrice(stock['2. price'])}</Typography>
+                          </ListItemSecondaryAction>
+                        </ListItem>
+                      ))
                     }
                   </List>
                 </Fragment>
@@ -117,9 +117,9 @@ class NotificationCenter extends Component {
                       <ListItemSecondaryAction className="mx-1">
                         <Typography variant="h6">
                           { <Fragment>
-                              <i className={classNames(getWeatherIcon(forecast.list[0].weather[0].icon), 'text-lg mx-1')}></i>
-                              {forecast.list[0].main.temp}
-                            </Fragment>
+                            <i className={classNames(getWeatherIcon(forecast.list[0].weather[0].icon), 'text-lg mx-1')}></i>
+                            {forecast.list[0].main.temp}
+                          </Fragment>
                           }
                         </Typography>
                       </ListItemSecondaryAction>
@@ -158,7 +158,7 @@ class NotificationCenter extends Component {
           }
         </div>
       </Drawer>
-    );
+    )
   }
 }
 
@@ -168,4 +168,4 @@ NotificationCenter.propTypes = {
   toogleNotifications: PropTypes.func
 }
 
-export default withStyles(NotificationCenterStyles)(NotificationCenter);
+export default withStyles(NotificationCenterStyles)(NotificationCenter)

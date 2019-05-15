@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PaginationHead from './PaginationHead'
 import PaginationBody from './PaginationBody'
-import { Table, TablePagination } from '@material-ui/core';
+import { Table, TablePagination } from '@material-ui/core'
 
 class Pagination extends React.Component {
   constructor(props) {
@@ -42,13 +42,13 @@ class Pagination extends React.Component {
         filterObject[row.key] = event.target.value
         row.filter = event.target.value
       }
-    });
+    })
     this.setState({ rows: currentRows })
 
     let showedData = [...this.state.data]
     for (const key in filterObject) {
       showedData = showedData.filter(function(item) {
-        return `${item[key]}`.toLocaleLowerCase().includes(`${filterObject[key]}`.toLocaleLowerCase());
+        return `${item[key]}`.toLocaleLowerCase().includes(`${filterObject[key]}`.toLocaleLowerCase())
       })
     }
 
@@ -56,53 +56,53 @@ class Pagination extends React.Component {
   }
 
   handleRequestSort(event, property) {
-    const orderBy = property;
-    let order = 'desc';
+    const orderBy = property
+    let order = 'desc'
 
     if (this.state.orderBy === property && this.state.order === 'desc') {
-      order = 'asc';
+      order = 'asc'
     }
 
-    this.setState({ order, orderBy });
-  };
+    this.setState({ order, orderBy })
+  }
 
   handleSelectAllClick = event => {
     if (event.target.checked) {
-      this.setState(state => ({ selected: this.props.data.map(n => n.id) }));
-      return;
+      this.setState({ selected: this.props.data.map(n => n.id) })
+      return
     }
-    this.setState({ selected: [] });
+    this.setState({ selected: [] })
   };
 
 
   handleChangePage = (event, page) => {
-    this.setState({ page });
+    this.setState({ page })
   };
 
   handleChangeRowsPerPage = event => {
-    this.setState({ rowsPerPage: event.target.value });
+    this.setState({ rowsPerPage: event.target.value })
   };
 
 
   handleClick = (event, id) => {
-    const { selected } = this.state;
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
+    const { selected } = this.state
+    const selectedIndex = selected.indexOf(id)
+    let newSelected = []
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
+      newSelected = newSelected.concat(selected, id)
     } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
+      newSelected = newSelected.concat(selected.slice(1))
     } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
+      newSelected = newSelected.concat(selected.slice(0, -1))
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
         selected.slice(selectedIndex + 1),
-      );
+      )
     }
 
-    this.setState({ selected: newSelected });
+    this.setState({ selected: newSelected })
   };
 
   render() {

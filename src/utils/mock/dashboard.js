@@ -6,7 +6,7 @@ import {
   dataMixed,
   options,
   dataBubble,
-  height } from './chart';
+  height } from './chart'
 
 export default [{
   type: 'bar',

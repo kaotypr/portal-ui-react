@@ -1,18 +1,18 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Grid from '@material-ui/core/Grid';
-import Switch from '@material-ui/core/Switch';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { Wrapper, Pricing } from '../../components';
-import { mockPricing } from '../../utils/mock';
-import PricingStyles from '../../styles/Pricing';
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Grid from '@material-ui/core/Grid'
+import Switch from '@material-ui/core/Switch'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import { Wrapper, Pricing } from '../../components'
+import { mockPricing } from '../../utils/mock'
+import PricingStyles from '../../styles/Pricing'
 
 const PricingPage = (props) => {
-  const { classes } = props;
+  const { classes } = props
   return (
     <Fragment>
       <AppBar position="static">
@@ -53,11 +53,11 @@ const PricingPage = (props) => {
         </Grid>
       </Wrapper>
     </Fragment>
-  );
+  )
 }
 
 PricingPage.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(PricingStyles)(PricingPage);
+export default withStyles(PricingStyles)(PricingPage)

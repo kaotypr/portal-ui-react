@@ -21,6 +21,6 @@ const StatCardStyles = theme => ({
   lightText: {
     color: 'white'
   }
-});
+})
 
-export default StatCardStyles;
+export default StatCardStyles

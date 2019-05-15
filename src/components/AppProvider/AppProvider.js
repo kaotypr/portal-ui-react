@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { create } from 'jss';
-import rtl from 'jss-rtl';
-import JssProvider from 'react-jss/lib/JssProvider';
-import { MuiThemeProvider, createMuiTheme, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
-import indigo from '@material-ui/core/colors/indigo';
-import red from '@material-ui/core/colors/red';
+import React, { Component } from 'react'
+import { create } from 'jss'
+import rtl from 'jss-rtl'
+import JssProvider from 'react-jss/lib/JssProvider'
+import { MuiThemeProvider, createMuiTheme, createGenerateClassName, jssPreset } from '@material-ui/core/styles'
+import indigo from '@material-ui/core/colors/indigo'
+import red from '@material-ui/core/colors/red'
 
-import AppContext from './AppContext';
+import AppContext from './AppContext'
 
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-const generateClassName = createGenerateClassName();
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] })
+const generateClassName = createGenerateClassName()
 
 class AppProvider extends Component {
   state = {
@@ -18,7 +18,7 @@ class AppProvider extends Component {
   }
 
   render() {
-    const { direction, type } = this.state;
+    const { direction, type } = this.state
     const theme = createMuiTheme({
       direction,
       palette: {
@@ -42,7 +42,7 @@ class AppProvider extends Component {
       shape: {
         borderRadius: 4
       }
-    });
+    })
 
     return (
       <JssProvider jss={jss} generateClassName={generateClassName}>
@@ -64,4 +64,4 @@ class AppProvider extends Component {
   }
 }
 
-export default AppProvider;
+export default AppProvider

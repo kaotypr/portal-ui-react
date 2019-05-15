@@ -78,4 +78,4 @@ export default [{
     title: 'Automatic backups',
     available: true
   }]
-}];
+}]

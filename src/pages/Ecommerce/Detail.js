@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import Hidden from '@material-ui/core/Hidden';
-import { Wrapper } from '../../components';
-import { formatPrice } from '../../helpers';
-import EcommerceDetailStyles from '../../styles/EcommerceDetail';
-import { mockProduct, mockReviews } from '../../utils/mock';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Avatar from '@material-ui/core/Avatar'
+import Hidden from '@material-ui/core/Hidden'
+import { Wrapper } from '../../components'
+import { formatPrice } from '../../helpers'
+import EcommerceDetailStyles from '../../styles/EcommerceDetail'
+import { mockProduct, mockReviews } from '../../utils/mock'
 
 class Detail extends Component {
   state = {
@@ -27,12 +27,12 @@ class Detail extends Component {
   };
 
   handleTabToggle = (event, tab) => {
-    this.setState({ tab });
+    this.setState({ tab })
   };
 
   render() {
-    const { classes } = this.props;
-    const { tab, product, reviews } = this.state;
+    const { classes } = this.props
+    const { tab, product, reviews } = this.state
     return (
       <Wrapper>
         <Card className={classes.card}>
@@ -53,8 +53,8 @@ class Detail extends Component {
 
               <Typography variant="h6" className="mt-1" gutterBottom>
                 <span>{ formatPrice(product.price) }</span>
-                {product.discounted && <span className={classNames(classes.inactive, "strikethrough text-sm")}>{formatPrice(product.discount)}</span>}
-                <span className={classNames(classes.inactive, "text-xs")}>*excluding tax</span>
+                {product.discounted && <span className={classNames(classes.inactive, 'strikethrough text-sm')}>{formatPrice(product.discount)}</span>}
+                <span className={classNames(classes.inactive, 'text-xs')}>*excluding tax</span>
               </Typography>
 
               <Typography gutterBottom>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod semper. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</Typography>
@@ -171,12 +171,12 @@ class Detail extends Component {
           </div>
         </Card>
       </Wrapper>
-    );
+    )
   }
 }
 
 Detail.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(EcommerceDetailStyles)(Detail);
+export default withStyles(EcommerceDetailStyles)(Detail)

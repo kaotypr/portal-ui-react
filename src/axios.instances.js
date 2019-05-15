@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const portalHost = process.env.REACT_APP_API_PORTAL_HOST 
 const portalPort = process.env.REACT_APP_API_PORTAL_PORT
@@ -12,7 +12,7 @@ export const portalInstances = axios.create({
   headers: {
     'Content-Type': 'application/json'
   }
-});
+})
 
 portalInstances.interceptors.request.use(
   (config) => {
@@ -37,6 +37,6 @@ export const clientBaseURL = `${clientProtocol}://${clientHost}${clientPort}`
 
 export const clientInstances = axios.create({
   baseURL: `${clientProtocol}://${clientHost}${clientPort}/api/portal`,
-});
+})
 
-export default portalInstances;
+export default portalInstances

@@ -1,30 +1,30 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Route, Switch } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
-import Hidden from '@material-ui/core/Hidden';
-import SpeedDial from '@material-ui/lab/SpeedDial';
-import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import FormatTextdirectionRToLIcon from '@material-ui/icons/FormatTextdirectionRToL';
-import FormatTextdirectionLToRIcon from '@material-ui/icons/FormatTextdirectionLToR';
-import SettingsIcon from '@material-ui/icons/Settings';
-import { AppContext, Workspace, Header, Sidebar, NotificationCenter } from '../components';
-import DashboardStyles from '../styles/Dashboard';
-import { MobileBreakpoint } from '../styles/variables';
-import routes from '../routes';
+import { Route, Switch } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles'
+import Hidden from '@material-ui/core/Hidden'
+import SpeedDial from '@material-ui/lab/SpeedDial'
+import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon'
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction'
+import WbSunnyIcon from '@material-ui/icons/WbSunny'
+import FormatTextdirectionRToLIcon from '@material-ui/icons/FormatTextdirectionRToL'
+import FormatTextdirectionLToRIcon from '@material-ui/icons/FormatTextdirectionLToR'
+import SettingsIcon from '@material-ui/icons/Settings'
+import { AppContext, Workspace, Header, Sidebar, NotificationCenter } from '../components'
+import DashboardStyles from '../styles/Dashboard'
+import { MobileBreakpoint } from '../styles/variables'
+import routes from '../routes'
 
 function resizeDispatch () {
   if (typeof(Event) === 'function') {
-    window.dispatchEvent(new Event('resize'));
+    window.dispatchEvent(new Event('resize'))
   } else {
-    const evt = window.document.createEvent('UIEvents');
-    evt.initUIEvent('resize', true, false, window, 0);
-    window.dispatchEvent(evt);
+    const evt = window.document.createEvent('UIEvents')
+    evt.initUIEvent('resize', true, false, window, 0)
+    window.dispatchEvent(evt)
   }
 }
 
@@ -40,33 +40,33 @@ class Dashboard extends Component {
   mediaMatcher = matchMedia(`(max-width: ${MobileBreakpoint}px)`);
 
   handleDrawerToggle = () => {
-    this.setState({ opened: !this.state.opened });
+    this.setState({ opened: !this.state.opened })
     resizeDispatch()
   };
 
   handleNotificationToggle = () => {
-    this.setState({ notificationsOpen: !this.state.notificationsOpen });
+    this.setState({ notificationsOpen: !this.state.notificationsOpen })
   }
 
   handleFullscreenToggle = () => {
-    const element = document.querySelector('#root');
-    const isFullscreen = document.webkitIsFullScreen || document.mozFullScreen || false;
+    const element = document.querySelector('#root')
+    const isFullscreen = document.webkitIsFullScreen || document.mozFullScreen || false
 
-    element.requestFullScreen = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || function () { return false; };
-    document.cancelFullScreen = document.cancelFullScreen || document.webkitCancelFullScreen || document.mozCancelFullScreen || function () { return false; };
-    isFullscreen ? document.cancelFullScreen() : element.requestFullScreen();
+    element.requestFullScreen = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || function () { return false }
+    document.cancelFullScreen = document.cancelFullScreen || document.webkitCancelFullScreen || document.mozCancelFullScreen || function () { return false }
+    isFullscreen ? document.cancelFullScreen() : element.requestFullScreen()
   }
 
   handleSpeedDialOpen = () => {
-    this.setState({ openSpeedDial: true });
+    this.setState({ openSpeedDial: true })
   };
 
   handleSpeedDialClose = () => {
-    this.setState({ openSpeedDial: false });
+    this.setState({ openSpeedDial: false })
   };
 
   componentDidMount() {
-    if (this.mediaMatcher.matches) this.setState({ opened: false });
+    if (this.mediaMatcher.matches) this.setState({ opened: false })
 
     this.mediaMatcher.addListener(match => {
       setTimeout(() => {
@@ -79,13 +79,13 @@ class Dashboard extends Component {
     })
 
     this.unlisten = this.props.history.listen(() => {
-      if(this.mediaMatcher.matches) this.setState({ opened: false });
-      document.querySelector('#root > div > main').scrollTop = 0;
-    });
+      if(this.mediaMatcher.matches) this.setState({ opened: false })
+      document.querySelector('#root > div > main').scrollTop = 0
+    })
   }
 
   componentWillUnmount() {
-    this.unlisten();
+    this.unlisten()
     this.mediaMatcher.removeListener(match => {
       setTimeout(() => {
         if(match.matches) {
@@ -94,12 +94,12 @@ class Dashboard extends Component {
           this.setState({ opened: true })
         }
       }, 300)
-    });
+    })
   }
 
   render() {
-    const { classes, userAccessRoutes } = this.props;
-    const { opened, notificationsOpen, openSpeedDial } = this.state;
+    const { classes, userAccessRoutes } = this.props
+    const { opened, notificationsOpen, openSpeedDial } = this.state
     let filteredRoutes = []
     userAccessRoutes.forEach(allowed => {
       const selection = routes.items.find(perroutes => perroutes.path === allowed.path)
@@ -107,25 +107,25 @@ class Dashboard extends Component {
         filteredRoutes.push(selection)
       }
       const selectionchildren = []
-      if ((allowed.nested === true && allowed["childs"] !== undefined) && selection["children"] !== undefined) {
+      if ((allowed.nested === true && allowed['childs'] !== undefined) && selection['children'] !== undefined) {
         allowed.childs.forEach(allowedchild => {
           let foundchild = selection.children.find(perchildroutes => perchildroutes.path === allowedchild.path)
           if (foundchild !== undefined) {
             selectionchildren.push(foundchild)
           }
-        });
-        selection["children"] = selectionchildren
+        })
+        selection['children'] = selectionchildren
       }
-    });
+    })
     const getRoutes = (
       <Switch>
-        { filteredRoutes.map((item, index) => (
-            item.type === 'external' ? 
-              <Route exact path={item.path} component={item.component} name={item.name} key={item.path} /> :
-              item.type === 'submenu' ? 
-                item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />) :
-                <Route exact path={item.path} component={item.component} name={item.name} key={item.path} />
-          ))
+        { filteredRoutes.map((item) => (
+          item.type === 'external' ? 
+            <Route exact path={item.path} component={item.component} name={item.name} key={item.path} /> :
+            item.type === 'submenu' ? 
+              item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} key={item.path} />) :
+              <Route exact path={item.path} component={item.component} name={item.name} key={item.path} />
+        ))
         }
         {/* <Redirect to="/404" /> */}
       </Switch>
@@ -150,7 +150,7 @@ class Dashboard extends Component {
       <Fragment>
         <Header
           logoAltText="KYC Portal"
-          logo={`/static/images/logo.png`}
+          logo={'/static/images/logo.png'}
           toggleDrawer={this.handleDrawerToggle}
           toogleNotifications={this.handleNotificationToggle}
           toggleFullscreen={this.handleFullscreenToggle}
@@ -206,7 +206,9 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+  history: PropTypes.object,
+  userAccessRoutes: PropTypes.any
+}
 
 const mapStateToProps = state => {
   return {
@@ -215,7 +217,7 @@ const mapStateToProps = state => {
   }
 }
 
-const swrapped_with_styles = withStyles(DashboardStyles)(Dashboard);
+const swrapped_with_styles = withStyles(DashboardStyles)(Dashboard)
 const wrapped_connect_app = connect(mapStateToProps)(swrapped_with_styles)
 const wrapped_withRouter_app = withRouter(wrapped_connect_app)
 

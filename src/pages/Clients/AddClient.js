@@ -1,12 +1,12 @@
 import React, { Component }  from 'react'
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom'
 import axios from '../../axios.instances'
 
-import { withStyles } from '@material-ui/core/styles';
-import SaveIcon from '@material-ui/icons/Save';
-import BackSpaceIcon from '@material-ui/icons/Backspace';
-import CollectionsIcon from '@material-ui/icons/Collections';
-import { Card, CardHeader, CardContent, Grid, Typography, TextField, CardMedia, Button } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles'
+import SaveIcon from '@material-ui/icons/Save'
+import BackSpaceIcon from '@material-ui/icons/Backspace'
+import CollectionsIcon from '@material-ui/icons/Collections'
+import { Card, CardHeader, CardContent, Grid, Typography, TextField, CardMedia, Button } from '@material-ui/core'
 
 
 const styles = {
@@ -20,14 +20,14 @@ const styles = {
   card: {
     maxWidth: '70%',
     padding: '8px',
-    marginTop: "auto",
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginBottom: "8px",
-    transition: "0.3s",
-    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-    "&:hover": {
-      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+    marginTop: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '8px',
+    transition: '0.3s',
+    boxShadow: '0 8px 40px -12px rgba(0,0,0,0.3)',
+    '&:hover': {
+      boxShadow: '0 16px 70px -12.125px rgba(0,0,0,0.3)'
     }
   },
   headline: {
@@ -35,7 +35,7 @@ const styles = {
     marginTop: '30px'
   },
   media: {
-    paddingTop: "56.25%"
+    paddingTop: '56.25%'
   },
   title: {
     color: 'primary',
@@ -61,26 +61,26 @@ const styles = {
   iconShow: {
     display: 'block'
   }
-};
+}
 
 class AddClient extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      id_perusahaan: "",
-      nama_perusahaan: "",
-      nomor_telepon: "",
-      email: "",
-      provinsi: "",
-      kota: "",
-      kecamatan: "",
-      kelurahan: "",
-      alamat: "",
-      iconURL: "",
+      id_perusahaan: '',
+      nama_perusahaan: '',
+      nomor_telepon: '',
+      email: '',
+      provinsi: '',
+      kota: '',
+      kecamatan: '',
+      kelurahan: '',
+      alamat: '',
+      iconURL: '',
       icon: null
     }
 
-    this.iconChooserInput = React.createRef();
+    this.iconChooserInput = React.createRef()
 
     this.formChangeHandler = this.formChangeHandler.bind(this)
     this.iconChooserHandler = this.iconChooserHandler.bind(this)
@@ -89,14 +89,14 @@ class AddClient extends Component {
   }
 
   formChangeHandler(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({[event.target.name]: event.target.value})
   }
 
-  iconChooserHandler(event) {
+  iconChooserHandler() {
     this.iconChooserInput.current.click()
   }
 
-  iconChangeHandler(event) {
+  iconChangeHandler() {
     // console.log(this.iconChooserInput.current.files)
     this.setState({
       icon: this.iconChooserInput.current.files[0],
@@ -108,7 +108,7 @@ class AddClient extends Component {
     event.preventDefault()
   
     const headers = {
-      "Content-Type": "multipart/form-data"
+      'Content-Type': 'multipart/form-data'
     }
 
     const postData = this.loopObjectToFormData({
@@ -125,8 +125,8 @@ class AddClient extends Component {
     })
 
     for(var pair of postData.entries()) {
-      console.log(pair[0]+ ', '+ pair[1]); 
-   }
+      console.log(pair[0]+ ', '+ pair[1]) 
+    }
     
 
     axios.post('/client', postData, headers)
@@ -139,7 +139,7 @@ class AddClient extends Component {
   }
 
   loopObjectToFormData(obj) {
-    let formData = new FormData();
+    let formData = new FormData()
     
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
@@ -164,22 +164,22 @@ class AddClient extends Component {
       alamat,
       iconURL
     } = this.state
-    const defaultImage = "http://calgarypma.ca/wp-content/uploads/2018/01/default-thumbnail-300x225.jpg"
+    const defaultImage = 'http://calgarypma.ca/wp-content/uploads/2018/01/default-thumbnail-300x225.jpg'
 
-    const iconPreviewURL = iconURL === "" ? defaultImage :  iconURL
-    const iconClassName = iconURL === "" ? classes.iconHide :  classes.iconShow
+    const iconPreviewURL = iconURL === '' ? defaultImage :  iconURL
+    const iconClassName = iconURL === '' ? classes.iconHide :  classes.iconShow
 
 
     return (
       <div className={classes.root}>
         <Card square className={classes.cardwrapper}>
           <CardHeader
-              classes={{
-                title: classes.title,
-              }}
-              title="Tambah Data Client"
-              subheader="Tambah data client"
-            />
+            classes={{
+              title: classes.title,
+            }}
+            title="Tambah Data Client"
+            subheader="Tambah data client"
+          />
           <CardContent>
             <Grid container spacing={24} alignItems="flex-start" direction="row" justify="space-between">
               <Grid item xs={12} sm={6}>

@@ -1,4 +1,4 @@
-import { drawerWidth } from './variables';
+import { drawerWidth } from './variables'
 
 const EcommerceStyles = theme => ({
   root: {
@@ -60,6 +60,6 @@ const EcommerceStyles = theme => ({
     width: '24px',
     height: '24px'
   }
-});
+})
 
-export default EcommerceStyles;
+export default EcommerceStyles

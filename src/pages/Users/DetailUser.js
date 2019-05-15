@@ -1,11 +1,11 @@
 import React, { Component }  from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 import axios, { TokenizedURL } from '../../axios.instances'
 
-import { withStyles } from '@material-ui/core/styles';
-import { Card, CardHeader, CardContent, Grid, Typography, TextField, RadioGroup, Radio, FormControlLabel, FormLabel, FormControl, CardMedia } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles'
+import { Card, CardHeader, CardContent, Grid, Typography, TextField, RadioGroup, Radio, FormControlLabel, FormLabel, FormControl, CardMedia } from '@material-ui/core'
 import * as utils from '../../utils/utility'
-import Alert from '../../utils/ui/Alert';
+import Alert from '../../utils/ui/Alert'
 
 
 const styles = {
@@ -19,48 +19,48 @@ const styles = {
   card: {
     maxWidth: '70%',
     padding: '8px',
-    marginTop: "auto",
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginBottom: "8px",
-    transition: "0.3s",
-    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-    "&:hover": {
-      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+    marginTop: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '8px',
+    transition: '0.3s',
+    boxShadow: '0 8px 40px -12px rgba(0,0,0,0.3)',
+    '&:hover': {
+      boxShadow: '0 16px 70px -12.125px rgba(0,0,0,0.3)'
     }
   },
   media: {
-    paddingTop: "56.25%"
+    paddingTop: '56.25%'
   },
   title: {
     color: 'primary',
     fontSize: '20pt'
   }
-};
+}
 
 class DetailUser extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      id: "",
-      tanggal_registrasi: "",
-      tanggal_verifikasi: "",
-      nik: "",
-      nama: "",
-      tempat_lahir: "",
-      tanggal_lahir: "",
-      jenis_kelamin: "LAKI-LAKI",
-      provinsi: "",
-      kota: "",
-      kecamatan: "",
-      rw: "",
-      rt: "",
-      alamat: "",
-      status_perkawinan: "",
-      pekerjaan: "",
-      email: "",
-      nomor_handphone: "",
-      nomor_npwp: "",
+      id: '',
+      tanggal_registrasi: '',
+      tanggal_verifikasi: '',
+      nik: '',
+      nama: '',
+      tempat_lahir: '',
+      tanggal_lahir: '',
+      jenis_kelamin: 'LAKI-LAKI',
+      provinsi: '',
+      kota: '',
+      kecamatan: '',
+      rw: '',
+      rt: '',
+      alamat: '',
+      status_perkawinan: '',
+      pekerjaan: '',
+      email: '',
+      nomor_handphone: '',
+      nomor_npwp: '',
       openalert: false,
     }
   }
@@ -72,25 +72,25 @@ class DetailUser extends Component {
       .then(response => {
         const updateState = {
           id: id,
-          tanggal_registrasi: response.data.identity.created_at || "",
-          tanggal_verifikasi: response.data.identity.created_at || "",
-          nik: response.data.identity.nik || "",
-          nama: response.data.identity.nama_lengkap || "",
-          tanggal_lahir: response.data.identity.tanggal_lahir || "",
-          tempat_lahir: response.data.identity.tempat_lahir || "",
+          tanggal_registrasi: response.data.identity.created_at || '',
+          tanggal_verifikasi: response.data.identity.created_at || '',
+          nik: response.data.identity.nik || '',
+          nama: response.data.identity.nama_lengkap || '',
+          tanggal_lahir: response.data.identity.tanggal_lahir || '',
+          tempat_lahir: response.data.identity.tempat_lahir || '',
           jenis_kelamin: response.data.identity.jenis_kelamin,
-          provinsi: response.data.identity.provinsi || "",
-          kota: response.data.identity.kota ||response.data.identity.kabupaten || "",
-          kelurahan: response.data.identity.kelurahan || "",
-          kecamatan: response.data.identity.kecamatan || "",
-          rw: response.data.identity.rw || "",
-          rt: response.data.identity.rt || "",
-          alamat: response.data.identity.alamat || "",
-          status_perkawinan: response.data.identity.status_perkawinan || "",
-          pekerjaan: response.data.identity.pekerjaan || "",
-          nomor_handphone: response.data.support.nomor_handphone || "",
-          nomor_npwp: response.data.support.nomor_npwp || "",
-          email: response.data.support.email || "",
+          provinsi: response.data.identity.provinsi || '',
+          kota: response.data.identity.kota ||response.data.identity.kabupaten || '',
+          kelurahan: response.data.identity.kelurahan || '',
+          kecamatan: response.data.identity.kecamatan || '',
+          rw: response.data.identity.rw || '',
+          rt: response.data.identity.rt || '',
+          alamat: response.data.identity.alamat || '',
+          status_perkawinan: response.data.identity.status_perkawinan || '',
+          pekerjaan: response.data.identity.pekerjaan || '',
+          nomor_handphone: response.data.support.nomor_handphone || '',
+          nomor_npwp: response.data.support.nomor_npwp || '',
+          email: response.data.support.email || '',
         }
         this.setState({...updateState})
       })
@@ -121,7 +121,7 @@ class DetailUser extends Component {
       nomor_npwp,
       id: currentUserId,
     } = this.state
-    const defaultImage = "http://calgarypma.ca/wp-content/uploads/2018/01/default-thumbnail-300x225.jpg"
+    const defaultImage = 'http://calgarypma.ca/wp-content/uploads/2018/01/default-thumbnail-300x225.jpg'
     const imageUrl_ktp =  nik ? TokenizedURL(`/user/${currentUserId}/image/ktp`) : defaultImage
     const imageUrl_foto =  nik ? TokenizedURL(`/user/${currentUserId}/image/foto`) : defaultImage
     const imageUrl_npwp =  nik ? TokenizedURL(`/user/${currentUserId}/image/npwp`) : defaultImage
@@ -139,12 +139,12 @@ class DetailUser extends Component {
         />
         <Card square className={classes.cardwrapper}>
           <CardHeader
-              classes={{
-                title: classes.title,
-              }}
-              title="Users Data Detail"
-              subheader="Cheking users data set"
-            />
+            classes={{
+              title: classes.title,
+            }}
+            title="Users Data Detail"
+            subheader="Cheking users data set"
+          />
           <CardContent>
             <Grid container spacing={24} alignItems="flex-start" direction="row" justify="space-between">
               <Grid item xs={12} sm={6}>
@@ -217,8 +217,8 @@ class DetailUser extends Component {
                       className={classes.group}
                       value={jenis_kelamin}
                       onChange={() => {}}>
-                      <FormControlLabel disabled={!(jenis_kelamin === "PEREMPUAN")} value="PEREMPUAN" control={<Radio />} label="PEREMPUAN" />
-                      <FormControlLabel disabled={!(jenis_kelamin === "LAKI-LAKI")} value="LAKI-LAKI" control={<Radio />} label="LAKI-LAKI" />
+                      <FormControlLabel disabled={!(jenis_kelamin === 'PEREMPUAN')} value="PEREMPUAN" control={<Radio />} label="PEREMPUAN" />
+                      <FormControlLabel disabled={!(jenis_kelamin === 'LAKI-LAKI')} value="LAKI-LAKI" control={<Radio />} label="LAKI-LAKI" />
                     </RadioGroup>
                   </FormControl>
                 </Grid>
@@ -226,7 +226,7 @@ class DetailUser extends Component {
                 <TextField
                   id="kewearganegaraan"
                   label="Kewarganegaran"
-                  value={`WARGA NEGARA INDONESIA`}
+                  value={'WARGA NEGARA INDONESIA'}
                   className={classes.textField}
                   margin="normal"
                   InputProps={{

@@ -1,21 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import IconButton from '@material-ui/core/IconButton';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import BookmarkIcon from '@material-ui/icons/Bookmark';
-import { formatPrice } from '../../helpers';
-import ProductCardStyles from '../../styles/ProductCard';
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import IconButton from '@material-ui/core/IconButton'
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import ShareIcon from '@material-ui/icons/Share'
+import BookmarkIcon from '@material-ui/icons/Bookmark'
+import { formatPrice } from '../../helpers'
+import ProductCardStyles from '../../styles/ProductCard'
 
 const ProductCard = (props) => {
-  const { classes, id, name, price, description, sale, discounted, discount } = props;
+  const { classes, id, name, price, description, sale, discounted, discount } = props
   return (
     <Card>
       <div className={classes.mediaGrid}>
@@ -62,7 +62,7 @@ const ProductCard = (props) => {
         </Grid>
       </CardContent>
     </Card>
-  );
+  )
 }
 
 ProductCard.propTypes = {
@@ -74,6 +74,6 @@ ProductCard.propTypes = {
   sale: PropTypes.bool,
   discounted: PropTypes.bool,
   discount: PropTypes.number,
-};
+}
 
-export default withStyles(ProductCardStyles)(ProductCard);
+export default withStyles(ProductCardStyles)(ProductCard)

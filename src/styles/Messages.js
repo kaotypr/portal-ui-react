@@ -1,4 +1,4 @@
-import { drawerWidth } from './variables';
+import { drawerWidth } from './variables'
 
 const MessagesPageStyles = theme => ({
   root: {
@@ -52,6 +52,6 @@ const MessagesPageStyles = theme => ({
       top: '64px',
     },
   },
-});
+})
 
-export default MessagesPageStyles;
+export default MessagesPageStyles

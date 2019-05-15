@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Card, CardContent, CardHeader } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react'
+import { Card, CardContent, CardHeader } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+import { withRouter } from 'react-router-dom'
 import Pagination from '../../components/Paginate/Pagination'
 import axios from '../../axios.instances'
-import Alert from '../../utils/ui/Alert';
+import Alert from '../../utils/ui/Alert'
 
 const styles = {
   root: {
@@ -25,7 +25,7 @@ const styles = {
   tableWrapper: {
     overflowX: 'auto',
   },
-};
+}
 
 class ListUser extends Component {
   constructor(props) {
@@ -53,23 +53,23 @@ class ListUser extends Component {
 
   requestData() {
     axios.get('/users?limit=1000')
-    .then(response => {
-      this.setState({
-        data: response.data.content
+      .then(response => {
+        this.setState({
+          data: response.data.content
+        })
       })
-    })
-    .catch(error => {
-      if (error.response === undefined || error.response.status === 500) {
-        this.props.history.push({pathname: '/500'})
-      } else {
-        this.showAlert(
-          "Terjadi kesalahan",
-          error.response.data.error,
-          { secondoption: "Tutup" },
-          { secondhandler: () => this.setState({openalert: false}) }
-        )
-      }
-    })
+      .catch(error => {
+        if (error.response === undefined || error.response.status === 500) {
+          this.props.history.push({pathname: '/500'})
+        } else {
+          this.showAlert(
+            'Terjadi kesalahan',
+            error.response.data.error,
+            { secondoption: 'Tutup' },
+            { secondhandler: () => this.setState({openalert: false}) }
+          )
+        }
+      })
   }
 
   render() {
@@ -81,7 +81,7 @@ class ListUser extends Component {
       // { key: 'email', numeric: false, disablePadding: false, label: 'Email', filter: '' },
       { key: 'status', numeric: false, disablePadding: false, label: 'Status', filter: '' },
       { key: 'confidence', numeric: true, disablePadding: false, label: 'Percentage', filter: '', getval : (val) => parseFloat(val).toFixed(2) },
-    ];
+    ]
     return (
       <div className={classes.root}>
         <Alert
@@ -93,12 +93,12 @@ class ListUser extends Component {
         />
         <Card square className={classes.card}>
           <CardHeader
-              classes={{
-                title: classes.title,
-              }}
-              title="List User Data"
-              subheader="Cheking users data set"
-            />
+            classes={{
+              title: classes.title,
+            }}
+            title="List User Data"
+            subheader="Cheking users data set"
+          />
           <CardContent>
             <Pagination data={data} classes={this.props.classes} rows={rows}/>
           </CardContent>
@@ -108,4 +108,4 @@ class ListUser extends Component {
   }
 }
 
-export default withRouter(withStyles(styles)(ListUser));
+export default withRouter(withStyles(styles)(ListUser))

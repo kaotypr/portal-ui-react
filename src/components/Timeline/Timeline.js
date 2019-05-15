@@ -1,15 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
-import TimelineStyles from '../../styles/Timeline';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
+import TimelineStyles from '../../styles/Timeline'
 
 const Timeline = (props) => {
-  const { classes, title, timeline } = props;
+  const { classes, title, timeline } = props
   return (
     <div className={classes.timeline}>
       { title &&
@@ -27,12 +28,12 @@ const Timeline = (props) => {
             <Typography variant="body1" component="div" className={classNames(classes.date, index % 2 ? classes.dateOdd : classes.dateEven)}>{distanceInWordsToNow(item.date)}</Typography>
           </section>
         </div>
-        ))}
+      ))}
       <div className={classes.card}>
         <div className={classNames(classes.icon, classes.bgDanger)} style={{ top: 0 }}></div>
       </div>
     </div>
-  );
+  )
 }
 
 Timeline.prototypes = {
@@ -45,6 +46,6 @@ Timeline.prototypes = {
       color: PropTypes.string
     })
   )
-};
+}
 
-export default withStyles(TimelineStyles)(Timeline);
+export default withStyles(TimelineStyles)(Timeline)

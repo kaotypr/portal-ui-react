@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import { Card, CardContent, CardHeader, Button } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import { withStyles } from '@material-ui/core/styles';
-import { withRouter, Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Card, CardContent, CardHeader, Button } from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add'
+import { withStyles } from '@material-ui/core/styles'
+import { withRouter, Link } from 'react-router-dom'
 import Pagination from '../../components/Paginate/Pagination'
 import axios from '../../axios.instances'
-import Alert from '../../utils/ui/Alert';
+import Alert from '../../utils/ui/Alert'
 
 const styles = theme => ({
   root: {
@@ -37,7 +38,7 @@ const styles = theme => ({
   extendedIcon: {
     marginLeft: theme.spacing.unit,
   },
-});
+})
 
 class ListClients extends Component {
   constructor(props) {
@@ -65,24 +66,24 @@ class ListClients extends Component {
 
   requestData() {
     axios.get('/clients?limit=1000')
-    .then(response => {
-      this.setState({
-        data: response.data.content
+      .then(response => {
+        this.setState({
+          data: response.data.content
+        })
       })
-    })
-    .catch(error => {
-      if (error.response === undefined || error.response.status === 500) {
-        console.log({...error})
+      .catch(error => {
+        if (error.response === undefined || error.response.status === 500) {
+          console.log({...error})
         // this.props.history.push({pathname: '/500'})
-      } else {
-        this.showAlert(
-          "Terjadi kesalahan",
-          error.response.data.error,
-          { secondoption: "Tutup" },
-          { secondhandler: () => this.setState({openalert: false}) }
-        )
-      }
-    })
+        } else {
+          this.showAlert(
+            'Terjadi kesalahan',
+            error.response.data.error,
+            { secondoption: 'Tutup' },
+            { secondhandler: () => this.setState({openalert: false}) }
+          )
+        }
+      })
   }
 
   render() {
@@ -95,7 +96,7 @@ class ListClients extends Component {
       { key: 'no_telepon', numeric: false, disablePadding: false, label: 'Nomor Telepon', filter: '' },
       { key: 'email', numeric: false, disablePadding: false, label: 'Email', filter: '' },
       { key: 'status_client', numeric: true, disablePadding: false, label: 'Status', filter: '', getval: (val) => (val === true) ? 'Aktif' : 'Tidak Aftif' },
-    ];
+    ]
     return (
       <div className={classes.root}>
         <Alert
@@ -130,6 +131,11 @@ class ListClients extends Component {
       </div>
     )
   }
+
 }
 
-export default withRouter(withStyles(styles)(ListClients));
+ListClients.propTypes = {
+  classes: PropTypes.any
+}
+
+export default withRouter(withStyles(styles)(ListClients))

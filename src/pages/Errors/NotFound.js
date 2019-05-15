@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import SessionStyles from '../../styles/Session';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import SessionStyles from '../../styles/Session'
 
 const NotFound = (props) => {
-  const { classes } = props;
+  const { classes } = props
 
   return (
     <div className={classes.session}>
@@ -15,11 +15,11 @@ const NotFound = (props) => {
         <Typography variant="caption">Sorry, but the page you were trying to view does not exist. <a href="/portal/report">Report this error?</a></Typography>
       </div>
     </div>
-  );
+  )
 }
 
 NotFound.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(SessionStyles)(NotFound);
+export default withStyles(SessionStyles)(NotFound)

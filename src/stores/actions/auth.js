@@ -60,7 +60,7 @@ export const setRedirectAuthPath = (pathname) => {
   }
 }
 
-export const authLogin = (authData, identifier) => {
+export const authLogin = (authData) => {
   return dispatch => {
     const payload = {
       username: authData.username,
@@ -78,6 +78,7 @@ export const authLogin = (authData, identifier) => {
         dispatch(checkAuthTimeout(expiresIn))
       })
       .catch(error => {
+        // eslint-disable-next-line no-console
         console.log({...error})
         dispatch(authFail(error))
       })

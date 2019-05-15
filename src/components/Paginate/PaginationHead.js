@@ -1,6 +1,6 @@
-import React from 'react';
-import { TableCell, TableRow, TableHead, Tooltip, TableSortLabel } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react'
+import { TableCell, TableRow, TableHead, Tooltip, TableSortLabel } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -10,15 +10,15 @@ const CustomTableCell = withStyles(theme => ({
   body: {
     fontSize: 14,
   },
-}))(TableCell);
+}))(TableCell)
 
 class PaginationHead extends React.Component {
   createSortHandler = property => event => {
-    this.props.onRequestSort(event, property);
+    this.props.onRequestSort(event, property)
   };
 
   render() {
-    const { order, orderBy } = this.props;
+    const { order, orderBy } = this.props
     const { rows } = this.props
     return (
       <TableHead>
@@ -60,7 +60,7 @@ class PaginationHead extends React.Component {
           </CustomTableCell>
         </TableRow>
       </TableHead>
-    );
+    )
   }
 }
 

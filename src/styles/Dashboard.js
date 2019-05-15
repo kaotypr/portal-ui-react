@@ -26,6 +26,6 @@ const DashboardStyles = theme => ({
     bottom: theme.spacing.unit * 2,
     right: theme.spacing.unit * 3,
   },
-});
+})
 
-export default DashboardStyles;
+export default DashboardStyles

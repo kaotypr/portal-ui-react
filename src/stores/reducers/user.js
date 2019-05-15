@@ -12,28 +12,28 @@ const initialState = {
       path: '/data',
       nested: true,
       children: [{
-          path: '/checking',
-          nested: false,
-        },{
-          path: '/validation',
-          nested: false,
-        }]
+        path: '/checking',
+        nested: false,
+      },{
+        path: '/validation',
+        nested: false,
+      }]
     },
     {
       path: '/dataclient',
       nested: true,
       children: [{
-          path: '/list',
-          nested: false,
-        }]
+        path: '/list',
+        nested: false,
+      }]
     },
     {
       path: '/ocr',
       nested: true,
       children: [{
-          path: '/loglist',
-          nested: false,
-        }]
+        path: '/loglist',
+        nested: false,
+      }]
     },
     // { 
     //   path: '/pages', 
@@ -72,6 +72,8 @@ const initialState = {
 }
 
 const authSuccess = (state, payload) => {
+  // eslint-disable-next-line no-console
+  console.log(payload)
   return updateObject(state, {
     ...state // it should be the payload.user, payload.accessRoutes Change with the new result from backend api LATER!
   })

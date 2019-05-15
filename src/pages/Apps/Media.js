@@ -1,32 +1,33 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import withWidth from '@material-ui/core/withWidth';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import SettingsIcon from '@material-ui/icons/Settings';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { Wrapper } from '../../components';
-import HeaderStyles from '../../styles/Header';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Button from '@material-ui/core/Button'
+import GridList from '@material-ui/core/GridList'
+import GridListTile from '@material-ui/core/GridListTile'
+import GridListTileBar from '@material-ui/core/GridListTileBar'
+import IconButton from '@material-ui/core/IconButton'
+import withWidth from '@material-ui/core/withWidth'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import SettingsIcon from '@material-ui/icons/Settings'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import { Wrapper } from '../../components'
+import HeaderStyles from '../../styles/Header'
 
-let images = [];
+let images = []
 
 for (let num = 1; num <= 21; num += 1) {
-  images.push(num);
+  images.push(num)
 }
 
 const getColWidth = (bp) => {
-  let col;
-  if (bp === 'lg') col = 3;
-  if (bp === 'md') col = 2;
-  if (bp === 'xs') col = 1;
-  return col;
+  let col
+  if (bp === 'lg') col = 3
+  if (bp === 'md') col = 2
+  if (bp === 'xs') col = 1
+  return col
 }
 
 const gallery = (
@@ -44,7 +45,7 @@ const gallery = (
       />
     </GridListTile>
   ))
-);
+)
 
 const Media = (props) => (
   <Wrapper padding={false}>
@@ -68,6 +69,6 @@ const Media = (props) => (
       {gallery}
     </GridList>
   </Wrapper>
-);
+)
 
-export default withWidth()(withStyles(HeaderStyles)(Media));
+export default withWidth()(withStyles(HeaderStyles)(Media))

@@ -4,7 +4,7 @@ const sharedOptions = {
   legend: {
     display: false
   }
-};
+}
 
 const gridOptions = {
   scales: {
@@ -67,91 +67,91 @@ const colors = [{
   borderColor: 'rgba(148,159,177,1)',
   pointBackgroundColor: 'rgba(148,159,177,1)',
   pointBorderColor: '#fff'
-}];
+}]
 
-const labels = ['1', '2', '3', '4', '5', '6', '7'];
+const labels = ['1', '2', '3', '4', '5', '6', '7']
 
 const datasets = [{
+  label: 'My First dataset',
+  ...colors[0],
+  borderWidth: 0,
+  data: [6, 5, 8, 8, 5, 5, 4]
+},
+{
+  label: 'My Second dataset',
+  ...colors[1],
+  borderWidth: 0,
+  data: [5, 4, 4, 2, 6, 2, 5]
+}
+]
+
+const data = {
+  labels,
+  datasets
+}
+
+const lineData = {
+  labels,
+  datasets: [{
     label: 'My First dataset',
     ...colors[0],
-    borderWidth: 0,
+    borderWidth: 1,
     data: [6, 5, 8, 8, 5, 5, 4]
   },
   {
     label: 'My Second dataset',
     ...colors[1],
-    borderWidth: 0,
+    borderWidth: 1,
     data: [5, 4, 4, 2, 6, 2, 5]
   }
-];
-
-const data = {
-  labels,
-  datasets
-};
-
-const lineData = {
-  labels,
-  datasets: [{
-      label: 'My First dataset',
-      ...colors[0],
-      borderWidth: 1,
-      data: [6, 5, 8, 8, 5, 5, 4]
-    },
-    {
-      label: 'My Second dataset',
-      ...colors[1],
-      borderWidth: 1,
-      data: [5, 4, 4, 2, 6, 2, 5]
-    }
   ]
-};
+}
 
 const dataStepped = {
   labels,
   datasets: [{
-      steppedLine: true,
-      fill: false,
-      label: 'My First dataset',
-      ...colors[0],
-      borderWidth: 1,
-      data: [6, 5, 8, 8, 5, 5, 4]
-    },
-    {
-      steppedLine: true,
-      fill: false,
-      label: 'My Second dataset',
-      ...colors[1],
-      borderWidth: 1,
-      data: [5, 4, 4, 2, 6, 2, 5]
-    }
+    steppedLine: true,
+    fill: false,
+    label: 'My First dataset',
+    ...colors[0],
+    borderWidth: 1,
+    data: [6, 5, 8, 8, 5, 5, 4]
+  },
+  {
+    steppedLine: true,
+    fill: false,
+    label: 'My Second dataset',
+    ...colors[1],
+    borderWidth: 1,
+    data: [5, 4, 4, 2, 6, 2, 5]
+  }
   ]
-};
+}
 
 const dataPoints = {
   labels,
   datasets: [{
-      fill: false,
-      pointRadius: 10,
-      pointHoverRadius: 15,
-      showLine: false,
-      label: 'My First dataset',
-      ...colors[0],
-      borderWidth: 1,
-      data: [6, 5, 8, 8, 5, 5, 4]
-    },
-    {
-      fill: false,
-      pointRadius: 10,
-      pointHoverRadius: 15,
-      showLine: false,
-      label: 'My Second dataset',
-      ...colors[1],
-      borderWidth: 1,
-      data: [5, 4, 4, 2, 6, 2, 5]
-    }
+    fill: false,
+    pointRadius: 10,
+    pointHoverRadius: 15,
+    showLine: false,
+    label: 'My First dataset',
+    ...colors[0],
+    borderWidth: 1,
+    data: [6, 5, 8, 8, 5, 5, 4]
+  },
+  {
+    fill: false,
+    pointRadius: 10,
+    pointHoverRadius: 15,
+    showLine: false,
+    label: 'My Second dataset',
+    ...colors[1],
+    borderWidth: 1,
+    data: [5, 4, 4, 2, 6, 2, 5]
+  }
   ]
-};
+}
 
 const dataMixed = {
   labels,
@@ -171,7 +171,7 @@ const dataMixed = {
     ...colors[1],
     yAxisID: 'y-axis-1'
   }]
-};
+}
 
 const options = {
   responsive: true,
@@ -192,32 +192,32 @@ const options = {
       labels,
     }],
     yAxes: [{
-        type: 'linear',
-        display: true,
-        position: 'left',
-        id: 'y-axis-1',
-        gridLines: {
-          display: false
-        },
-        labels: {
-          show: true
-        }
+      type: 'linear',
+      display: true,
+      position: 'left',
+      id: 'y-axis-1',
+      gridLines: {
+        display: false
       },
-      {
-        type: 'linear',
-        display: true,
-        position: 'right',
-        id: 'y-axis-2',
-        gridLines: {
-          display: false
-        },
-        labels: {
-          show: true
-        }
+      labels: {
+        show: true
       }
+    },
+    {
+      type: 'linear',
+      display: true,
+      position: 'right',
+      id: 'y-axis-2',
+      gridLines: {
+        display: false
+      },
+      labels: {
+        show: true
+      }
+    }
     ]
   }
-};
+}
 
 const dataBubble = {
   labels: ['January'],
@@ -264,7 +264,7 @@ const dataBubble = {
     }],
     borderWidth: 0.5
   }]
-};
+}
 
 const dataDoughnut = {
   labels: ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'],
@@ -272,7 +272,7 @@ const dataDoughnut = {
     data: [350, 450, 100],
     backgroundColor: ['#f44336', '#3f51b5', '#ffeb3b', '#4caf50', '#2196f']
   }]
-};
+}
 
 const dataPie = {
   labels: ['Download Sales', 'In-Store Sales', 'Mail Sales'],
@@ -280,7 +280,7 @@ const dataPie = {
     data: [300, 50, 100],
     backgroundColor: ['#f44336', '#3f51b5', '#ffeb3b', '#4caf50', '#2196f']
   }]
-};
+}
 
 const dataPolar = {
   datasets: [{
@@ -289,24 +289,24 @@ const dataPolar = {
     label: 'My dataset' // for legend
   }],
   labels: ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales']
-};
+}
 
 const dataRadar = {
   labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
   datasets: [{
-      label: 'My First dataset',
-      ...colors[0],
-      data: [65, 59, 90, 81, 56, 55, 40]
-    },
-    {
-      label: 'My Second dataset',
-      ...colors[1],
-      data: [28, 48, 40, 19, 96, 27, 100]
-    }
+    label: 'My First dataset',
+    ...colors[0],
+    data: [65, 59, 90, 81, 56, 55, 40]
+  },
+  {
+    label: 'My Second dataset',
+    ...colors[1],
+    data: [28, 48, 40, 19, 96, 27, 100]
+  }
   ]
-};
+}
 
-const height = 200;
+const height = 200
 
 const mockChart = [{
   type: 'bar',

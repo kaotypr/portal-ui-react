@@ -1,4 +1,4 @@
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { fade } from '@material-ui/core/styles/colorManipulator'
 
 const MessageItemStyles = theme => ({
   message: {
@@ -30,7 +30,7 @@ const MessageItemStyles = theme => ({
     alignItems: 'center',
     background: theme.palette.background.paper,
     '&::after': {
-      content: "''",
+      content: '\'\'',
       minHeight: 'inherit',
       fontSize: 0
     }
@@ -42,6 +42,6 @@ const MessageItemStyles = theme => ({
   button: {
     margin: `0 ${theme.spacing.unit}px`,
   }
-});
+})
 
-export default MessageItemStyles;
+export default MessageItemStyles

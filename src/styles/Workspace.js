@@ -1,4 +1,4 @@
-import { drawerWidth } from './variables';
+import { drawerWidth } from './variables'
 
 const WorkspaceStyles = theme => ({
   content: {
@@ -37,6 +37,6 @@ const WorkspaceStyles = theme => ({
   'contentShift-right': {
     marginRight: 0,
   }
-});
+})
 
-export default WorkspaceStyles;
+export default WorkspaceStyles

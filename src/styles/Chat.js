@@ -1,4 +1,4 @@
-import { drawerWidth } from './variables';
+import { drawerWidth } from './variables'
 
 const ChatStyles = theme => ({
   root: {
@@ -158,6 +158,6 @@ const ChatStyles = theme => ({
     flex: '1 1 0%',
     boxSizing: 'border-box'
   }
-});
+})
 
-export default ChatStyles;
+export default ChatStyles

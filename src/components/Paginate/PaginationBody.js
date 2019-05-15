@@ -1,33 +1,33 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { TableBody, TableRow, TableCell, IconButton, TextField } from "@material-ui/core";
-import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
+import { TableBody, TableRow, TableCell, IconButton, TextField } from '@material-ui/core'
+import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye'
 
 const PaginationBody = props => {
   const { data, rowsPerPage, page, order, orderBy, headerRows, filterHandler } = props
 
   function stableSort(array, cmp) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
+    const stabilizedThis = array.map((el, index) => [el, index])
     stabilizedThis.sort((a, b) => {
-      const order = cmp(a[0], b[0]);
-      if (order !== 0) return order;
-      return a[1] - b[1];
-    });
-    return stabilizedThis.map(el => el[0]);
+      const order = cmp(a[0], b[0])
+      if (order !== 0) return order
+      return a[1] - b[1]
+    })
+    return stabilizedThis.map(el => el[0])
   }
 
   function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
-      return -1;
+      return -1
     }
     if (b[orderBy] > a[orderBy]) {
-      return 1;
+      return 1
     }
-    return 0;
+    return 0
   }
 
   function getSorting(order, orderBy) {
-    return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
+    return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy)
   }
   
   return (
@@ -36,31 +36,31 @@ const PaginationBody = props => {
         hover
       >
         {headerRows.map(hr => {
-            return (
-              <TableCell 
-                key={hr.key} 
-                align="center"
-                sortDirection={orderBy === hr.key ? order : false}
-                style={{padding: '2px 10px 5px 10px'}}
-              >
-                <TextField
-                  fullWidth
-                  onChange={(e) => filterHandler(e, hr.key)}
-                  label={`Filter ${hr.label}`}
-                  id={`filter_field-${hr.key}`}
-                  margin="dense"
-                  value={hr.filter}
-                  variant="outlined"
-                />
-              </TableCell>)
-          })
+          return (
+            <TableCell 
+              key={hr.key} 
+              align="center"
+              sortDirection={orderBy === hr.key ? order : false}
+              style={{padding: '2px 10px 5px 10px'}}
+            >
+              <TextField
+                fullWidth
+                onChange={(e) => filterHandler(e, hr.key)}
+                label={`Filter ${hr.label}`}
+                id={`filter_field-${hr.key}`}
+                margin="dense"
+                value={hr.filter}
+                variant="outlined"
+              />
+            </TableCell>)
+        })
         }
         <TableCell></TableCell>
       </TableRow>
       {stableSort(data, getSorting(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map(n => {
-          const isSelected = props.selected.indexOf(n._id) !== -1;
+          const isSelected = props.selected.indexOf(n._id) !== -1
           return (
             <TableRow
               hover
@@ -94,7 +94,7 @@ const PaginationBody = props => {
                 </IconButton>
               </TableCell>
             </TableRow>
-          );
+          )
         })}
     </TableBody>
   )

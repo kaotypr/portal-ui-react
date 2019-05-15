@@ -54,6 +54,6 @@ const EcommerceDetailStyles = theme => ({
   optionTitle: {
     minWidth: '50px'
   }
-});
+})
 
-export default EcommerceDetailStyles;
+export default EcommerceDetailStyles

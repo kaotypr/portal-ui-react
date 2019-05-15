@@ -73,6 +73,6 @@ const SessionStyles = theme => ({
   fullWidth: {
     width: '100%'
   }
-});
+})
 
-export default SessionStyles;
+export default SessionStyles

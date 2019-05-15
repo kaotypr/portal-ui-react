@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
+import React, { Component } from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker,
   InfoWindow, Polyline
-} from 'react-google-maps';
-import { Wrapper } from '../../components';
+} from 'react-google-maps'
+import { Wrapper } from '../../components'
 
 const polyCoordinates = [
   {
@@ -25,7 +25,7 @@ const polyCoordinates = [
     lat:-34.754764,
     lng: 149.736246
   }
-];
+]
 
 const styles = [{
   featureType: 'all',
@@ -46,18 +46,18 @@ const styles = [{
   stylers: [{
     visibility: 'off'
   }]
-}];
+}]
 
 const pageStyles = (theme) => ({
   map: {
     [theme.breakpoints.down('sm')]: {
-      height: `calc(100vh - 182px)`
+      height: 'calc(100vh - 182px)'
     },
     [theme.breakpoints.up('sm')]: {
-      height: `calc(100vh - 204px)`
+      height: 'calc(100vh - 204px)'
     },
   },
-});
+})
 
 const DemoMap = withScriptjs(withGoogleMap(props =>
   <GoogleMap
@@ -93,7 +93,7 @@ const DemoMap = withScriptjs(withGoogleMap(props =>
       />
     }
   </GoogleMap>
-));
+))
 
 class Google extends Component {
   state = {
@@ -102,20 +102,20 @@ class Google extends Component {
   };
 
   handleInfoWindowToggle = () => {
-    this.setState({ isInfoWindowOpen: !this.state.isInfoWindowOpen });
+    this.setState({ isInfoWindowOpen: !this.state.isInfoWindowOpen })
   }
 
   handleTabToggle = (event, tab) => {
-    this.setState({ tab });
+    this.setState({ tab })
   };
 
   render() {
-    const { classes } = this.props;
-    const { tab, isInfoWindowOpen } = this.state;
-    const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}`;
-    const loadingElement = <div style={{ height: `100%` }} />;
-    const containerElement = <div className={classes.map} />;
-    const mapElement = <div style={{ height: `100%` }} />;
+    const { classes } = this.props
+    const { tab, isInfoWindowOpen } = this.state
+    const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}`
+    const loadingElement = <div style={{ height: '100%' }} />
+    const containerElement = <div className={classes.map} />
+    const mapElement = <div style={{ height: '100%' }} />
 
     return (
       <Wrapper padding={false}>
@@ -171,8 +171,8 @@ class Google extends Component {
           </Grid>
         </Grid>
       </Wrapper>
-    );
+    )
   }
 }
 
-export default withStyles(pageStyles)(Google);
+export default withStyles(pageStyles)(Google)

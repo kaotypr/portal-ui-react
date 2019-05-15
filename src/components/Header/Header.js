@@ -1,30 +1,31 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+/* eslint-disable react/prop-types */
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Badge from '@material-ui/core/Badge';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
-import Hidden from '@material-ui/core/Hidden';
-import Collapse from '@material-ui/core/Collapse';
-import SearchIcon from '@material-ui/icons/Search';
-import FullscreenIcon from '@material-ui/icons/Fullscreen';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import SettingsIcon from '@material-ui/icons/Settings';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import NotificationsOffIcon from '@material-ui/icons/NotificationsOff';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import MenuIcon from '@material-ui/icons/Menu';
-import HeaderStyles from '../../styles/Header';
+import { withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Badge from '@material-ui/core/Badge'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import IconButton from '@material-ui/core/IconButton'
+import Hidden from '@material-ui/core/Hidden'
+import Collapse from '@material-ui/core/Collapse'
+import SearchIcon from '@material-ui/icons/Search'
+import FullscreenIcon from '@material-ui/icons/Fullscreen'
+import NotificationsIcon from '@material-ui/icons/Notifications'
+import SettingsIcon from '@material-ui/icons/Settings'
+import AccountBoxIcon from '@material-ui/icons/AccountBox'
+import NotificationsOffIcon from '@material-ui/icons/NotificationsOff'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import MenuIcon from '@material-ui/icons/Menu'
+import HeaderStyles from '../../styles/Header'
 
 import * as actions from '../../stores/actions'
 
@@ -35,25 +36,25 @@ class Header extends Component {
   };
 
   handleSettingdToggle = event => {
-    this.setState({ anchorEl: event.currentTarget });
+    this.setState({ anchorEl: event.currentTarget })
   };
 
   handleCloseMenu = () => {
-    this.setState({ anchorEl: null });
+    this.setState({ anchorEl: null })
   };
 
   handleSearchExpandToggle = () => {
-    this.setState({ searchExpanded: !this.state.searchExpanded });
+    this.setState({ searchExpanded: !this.state.searchExpanded })
   };
 
   handleDrawerToggle = () => {
-    this.props.toggleDrawer();
-    if (this.state.searchExpanded) this.handleSearchExpandToggle();
+    this.props.toggleDrawer()
+    if (this.state.searchExpanded) this.handleSearchExpandToggle()
   }
 
   handleNotificationToggle = () => {
-    this.props.toogleNotifications();
-    if (this.state.searchExpanded) this.handleSearchExpandToggle();
+    this.props.toogleNotifications()
+    if (this.state.searchExpanded) this.handleSearchExpandToggle()
   }
 
   handleLogout = () => {
@@ -61,8 +62,8 @@ class Header extends Component {
   }
 
   render() {
-    const { classes, logo, logoAltText, toggleFullscreen } = this.props;
-    const { anchorEl, searchExpanded } = this.state;
+    const { classes, logo, logoAltText, toggleFullscreen } = this.props
+    const { anchorEl, searchExpanded } = this.state
     return (
       <AppBar
         position="static"
@@ -189,7 +190,7 @@ Header.prototypes = {
   classes: PropTypes.object.isRequired,
   logo: PropTypes.string,
   logoAltText: PropTypes.string
-};
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -197,7 +198,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const wrapped_withStyles_header = withStyles(HeaderStyles)(Header);
+const wrapped_withStyles_header = withStyles(HeaderStyles)(Header)
 const wrapped_connect_header = connect(null, mapDispatchToProps)(wrapped_withStyles_header)
 const wrapped_withRouter_header = withRouter(wrapped_connect_header)
 

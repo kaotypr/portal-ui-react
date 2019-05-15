@@ -18,7 +18,7 @@ const HeaderStyles = theme => ({
     whiteSpace: 'nowrap',
     margin: 'auto 0',
     lineHeight: '50px',
-    padding: `0 64px 0 0`,
+    padding: '0 64px 0 0',
   },
   logo: {
     margin: 'auto',
@@ -58,6 +58,6 @@ const HeaderStyles = theme => ({
     marginTop: '-24px',
     color: 'rgba(0,0,0,.87)'
   }
-});
+})
 
-export default HeaderStyles;
+export default HeaderStyles

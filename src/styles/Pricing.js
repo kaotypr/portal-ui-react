@@ -59,6 +59,6 @@ const PricingStyles = theme => ({
   label: {
     color: '#ffffff'
   }
-});
+})
 
-export default PricingStyles;
+export default PricingStyles

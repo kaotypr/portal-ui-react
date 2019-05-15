@@ -56,6 +56,6 @@ const SidebarItemStyles = theme => ({
     backgroundColor: theme.palette.error.main,
     color: theme.palette.error.contrastText,
   },
-});
+})
 
-export default SidebarItemStyles;
+export default SidebarItemStyles

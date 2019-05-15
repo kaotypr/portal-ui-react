@@ -1,23 +1,23 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import Hidden from '@material-ui/core/Hidden';
-import MenuIcon from '@material-ui/icons/Menu';
-import { Wrapper, ProductCard } from '../../components';
-import EcommerceStyles from '../../styles/Ecommerce';
-import { mockProduct } from '../../utils/mock';
+import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Drawer from '@material-ui/core/Drawer'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Checkbox from '@material-ui/core/Checkbox'
+import ListSubheader from '@material-ui/core/ListSubheader'
+import Grid from '@material-ui/core/Grid'
+import IconButton from '@material-ui/core/IconButton'
+import Hidden from '@material-ui/core/Hidden'
+import MenuIcon from '@material-ui/icons/Menu'
+import { Wrapper, ProductCard } from '../../components'
+import EcommerceStyles from '../../styles/Ecommerce'
+import { mockProduct } from '../../utils/mock'
 
 class Products extends Component {
   state = {
@@ -26,29 +26,29 @@ class Products extends Component {
   }
 
   handleDrawerToggle = () => {
-    this.setState({ opened: !this.state.opened });
+    this.setState({ opened: !this.state.opened })
   }
 
   componentDidMount () {
-    let products = [];
+    let products = []
 
     const addProducts = (i) => {
       products.push({
         id: i,
         ...mockProduct()
-      });
+      })
     }
 
     for (let num = 1; num <= 21; num += 1) {
-      addProducts(num);
+      addProducts(num)
     }
 
     this.setState({ products })
   }
 
   render() {
-    const { classes } = this.props;
-    const { opened, products } = this.state;
+    const { classes } = this.props
+    const { opened, products } = this.state
 
     const menu = (
       <Fragment>
@@ -105,7 +105,7 @@ class Products extends Component {
           ))}
         </List>
       </Fragment>
-    );
+    )
 
     return (
       <Wrapper padding={false}>
@@ -181,12 +181,12 @@ class Products extends Component {
           </main>
         </Grid>
       </Wrapper>
-    );
+    )
   }
 }
 
 Products.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(EcommerceStyles)(Products);
+export default withStyles(EcommerceStyles)(Products)

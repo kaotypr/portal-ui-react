@@ -1,5 +1,5 @@
-import React from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import React from 'react'
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 
 const Leaflet = () => (
   <Map center={[51.505, -0.09]} zoom={13}>
@@ -15,6 +15,6 @@ const Leaflet = () => (
       </Popup>
     </Marker>
   </Map>
-);
+)
 
-export default Leaflet;
+export default Leaflet

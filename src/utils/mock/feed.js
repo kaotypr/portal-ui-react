@@ -1,8 +1,8 @@
-import React from 'react';
-import red from '@material-ui/core/colors/red';
-import blue from '@material-ui/core/colors/blue';
-import yellow from '@material-ui/core/colors/yellow';
-import Avatar from '@material-ui/core/Avatar';
+import React from 'react'
+import red from '@material-ui/core/colors/red'
+import blue from '@material-ui/core/colors/blue'
+import yellow from '@material-ui/core/colors/yellow'
+import Avatar from '@material-ui/core/Avatar'
 
 export default [{
   from: 'Jeff Jones',
@@ -12,7 +12,7 @@ export default [{
 }, {
   from: 'Jeff Jones',
   message: 'Consectetur Dolor',
-  avatar: <Avatar aria-label="Post" style={{backgroundColor: "primary"}}>J</Avatar>,
+  avatar: <Avatar aria-label="Post" style={{backgroundColor: 'primary'}}>J</Avatar>,
   subject: 'Ullamcorper Bibendum Ligula',
 }, {
   from: 'Jeff Jones',
@@ -24,7 +24,7 @@ export default [{
   message: 'Consectetur Dolor',
   avatar: <Avatar aria-label="Post" style={{backgroundColor: red[500]}}>I</Avatar>,
   subject: 'Ullamcorper Bibendum Ligula',
-}];
+}]
 
 // from: 'Sandra Adams',
 //   message: 'Adipiscing Mattis',
