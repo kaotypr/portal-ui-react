@@ -37,7 +37,7 @@
         "no-restricted-syntax": [1],
         "no-debugger": [1],
         "no-console": [1],
-        "react/prop-types": 1,
+        "react/prop-types": [1, { "ignore": ["match", "history", "classes"] }],
         "jest/no-disabled-tests": "warn",
         "jest/no-focused-tests": "error",
         "jest/no-identical-title": "error",
