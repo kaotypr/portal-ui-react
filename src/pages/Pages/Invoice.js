@@ -66,9 +66,9 @@ const Invoice = () => {
             <TableHead>
               <TableRow>
                 <CustomTableCell>Description</CustomTableCell>
-                <CustomTableCell numeric>Unit Price</CustomTableCell>
-                <CustomTableCell numeric>Quantity</CustomTableCell>
-                <CustomTableCell numeric>Amount</CustomTableCell>
+                <CustomTableCell align="right">Unit Price</CustomTableCell>
+                <CustomTableCell align="right">Quantity</CustomTableCell>
+                <CustomTableCell align="right">Amount</CustomTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -78,9 +78,9 @@ const Invoice = () => {
                     <Typography variant="body1" className="font-weight-bold">{item.title}</Typography>
                     <Typography variant="body1">{item.subtitle}</Typography>
                   </CustomTableCell>
-                  <CustomTableCell numeric>{formatPrice(item.price)}</CustomTableCell>
-                  <CustomTableCell numeric>{item.quantity}</CustomTableCell>
-                  <CustomTableCell numeric>{formatPrice(item.price * item.quantity)}</CustomTableCell>
+                  <CustomTableCell align="right">{formatPrice(item.price)}</CustomTableCell>
+                  <CustomTableCell align="right">{item.quantity}</CustomTableCell>
+                  <CustomTableCell align="right">{formatPrice(item.price * item.quantity)}</CustomTableCell>
                 </TableRow>
               ))}
             </TableBody>

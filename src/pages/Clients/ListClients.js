@@ -90,12 +90,12 @@ class ListClients extends Component {
     const { data } = this.state
     const { classes } = this.props
     const rows = [
-      { key: 'id_perusahaan', numeric: false, disablePadding: false, label: 'ID Client', filter: '' },
-      { key: 'nama', numeric: true, disablePadding: false, label: 'Nama Client', filter: '' },
-      { key: 'pic', numeric: false, disablePadding: false, label: 'PIC', filter: '' },
-      { key: 'no_telepon', numeric: false, disablePadding: false, label: 'Nomor Telepon', filter: '' },
-      { key: 'email', numeric: false, disablePadding: false, label: 'Email', filter: '' },
-      { key: 'status_client', numeric: true, disablePadding: false, label: 'Status', filter: '', getval: (val) => (val === true) ? 'Aktif' : 'Tidak Aftif' },
+      { key: 'id_perusahaan', align: 'left', disablePadding: false, label: 'ID Client', filter: '' },
+      { key: 'nama', align: 'right', disablePadding: false, label: 'Nama Client', filter: '' },
+      { key: 'pic', align: 'left', disablePadding: false, label: 'PIC', filter: '' },
+      { key: 'no_telepon', align: 'left', disablePadding: false, label: 'Nomor Telepon', filter: '' },
+      { key: 'email', align: 'left', disablePadding: false, label: 'Email', filter: '' },
+      { key: 'status_client', align: 'right', disablePadding: false, label: 'Status', filter: '', getval: (val) => (val === true) ? 'Aktif' : 'Tidak Aftif' },
     ]
     return (
       <div className={classes.root}>

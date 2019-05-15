@@ -212,8 +212,8 @@ class Home extends Component {
                 <TableHead>
                   <TableRow>
                     <TableCell>Project</TableCell>
-                    <TableCell numeric>Due Date</TableCell>
-                    <TableCell numeric>Current Progress</TableCell>
+                    <TableCell align="right">Due Date</TableCell>
+                    <TableCell align="right">Current Progress</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -222,8 +222,8 @@ class Home extends Component {
                       <TableCell component="th" scope="row">
                         {n.name}
                       </TableCell>
-                      <TableCell numeric>{n.date}</TableCell>
-                      <TableCell numeric>{<LinearProgress variant="determinate" value={n.progress} />}</TableCell>
+                      <TableCell align="right">{n.date}</TableCell>
+                      <TableCell align="right">{<LinearProgress variant="determinate" value={n.progress} />}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

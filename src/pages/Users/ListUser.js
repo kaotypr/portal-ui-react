@@ -76,11 +76,11 @@ class ListUser extends Component {
     const { data } = this.state
     const { classes } = this.props
     const rows = [
-      { key: 'nama_lengkap', numeric: false, disablePadding: false, label: 'Name', filter: '' },
-      { key: 'nik', numeric: true, disablePadding: false, label: 'NIK', filter: '' },
-      // { key: 'email', numeric: false, disablePadding: false, label: 'Email', filter: '' },
-      { key: 'status', numeric: false, disablePadding: false, label: 'Status', filter: '' },
-      { key: 'confidence', numeric: true, disablePadding: false, label: 'Percentage', filter: '', getval : (val) => parseFloat(val).toFixed(2) },
+      { key: 'nama_lengkap', align: 'left', disablePadding: false, label: 'Name', filter: '' },
+      { key: 'nik', align: 'right', disablePadding: false, label: 'NIK', filter: '' },
+      // { key: 'email', align: 'left', disablePadding: false, label: 'Email', filter: '' },
+      { key: 'status', align: 'left', disablePadding: false, label: 'Status', filter: '' },
+      { key: 'confidence', align: 'right', disablePadding: false, label: 'Percentage', filter: '', getval : (val) => parseFloat(val).toFixed(2) },
     ]
     return (
       <div className={classes.root}>

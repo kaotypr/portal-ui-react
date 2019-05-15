@@ -76,11 +76,11 @@ class OcrLogList extends Component {
     const { data } = this.state
     const { classes } = this.props
     const rows = [
-      { key: 'trace_number', numeric: false, disablePadding: false, label: 'Trace Number', filter: '' },
-      { key: 'client_id', numeric: true, disablePadding: false, label: 'ID Client', filter: '' },
-      { key: 'client_name', numeric: false, disablePadding: false, label: 'Nama Client', filter: '' },
-      { key: 'created_at', numeric: false, disablePadding: false, label: 'Created Date', filter: '' },
-      { key: 'status', numeric: true, disablePadding: false, label: 'Status', filter: ''},
+      { key: 'trace_number', align: 'left', disablePadding: false, label: 'Trace Number', filter: '' },
+      { key: 'client_id', align: 'right', disablePadding: false, label: 'ID Client', filter: '' },
+      { key: 'client_name', align: 'left', disablePadding: false, label: 'Nama Client', filter: '' },
+      { key: 'created_at', align: 'left', disablePadding: false, label: 'Created Date', filter: '' },
+      { key: 'status', align: 'right', disablePadding: false, label: 'Status', filter: ''},
     ]
     return (
       <div className={classes.root}>
