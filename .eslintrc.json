@@ -1,48 +1,47 @@
 {
-  "env": {
-      "browser": true,
-      "es6": true,
-      "node": true
-  },
-  "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:jest/recommended"
-
-  ],
-  "settings": {
-      "react": {
-      "createClass": "createReactClass",
-      "pragma": "React",
-      "version": "16.8.6"
-      },
-      "propWrapperFunctions": [ "forbidExtraProps" ]
-  },
-  "parser": "babel-eslint",
-  "parserOptions": {
-      "ecmaFeatures": {
-          "experimentalObjectRestSpread": true,
-          "jsx": true
-      },
-      "sourceType": "module"
-  },
-  "plugins": [
-      "react",
-      "jest"
-  ],
-  "rules": {
-      "indent": ["error", 2, { "SwitchCase": 1 }],
-      "linebreak-style": ["error", "unix"],
-      "quotes": ["error", "single"],
-      "semi": ["warn", "never"],
-      "no-restricted-syntax": [1],
-      "no-debugger": [1],
-      "no-console": [1],
-      "react/prop-types": 1,
-      "jest/no-disabled-tests": "warn",
-      "jest/no-focused-tests": "error",
-      "jest/no-identical-title": "error",
-      "jest/prefer-to-have-length": "warn",
-      "jest/valid-expect": "error"
-  }
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:jest/recommended"
+    ],
+    "settings": {
+        "react": {
+        "createClass": "createReactClass",
+        "pragma": "React",
+        "version": "16.8.6"
+        },
+        "propWrapperFunctions": [ "forbidExtraProps" ]
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "jest"
+    ],
+    "rules": {
+        "indent": ["error", 2, { "SwitchCase": 1 }],
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "single"],
+        "semi": ["warn", "never"],
+        "no-restricted-syntax": [1],
+        "no-debugger": [1],
+        "no-console": [1],
+        "react/prop-types": 1,
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
+    }
 }
