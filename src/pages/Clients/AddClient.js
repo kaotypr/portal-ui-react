@@ -1,4 +1,4 @@
-import React, { Component }  from 'react'
+import React, { Component, Fragment }  from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import axios from '../../axios.instances'
 
@@ -7,6 +7,7 @@ import SaveIcon from '@material-ui/icons/Save'
 import BackSpaceIcon from '@material-ui/icons/Backspace'
 import CollectionsIcon from '@material-ui/icons/Collections'
 import { Card, CardHeader, CardContent, Grid, Typography, TextField, CardMedia, Button } from '@material-ui/core'
+import Alert from '@ui/Alert'
 
 
 const styles = {
@@ -77,7 +78,13 @@ class AddClient extends Component {
       kelurahan: '',
       alamat: '',
       iconURL: '',
-      icon: null
+      icon: null,
+      openalert: '',
+      alerttitle: '',
+      alertcontent: '',
+      alertfirstoption: '',
+      alertsecondoption: '',
+      alertfirsthandler: null,
     }
 
     this.iconChooserInput = React.createRef()
@@ -101,6 +108,18 @@ class AddClient extends Component {
     this.setState({
       icon: this.iconChooserInput.current.files[0],
       iconURL: URL.createObjectURL(this.iconChooserInput.current.files[0])
+    })
+  }
+
+  showAlert(title, content, options, handlers) {
+    this.setState({
+      openalert: true,
+      alerttitle: title,
+      alertcontent: content,
+      alertfirstoption: options.firstoption,
+      alertsecondoption: options.secondoption,
+      alertfirsthandler: handlers.firsthandler,
+      alertsecondhandler: handlers.secondhandler
     })
   }
 
@@ -131,9 +150,26 @@ class AddClient extends Component {
 
     axios.post('/client', postData, headers)
       .then(response => {
-        console.log(response)
+        this.showAlert(
+          'Sukses',
+          `Client ${response.data.nama} berhasil dibuat`,
+          { 
+            firstoption: 'Tutup', 
+            secondoption: 'Lanjutkan'
+          },
+          { 
+            firsthandler: () => this.setState({openalert: false}), 
+            secondhandler: () => this.props.history.push({pathname: '/dataclient/list'})
+          }
+        )
       })
       .catch(error => {
+        this.showAlert(
+          'Terjadi kesalahan',
+          error.response.data.error,
+          { secondoption: 'Tutup' },
+          { secondhandler: () => this.setState({openalert: false}) }
+        )
         console.log({...error})
       })
   }
@@ -171,176 +207,187 @@ class AddClient extends Component {
 
 
     return (
-      <div className={classes.root}>
-        <Card square className={classes.cardwrapper}>
-          <CardHeader
-            classes={{
-              title: classes.title,
-            }}
-            title="Tambah Data Client"
-            subheader="Tambah data client"
-          />
-          <CardContent>
-            <Grid container spacing={24} alignItems="flex-start" direction="row" justify="space-between">
-              <Grid item xs={12} sm={6}>
-                <Grid item xs={6} sm={6}>
-                  <Typography align='left' className={classes.headline} variant='h5' gutterBottom>
-                    Data Perusahaan
-                  </Typography>
-                </Grid>
-                <TextField
-                  id="id_perusahaan"
-                  name="id_perusahaan"
-                  onChange={(event) => this.formChangeHandler(event)}
-                  label="ID Perusahaan"
-                  value={id_perusahaan}
-                  className={classes.textField}
-                  margin="normal"
-                  fullWidth
-                  variant="filled"
-                />
-
-                <TextField
-                  id="nama_perusahaan"
-                  name="nama_perusahaan"
-                  onChange={(event) => this.formChangeHandler(event)}
-                  label="Nama Perusahaan"
-                  value={nama_perusahaan}
-                  className={classes.textField}
-                  margin="normal"
-                  fullWidth
-                  variant="filled"
-                />
-
-                <TextField
-                  type="number"
-                  id="nomor_telepon"
-                  name="nomor_telepon"
-                  onChange={(event) => this.formChangeHandler(event)}
-                  label="Nomor Telepon"
-                  value={nomor_telepon}
-                  className={classes.textField}
-                  margin="normal"
-                  fullWidth
-                  variant="filled"
-                />
-
-                <TextField
-                  id="email"
-                  name="email"
-                  onChange={(event) => this.formChangeHandler(event)}
-                  label="Email"
-                  value={email}
-                  className={classes.textField}
-                  margin="normal"
-                  fullWidth
-                  variant="filled"
-                />
-
-                <Grid item xs={6} sm={6}>
-                  <Typography align='left' className={classes.headline} variant='h5' gutterBottom>Alamat Perusahaan</Typography>
-                </Grid>
-
-                <TextField
-                  id="provinsi"
-                  name="provinsi"
-                  onChange={(event) => this.formChangeHandler(event)}
-                  label="Provinsi"
-                  value={provinsi}
-                  className={classes.textField}
-                  margin="normal"
-                  fullWidth
-                  variant="filled"
-                />
-                <TextField
-                  id="kota"
-                  name="kota"
-                  onChange={(event) => this.formChangeHandler(event)}
-                  label="Kota/Kabupaten"
-                  value={kota}
-                  className={classes.textField}
-                  margin="normal"
-                  fullWidth
-                  variant="filled"
-                />
-                <TextField
-                  id="kecamatan"
-                  name="kecamatan"
-                  onChange={(event) => this.formChangeHandler(event)}
-                  label="Kecamatan"
-                  value={kecamatan}
-                  className={classes.textField}
-                  margin="normal"
-                  fullWidth
-                  variant="filled"
-                />
-                <TextField
-                  id="kelurahan"
-                  name="kelurahan"
-                  onChange={(event) => this.formChangeHandler(event)}
-                  label="Kelurahan"
-                  value={kelurahan}
-                  className={classes.textField}
-                  margin="normal"
-                  fullWidth
-                  variant="filled"
-                />
-                <TextField
-                  id="alamat"
-                  name="alamat"
-                  onChange={(event) => this.formChangeHandler(event)}
-                  label="Alamat"
-                  value={alamat}
-                  className={classes.textField}
-                  margin="normal"
-                  fullWidth
-                  multiline={true}
-                  rows={3}
-                  rowsMax={5}
-                  variant="filled"
-                />
-
-              </Grid>
-
-              <Grid item  xs={12} sm={6} className="text-sm-left text-xs-left">
-                <Card className={classes.card}>
-                  <div className={classes.headerWrap}>
-                    <CardHeader className={classes.title} title="Icon" subheader="Icon Perusahaan" />
-                    <div className={classes.headerAction}>
-                      <Button onClick={this.iconChooserHandler} name="iconchooser" variant="contained" color="primary" className={classes.button}>
-                        Pilih Icon 
-                        <CollectionsIcon className={classes.extendedIcon} />
-                      </Button>
-                      <input onChange={this.iconChangeHandler} ref={this.iconChooserInput} id="iconchooser_input" name="iconchooser_input" className={classes.InputFile} type="file"/>
-                    </div>
-                  </div>
-                  <CardMedia
-                    id="icon_preview"
-                    name="icon_preview"
-                    className={`${classes.media} ${iconClassName}`}
-                    image={iconPreviewURL}
-                    title="Icon Perusahaan"
+      <Fragment>
+        <Alert 
+          open={this.state.openalert} 
+          title={this.state.alerttitle} 
+          content={this.state.alertcontent} 
+          firstoption={this.state.alertfirstoption}
+          secondoption={this.state.alertsecondoption} 
+          firsthandler={this.state.alertfirsthandler}
+          secondhandler={this.state.alertsecondhandler}
+        />
+        <div className={classes.root}>
+          <Card square className={classes.cardwrapper}>
+            <CardHeader
+              classes={{
+                title: classes.title,
+              }}
+              title="Tambah Data Client"
+              subheader="Tambah data client"
+            />
+            <CardContent>
+              <Grid container spacing={24} alignItems="flex-start" direction="row" justify="space-between">
+                <Grid item xs={12} sm={6}>
+                  <Grid item xs={6} sm={6}>
+                    <Typography align='left' className={classes.headline} variant='h5' gutterBottom>
+                      Data Perusahaan
+                    </Typography>
+                  </Grid>
+                  <TextField
+                    id="id_perusahaan"
+                    name="id_perusahaan"
+                    onChange={(event) => this.formChangeHandler(event)}
+                    label="ID Perusahaan"
+                    value={id_perusahaan}
+                    className={classes.textField}
+                    margin="normal"
+                    fullWidth
+                    variant="filled"
                   />
-                </Card>
+
+                  <TextField
+                    id="nama_perusahaan"
+                    name="nama_perusahaan"
+                    onChange={(event) => this.formChangeHandler(event)}
+                    label="Nama Perusahaan"
+                    value={nama_perusahaan}
+                    className={classes.textField}
+                    margin="normal"
+                    fullWidth
+                    variant="filled"
+                  />
+
+                  <TextField
+                    type="number"
+                    id="nomor_telepon"
+                    name="nomor_telepon"
+                    onChange={(event) => this.formChangeHandler(event)}
+                    label="Nomor Telepon"
+                    value={nomor_telepon}
+                    className={classes.textField}
+                    margin="normal"
+                    fullWidth
+                    variant="filled"
+                  />
+
+                  <TextField
+                    id="email"
+                    name="email"
+                    onChange={(event) => this.formChangeHandler(event)}
+                    label="Email"
+                    value={email}
+                    className={classes.textField}
+                    margin="normal"
+                    fullWidth
+                    variant="filled"
+                  />
+
+                  <Grid item xs={6} sm={6}>
+                    <Typography align='left' className={classes.headline} variant='h5' gutterBottom>Alamat Perusahaan</Typography>
+                  </Grid>
+
+                  <TextField
+                    id="provinsi"
+                    name="provinsi"
+                    onChange={(event) => this.formChangeHandler(event)}
+                    label="Provinsi"
+                    value={provinsi}
+                    className={classes.textField}
+                    margin="normal"
+                    fullWidth
+                    variant="filled"
+                  />
+                  <TextField
+                    id="kota"
+                    name="kota"
+                    onChange={(event) => this.formChangeHandler(event)}
+                    label="Kota/Kabupaten"
+                    value={kota}
+                    className={classes.textField}
+                    margin="normal"
+                    fullWidth
+                    variant="filled"
+                  />
+                  <TextField
+                    id="kecamatan"
+                    name="kecamatan"
+                    onChange={(event) => this.formChangeHandler(event)}
+                    label="Kecamatan"
+                    value={kecamatan}
+                    className={classes.textField}
+                    margin="normal"
+                    fullWidth
+                    variant="filled"
+                  />
+                  <TextField
+                    id="kelurahan"
+                    name="kelurahan"
+                    onChange={(event) => this.formChangeHandler(event)}
+                    label="Kelurahan"
+                    value={kelurahan}
+                    className={classes.textField}
+                    margin="normal"
+                    fullWidth
+                    variant="filled"
+                  />
+                  <TextField
+                    id="alamat"
+                    name="alamat"
+                    onChange={(event) => this.formChangeHandler(event)}
+                    label="Alamat"
+                    value={alamat}
+                    className={classes.textField}
+                    margin="normal"
+                    fullWidth
+                    multiline={true}
+                    rows={3}
+                    rowsMax={5}
+                    variant="filled"
+                  />
+
+                </Grid>
+
+                <Grid item  xs={12} sm={6} className="text-sm-left text-xs-left">
+                  <Card className={classes.card}>
+                    <div className={classes.headerWrap}>
+                      <CardHeader className={classes.title} title="Icon" subheader="Icon Perusahaan" />
+                      <div className={classes.headerAction}>
+                        <Button onClick={this.iconChooserHandler} name="iconchooser" variant="contained" color="primary" className={classes.button}>
+                          Pilih Icon 
+                          <CollectionsIcon className={classes.extendedIcon} />
+                        </Button>
+                        <input onChange={this.iconChangeHandler} ref={this.iconChooserInput} id="iconchooser_input" name="iconchooser_input" className={classes.InputFile} type="file"/>
+                      </div>
+                    </div>
+                    <CardMedia
+                      id="icon_preview"
+                      name="icon_preview"
+                      className={`${classes.media} ${iconClassName}`}
+                      image={iconPreviewURL}
+                      title="Icon Perusahaan"
+                    />
+                  </Card>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container alignItems="center"  direction="row-reverse" justify="center" style={{padding: '30px', display: 'flex'}}>
-              <Grid item container xs={4} sm={4} justify="space-between">
-                <Link to='/dataclient/list'>
-                  <Button variant="contained" color="primary" className={classes.button}>
-                    Cancel
-                    <BackSpaceIcon className={classes.extendedIcon} />
+              <Grid container alignItems="center"  direction="row-reverse" justify="center" style={{padding: '30px', display: 'flex'}}>
+                <Grid item container xs={4} sm={4} justify="space-between">
+                  <Link to='/dataclient/list'>
+                    <Button variant="contained" color="primary" className={classes.button}>
+                      Cancel
+                      <BackSpaceIcon className={classes.extendedIcon} />
+                    </Button>
+                  </Link>
+                  <Button onClick={this.submitHandler} variant="contained" color="primary" className={classes.button}>
+                    Submit
+                    <SaveIcon className={classes.extendedIcon} />
                   </Button>
-                </Link>
-                <Button onClick={this.submitHandler} variant="contained" color="primary" className={classes.button}>
-                  Submit
-                  <SaveIcon className={classes.extendedIcon} />
-                </Button>
+                </Grid>
               </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
-      </div>
+            </CardContent>
+          </Card>
+        </div>
+      </Fragment>
     )
   }
 }
