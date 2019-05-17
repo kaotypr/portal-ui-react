@@ -74,8 +74,7 @@ class ListClients extends Component {
       })
       .catch(error => {
         if (error.response === undefined || error.response.status === 500) {
-          console.log({...error})
-        // this.props.history.push({pathname: '/500'})
+          this.props.history.push({pathname: '/500'})
         } else {
           this.showAlert(
             'Terjadi kesalahan',
@@ -94,7 +93,7 @@ class ListClients extends Component {
       { key: 'id_perusahaan', align: 'left', disablePadding: false, label: 'ID Client', filter: '' },
       { key: 'nama', align: 'right', disablePadding: false, label: 'Nama Client', filter: '' },
       { key: 'pic', align: 'left', disablePadding: false, label: 'PIC', filter: '' },
-      { key: 'no_telepon', align: 'left', disablePadding: false, label: 'Nomor Telepon', filter: '' },
+      { key: 'nomor_telepon', align: 'left', disablePadding: false, label: 'Nomor Telepon', filter: '' },
       { key: 'email', align: 'left', disablePadding: false, label: 'Email', filter: '' },
       { key: 'status_client', align: 'right', disablePadding: false, label: 'Status', filter: '', getval: (val) => (val === true) ? 'Aktif' : 'Tidak Aftif' },
     ]
