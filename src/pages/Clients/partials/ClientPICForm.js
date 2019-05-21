@@ -63,30 +63,6 @@ const styles = theme => ({
 
 const ClientPICForm = props => {
 
-  // handleChange = (event, value) => {
-  //   const maxTabs = this.state.picData.length - 1
-  //   if (value > maxTabs) {
-  //     this.setState({ activeTab: value - 1 })
-  //   } else {
-  //     this.setState({ activeTab: value })
-  //   }
-  // }
-
-  // addClientTab = () => {
-  //   const picData = [...this.state.picData]
-  //   picData.push({text: `tester${(picData.length+1).toString()}`})
-  //   this.setState({ picData })
-  // }
-
-  // removeClientTab = indexTab => {
-  //   const nextState = {...this.state}
-  //   if (nextState.picData.length > 1) {
-  //     nextState.picData.splice(indexTab, 1)
-  //     nextState.activeTab = indexTab - 1
-  //     this.setState(nextState)
-  //   }
-  // }
-
   const { 
     classes, 
     activeTab, 

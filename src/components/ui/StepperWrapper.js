@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import SendIcon from '@material-ui/icons/Send'
+import SaveIcon from '@material-ui/icons/Save'
 
 
 const styles = theme => ({
@@ -155,7 +155,7 @@ class HorizontalLinearStepper extends React.Component {
                   {activeStep === steps.length - 1 ? 
                     <Fragment>
                       Submit
-                      <SendIcon className={classes.extendedIconRight} />
+                      <SaveIcon className={classes.extendedIconRight} />
                     </Fragment> : 
                     <Fragment>
                       Next

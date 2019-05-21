@@ -37,7 +37,8 @@ class AppProvider extends Component {
         },
         button: {
           textTransform: 'initial'
-        }
+        },
+        useNextVariants: true
       },
       shape: {
         borderRadius: 4
