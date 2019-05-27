@@ -70,7 +70,8 @@ const ClientPICForm = props => {
     handleChangeTab,
     handleAddTab,
     handleRemoveTab,
-    formChangeHandler
+    formChangeHandler,
+    disableAddTab
   } = props
 
   return (
@@ -111,7 +112,7 @@ const ClientPICForm = props => {
               />)
           }
         })}
-        <IconButton onClick={() => handleAddTab()} color="primary" className={classes.button} aria-label="Delete">
+        <IconButton disabled={disableAddTab} onClick={() => handleAddTab()} color="primary" className={classes.button} aria-label="Delete">
           <AddBoxIcon />
         </IconButton>
       </Tabs>
@@ -248,6 +249,7 @@ const ClientPICForm = props => {
 
 ClientPICForm.propTypes = {
   classes: PropTypes.object.isRequired,
+  disableAddTab: PropTypes.bool.isRequired,
   activeTab: PropTypes.number.isRequired,
   picData: PropTypes.array.isRequired,
   handleChangeTab: PropTypes.func.isRequired,

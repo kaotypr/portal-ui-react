@@ -93,6 +93,7 @@ class AddClient extends Component {
       alertfirsthandler: null,
       pageSteps: ['Fill Client Data', 'Add Client PIC', 'Check Form'],
       picActiveTab: 0,
+      picAllowAddTab: false,
       picData: [{
         nama_pic: '',
         nomor_telepon_pic: '',
@@ -127,6 +128,15 @@ class AddClient extends Component {
   formPicChangeHandler(event, index) {
     const nextState = {...this.state}
     nextState.picData[index][event.target.name] = event.target.value
+    // handle pic add tab allowance
+    let picAllowAddTab = true
+    const lastIndex = nextState.picData.length - 1
+    for (const key in nextState.picData[lastIndex]) {
+      if (nextState.picData[lastIndex][key] === '' || nextState.picData[lastIndex][key] === undefined) {
+        picAllowAddTab = false
+      }
+    }
+    nextState.picAllowAddTab = picAllowAddTab
     this.setState(nextState)
   }
 
@@ -165,7 +175,7 @@ class AddClient extends Component {
       rw_pic: '',
       alamat_pic: ''
     })
-    this.setState({ picData })
+    this.setState({ picData, picAllowAddTab: false })
   }
 
   handlePicRemoveTab(indexTab) {
@@ -173,6 +183,16 @@ class AddClient extends Component {
     if (nextState.picData.length > 1) {
       nextState.picData.splice(indexTab, 1)
       nextState.picActiveTab = indexTab - 1
+      // handle add pic tab button allowance
+      let picAllowAddTab = true
+      const lastIndex = nextState.picData.length - 1
+      for (const key in nextState.picData[lastIndex]) {
+        if (nextState.picData[lastIndex][key] === '' || nextState.picData[lastIndex][key] === undefined) {
+          picAllowAddTab = false
+        }
+      }
+      nextState.picAllowAddTab = picAllowAddTab
+      
       this.setState(nextState)
     }
   }
@@ -281,6 +301,7 @@ class AddClient extends Component {
             picData={this.state.picData}
             activeTab={this.state.picActiveTab}
             formChangeHandler={this.formPicChangeHandler}
+            disableAddTab={!this.state.picAllowAddTab}
           />
         )
       case 2:
