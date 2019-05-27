@@ -188,3 +188,14 @@ export const dateGlobalFormat = (date_param) => {
   let formatted_date = `${fullyear}-${month}-${date} ${date_param.getHours()}:${date_param.getMinutes()}:${date_param.getSeconds()}` 
   return formatted_date
 }
+
+/**
+ * @param {Object} FormData the form to log
+ * @return {Boolean} just to console
+ */
+export const logFormData = (FormData) => {
+  for(var pair of FormData.entries()) {
+    /* eslint-disable-next-line */
+    console.log(pair[0]+ ', '+ pair[1]) 
+  }
+}

@@ -8,6 +8,8 @@ import { Card, CardHeader, CardContent, Grid, Button } from '@material-ui/core'
 import Alert from '@ui/Alert'
 
 import StepperWrapper from '@ui/StepperWrapper'
+import { logFormData } from '@utils/utility'
+
 import ClientForm from './partials/ClientForm'
 import ClientPICForm from './partials/ClientPICForm'
 
@@ -207,9 +209,7 @@ class AddClient extends Component {
       icon: this.state.icon
     })
 
-    // for(var pair of postData.entries()) {
-    //   console.log(pair[0]+ ', '+ pair[1]) 
-    // }
+    logFormData(postData)
     
 
     axios.post('/client', postData, headers)
