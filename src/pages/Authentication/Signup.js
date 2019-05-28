@@ -2,7 +2,8 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Link, withRouter } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../axios.instances'
+
 
 import { 
   withStyles,
@@ -91,8 +92,6 @@ const Signup = (props) => {
       return
     }
 
-    let url = `${process.env.REACT_APP_PORTAL_API}/signup`
-
     var config = {
       headers: {
         'Content-Type': 'application/json'
@@ -105,7 +104,7 @@ const Signup = (props) => {
       password: component.state.password
     }
 
-    axios.post(url, payload, config)
+    axios.post('/signup', payload, config)
       .then(response => {
         showAlert(
           'Sukses',
