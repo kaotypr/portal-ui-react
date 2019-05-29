@@ -199,3 +199,19 @@ export const logFormData = (FormData) => {
     console.log(pair[0]+ ', '+ pair[1]) 
   }
 }
+
+/**
+ * @param {Object} obj Object that will converted to the form data
+ * @return {Object} a multipart/formdata
+ */
+export const loopObjectToFormData = obj => {
+  let formData = new FormData()
+  
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      formData.append(key, obj[key])
+    }
+  }
+
+  return formData
+}
