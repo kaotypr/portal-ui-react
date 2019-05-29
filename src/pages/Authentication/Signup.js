@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Link, withRouter } from 'react-router-dom'
-import axios from '../../axios.instances'
+import axios from '@root/axios.instances'
 
 
 import { 

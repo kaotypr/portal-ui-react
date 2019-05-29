@@ -1,6 +1,6 @@
 import React, { Component, Fragment }  from 'react'
 import { withRouter, Link } from 'react-router-dom'
-import axios from '../../axios.instances'
+import axios from '@root/axios.instances'
 
 import { withStyles } from '@material-ui/core/styles'
 import BackSpaceIcon from '@material-ui/icons/Backspace'

@@ -1,6 +1,6 @@
 import * as _act from '../../constants/actionType'
 
-import axios from '../../axios.instances'
+import axios from '@root/axios.instances'
 
 const loginSuccess = (responseData) => {
   const expiresIn = new Date(responseData.expiration_time)

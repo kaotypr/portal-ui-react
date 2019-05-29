@@ -25,7 +25,7 @@ import NotificationsOffIcon from '@material-ui/icons/NotificationsOff'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Wrapper, NewsCard, StatCard } from '../../components'
 import { mockFeed } from '../../utils/mock'
-import axios from '../../axios.instances'
+import axios from '@root/axios.instances'
 
 let id = 0
 function createData(name, date, progress) {
