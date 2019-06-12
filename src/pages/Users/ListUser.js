@@ -76,6 +76,7 @@ class ListUser extends Component {
   render() {
     const { data } = this.state
     const { classes } = this.props
+    const actionPathSetter = { detail: (id) => `${this.props.match.path}/${id}/detail` }
     const rows = [
       { key: 'nama_lengkap', align: 'left', disablePadding: false, label: 'Name', filter: '' },
       { key: 'nik', align: 'right', disablePadding: false, label: 'NIK', filter: '' },
@@ -101,7 +102,7 @@ class ListUser extends Component {
             subheader="Cheking users data set"
           />
           <CardContent>
-            <Pagination data={data} classes={this.props.classes} rows={rows}/>
+            <Pagination actionPathSetter={actionPathSetter} data={data} classes={this.props.classes} rows={rows}/>
           </CardContent>
         </Card>
       </div>
