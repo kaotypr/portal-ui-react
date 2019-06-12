@@ -8,7 +8,7 @@ import { Card, CardHeader, CardContent, Grid, Button } from '@material-ui/core'
 import Alert from '@ui/Alert'
 
 import StepperWrapper from '@ui/StepperWrapper'
-import { logFormData } from '@utils/utility'
+import { clog, logFormData, loopObjectToFormData } from '@utils/utility'
 
 import ClientForm from './partials/ClientForm'
 import ClientPICForm from './partials/ClientPICForm'
@@ -192,7 +192,7 @@ class AddClient extends Component {
         }
       }
       nextState.picAllowAddTab = picAllowAddTab
-      
+
       this.setState(nextState)
     }
   }
@@ -209,6 +209,57 @@ class AddClient extends Component {
     })
   }
 
+  submitPICData(clientID) {
+    if (this.state.picAllowAddTab) {
+      
+      this.state.picData.forEach(eachData => {
+        const headers = {
+          'Content-Type': 'multipart/form-data'
+        }
+    
+        const postData = loopObjectToFormData({
+          nama: eachData.nama_pic,
+          nomor_telepon: eachData.nomor_telepon_pic,
+          email: eachData.email_pic,
+          provinsi: eachData.provinsi_pic,
+          kota: eachData.kota_pic,
+          kecamatan: eachData.kecamatan_pic,
+          kelurahan: eachData.kelurahan_pic,
+          rt: eachData.rt_pic,
+          rw: eachData.rw_pic,
+          alamat: eachData.alamat_pic,
+        })
+
+        logFormData(postData)
+
+        axios.post(`/client/${clientID}/pic`, postData, headers)
+          .then(response => {
+            clog(response, 'RESPONSE PIC SUBMIT')
+            this.showAlert(
+              'Sukses',
+              `Client dan PIC ${response.data.nama} berhasil dibuat`,
+              { 
+                firstoption: 'Tutup', 
+                secondoption: 'Lanjutkan'
+              },
+              { 
+                firsthandler: () => this.setState({openalert: false}), 
+                secondhandler: () => this.props.history.push({pathname: '/dataclient/list'})
+              }
+            )
+          })
+          .catch(error => {
+            this.showAlert(
+              'Terjadi kesalahan',
+              error.response.data.error,
+              { secondoption: 'Tutup' },
+              { secondhandler: () => this.setState({openalert: false}) }
+            )
+          })
+      })
+    }
+  }
+
   submitHandler(event) {
     event.preventDefault()
   
@@ -216,7 +267,7 @@ class AddClient extends Component {
       'Content-Type': 'multipart/form-data'
     }
 
-    const postData = this.loopObjectToFormData({
+    const postData = loopObjectToFormData({
       id_perusahaan: this.state.id_perusahaan,
       nama: this.state.nama_perusahaan,
       nomor_telepon: this.state.nomor_telepon,
@@ -229,23 +280,9 @@ class AddClient extends Component {
       icon: this.state.icon
     })
 
-    logFormData(postData)
-    
-
     axios.post('/client', postData, headers)
       .then(response => {
-        this.showAlert(
-          'Sukses',
-          `Client ${response.data.nama} berhasil dibuat`,
-          { 
-            firstoption: 'Tutup', 
-            secondoption: 'Lanjutkan'
-          },
-          { 
-            firsthandler: () => this.setState({openalert: false}), 
-            secondhandler: () => this.props.history.push({pathname: '/dataclient/list'})
-          }
-        )
+        this.submitPICData(response.data._id)
       })
       .catch(error => {
         this.showAlert(
@@ -255,18 +292,6 @@ class AddClient extends Component {
           { secondhandler: () => this.setState({openalert: false}) }
         )
       })
-  }
-
-  loopObjectToFormData(obj) {
-    let formData = new FormData()
-    
-    for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        formData.append(key, obj[key])
-      }
-    }
-
-    return formData
   }
 
   getStepContent(step) {
