@@ -87,34 +87,34 @@ export default {
     component: Home
   },
   {
-    path: '/data',
+    path: '/users',
     name: 'List Data',
     type: 'submenu',
     icon: EqualizerIcon,
     children: [{
-      path: '/users',
+      path: '',
       name: 'List User Data',
       component: ListUser
     },
     {
-      path: '/users/:id',
+      path: '/:id/detail',
       name: 'Detail User Data',
       sidebar: false,
       component: DetailUser
     }]
   },
   {
-    path: '/dataclient',
+    path: '/clients',
     name: 'Data Client',
     type: 'submenu',
     icon: PagesIcon,
     children: [{
-      path: '/list',
+      path: '',
       name: 'List Client',
       component: ListClient
     },
     {
-      path: '/client/:id',
+      path: '/:id/detail',
       name: 'Detail Client',
       sidebar: false,
       component: DetailClient
