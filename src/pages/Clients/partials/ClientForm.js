@@ -24,6 +24,8 @@ const ClientForm = (props) => {
     iconChangeHandler,
   } = props
 
+  const readOnly = props.readOnly ? true : false
+
   const defaultImage = 'http://calgarypma.ca/wp-content/uploads/2018/01/default-thumbnail-300x225.jpg'
 
   const iconPreviewURL = iconURL === '' ? defaultImage :  iconURL
@@ -38,6 +40,7 @@ const ClientForm = (props) => {
           </Typography>
         </Grid>
         <TextField
+          disabled={readOnly}
           id="id_perusahaan"
           name="id_perusahaan"
           onChange={(event) => formChangeHandler(event)}
@@ -47,9 +50,15 @@ const ClientForm = (props) => {
           margin="normal"
           fullWidth
           variant="outlined"
+          InputProps={{
+            classes: {
+              disabled: classes.viewOnly
+            }
+          }}
         />
 
         <TextField
+          disabled={readOnly}
           id="nama_perusahaan"
           name="nama_perusahaan"
           onChange={(event) => formChangeHandler(event)}
@@ -59,9 +68,15 @@ const ClientForm = (props) => {
           margin="normal"
           fullWidth
           variant="outlined"
+          InputProps={{
+            classes: {
+              disabled: classes.viewOnly
+            }
+          }}
         />
 
         <TextField
+          disabled={readOnly}
           type="number"
           id="nomor_telepon"
           name="nomor_telepon"
@@ -72,9 +87,15 @@ const ClientForm = (props) => {
           margin="normal"
           fullWidth
           variant="outlined"
+          InputProps={{
+            classes: {
+              disabled: classes.viewOnly
+            }
+          }}
         />
 
         <TextField
+          disabled={readOnly}
           id="email"
           name="email"
           onChange={(event) => formChangeHandler(event)}
@@ -84,6 +105,11 @@ const ClientForm = (props) => {
           margin="normal"
           fullWidth
           variant="outlined"
+          InputProps={{
+            classes: {
+              disabled: classes.viewOnly
+            }
+          }}
         />
 
         <Grid item xs={6} sm={6}>
@@ -91,6 +117,7 @@ const ClientForm = (props) => {
         </Grid>
 
         <TextField
+          disabled={readOnly}
           id="provinsi"
           name="provinsi"
           onChange={(event) => formChangeHandler(event)}
@@ -100,8 +127,14 @@ const ClientForm = (props) => {
           margin="normal"
           fullWidth
           variant="outlined"
+          InputProps={{
+            classes: {
+              disabled: classes.viewOnly
+            }
+          }}
         />
         <TextField
+          disabled={readOnly}
           id="kota"
           name="kota"
           onChange={(event) => formChangeHandler(event)}
@@ -111,8 +144,14 @@ const ClientForm = (props) => {
           margin="normal"
           fullWidth
           variant="outlined"
+          InputProps={{
+            classes: {
+              disabled: classes.viewOnly
+            }
+          }}
         />
         <TextField
+          disabled={readOnly}
           id="kecamatan"
           name="kecamatan"
           onChange={(event) => formChangeHandler(event)}
@@ -122,8 +161,14 @@ const ClientForm = (props) => {
           margin="normal"
           fullWidth
           variant="outlined"
+          InputProps={{
+            classes: {
+              disabled: classes.viewOnly
+            }
+          }}
         />
         <TextField
+          disabled={readOnly}
           id="kelurahan"
           name="kelurahan"
           onChange={(event) => formChangeHandler(event)}
@@ -133,8 +178,14 @@ const ClientForm = (props) => {
           margin="normal"
           fullWidth
           variant="outlined"
+          InputProps={{
+            classes: {
+              disabled: classes.viewOnly
+            }
+          }}
         />
         <TextField
+          disabled={readOnly}
           id="alamat"
           name="alamat"
           onChange={(event) => formChangeHandler(event)}
@@ -147,6 +198,11 @@ const ClientForm = (props) => {
           rows={3}
           rowsMax={5}
           variant="outlined"
+          InputProps={{
+            classes: {
+              disabled: classes.viewOnly
+            }
+          }}
         />
 
       </Grid>
@@ -155,13 +211,17 @@ const ClientForm = (props) => {
         <Card className={classes.card}>
           <div className={classes.headerWrap}>
             <CardHeader className={classes.title} title="Icon" subheader="Icon Perusahaan" />
-            <div className={classes.headerAction}>
-              <Button onClick={iconChooserHandler} name="iconchooser" variant="contained" color="primary" className={classes.button}>
-                          Pilih Icon 
-                <CollectionsIcon className={classes.extendedIcon} />
-              </Button>
-              <input onChange={iconChangeHandler} ref={iconChooserInput} id="iconchooser_input" name="iconchooser_input" className={classes.InputFile} type="file"/>
-            </div>
+            {
+              !readOnly ? 
+                <div className={classes.headerAction}>
+                  <Button onClick={iconChooserHandler} name="iconchooser" variant="contained" color="primary" className={classes.button}>
+                              Pilih Icon 
+                    <CollectionsIcon className={classes.extendedIcon} />
+                  </Button>
+                  <input onChange={iconChangeHandler} ref={iconChooserInput} id="iconchooser_input" name="iconchooser_input" className={classes.InputFile} type="file"/>
+                </div>
+                : null
+            }
           </div>
           <CardMedia
             id="icon_preview"
@@ -192,7 +252,8 @@ ClientForm.propTypes = {
   iconURL: PropTypes.string,
   iconChangeHandler: PropTypes.func.isRequired,
   iconChooserHandler: PropTypes.func.isRequired,
-  iconChooserInput: PropTypes.any
+  iconChooserInput: PropTypes.any,
+  readOnly: PropTypes.bool
 }
 
 export default ClientForm
