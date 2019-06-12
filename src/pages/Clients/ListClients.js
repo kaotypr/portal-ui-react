@@ -89,6 +89,7 @@ class ListClients extends Component {
   render() {
     const { data } = this.state
     const { classes } = this.props
+    const actionPathSetter = { detail: (id) => `${this.props.match.path}/${id}/detail` }
     const rows = [
       { key: 'id_perusahaan', align: 'left', disablePadding: false, label: 'ID Client', filter: '' },
       { key: 'nama', align: 'right', disablePadding: false, label: 'Nama Client', filter: '' },
@@ -116,7 +117,7 @@ class ListClients extends Component {
               subheader="Cheking users data set"
             />
             <div className={classes.headerAction}>
-              <Link to='/dataclient/add'>
+              <Link to={`${this.props.match.path}/add`}>
                 <Button variant="contained" color="primary" className={classes.button}>
                   Tambah Data
                   <AddIcon className={classes.extendedIcon} />
@@ -125,7 +126,7 @@ class ListClients extends Component {
             </div>
           </div>
           <CardContent>
-            <Pagination data={data} classes={this.props.classes} rows={rows}/>
+            <Pagination actionPathSetter={actionPathSetter} data={data} classes={this.props.classes} rows={rows}/>
           </CardContent>
         </Card>
       </div>
