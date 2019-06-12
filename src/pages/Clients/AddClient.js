@@ -244,7 +244,7 @@ class AddClient extends Component {
               },
               { 
                 firsthandler: () => this.setState({openalert: false}), 
-                secondhandler: () => this.props.history.push({pathname: '/dataclient/list'})
+                secondhandler: () => this.props.history.push({pathname: '/clients'})
               }
             )
           })
@@ -368,7 +368,7 @@ class AddClient extends Component {
               />
               <Grid container alignItems="center"  direction="row" justify="center" style={{padding: '30px', display: 'flex'}}>
                 <Grid item container justify="space-between">
-                  <Link to='/dataclient/list'>
+                  <Link to='/clients'>
                     <Button variant="contained" color="secondary" className={classes.button}>
                       Cancel
                       <BackSpaceIcon className={classes.extendedIcon} />
