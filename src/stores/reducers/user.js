@@ -20,10 +20,18 @@ const initialState = {
       }]
     },
     {
-      path: '/dataclient',
+      path: '/users',
       nested: true,
       children: [{
-        path: '/list',
+        path: '/',
+        nested: false,
+      }]
+    },
+    {
+      path: '/clients',
+      nested: true,
+      children: [{
+        path: '/',
         nested: false,
       }]
     },
