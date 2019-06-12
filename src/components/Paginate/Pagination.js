@@ -123,6 +123,7 @@ class Pagination extends React.Component {
               rows={this.state.rows}
             />
             <PaginationBody
+              actionPathSetter={this.props.actionPathSetter}
               filterHandler={this.handleFilter}
               headerRows={this.state.rows}
               data={showedData}
@@ -161,7 +162,8 @@ Pagination.propTypes = {
   page: PropTypes.number,
   order: PropTypes.string,
   orderBy: PropTypes.any,
-  rows: PropTypes.any
+  rows: PropTypes.any,
+  actionPathSetter: PropTypes.object
 }
 
 export default Pagination

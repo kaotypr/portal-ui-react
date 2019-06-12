@@ -89,7 +89,7 @@ const PaginationBody = props => {
                 padding="default"
               >
                 <IconButton onClick={() => {
-                  props.history.push({pathname: `${props.match.path}/${n._id}`, params: { id: n._id }})
+                  props.history.push({pathname: props.actionPathSetter.detail(n._id), params: { id: n._id }})
                 }}>
                   <RemoveRedEyeIcon color="primary" />
                 </IconButton>
@@ -109,7 +109,8 @@ PaginationBody.propTypes = {
   orderBy: PropTypes.any,
   headerRows: PropTypes.any,
   filterHandler: PropTypes.func,
-  selected: PropTypes.any
+  selected: PropTypes.any,
+  actionPathSetter: PropTypes.object
 }
 
 export default withRouter(PaginationBody)
