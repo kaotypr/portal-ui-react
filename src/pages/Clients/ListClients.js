@@ -96,7 +96,7 @@ class ListClients extends Component {
       { key: 'pic', align: 'left', disablePadding: false, label: 'PIC', filter: '' },
       { key: 'nomor_telepon', align: 'left', disablePadding: false, label: 'Nomor Telepon', filter: '' },
       { key: 'email', align: 'left', disablePadding: false, label: 'Email', filter: '' },
-      { key: 'status_client', align: 'right', disablePadding: false, label: 'Status', filter: '', getval: (val) => (val === true) ? 'Aktif' : 'Tidak Aftif' },
+      { key: 'status_client', align: 'right', disablePadding: false, label: 'Status', filter: '', getval: (val) => (val === true) ? 'Aktif' : 'Tidak Aktif' },
     ]
     return (
       <div className={classes.root}>
@@ -114,7 +114,7 @@ class ListClients extends Component {
                 title: classes.title,
               }}
               title="List Clients"
-              subheader="Cheking users data set"
+              subheader="Checking users data set"
             />
             <div className={classes.headerAction}>
               <Link to={`${this.props.match.path}/add`}>
