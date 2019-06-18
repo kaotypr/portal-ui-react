@@ -7,9 +7,10 @@ import BackSpaceIcon from '@material-ui/icons/Backspace'
 import StepperWrapper from '@ui/StepperWrapper'
 
 import ClientForm from './partials/ClientForm'
-import axios, { TokenizedURL } from '@root/axios.instances'
+import ClientPICForm from './partials/ClientPICForm'
 
-import { clog } from '@utils/utility'
+import axios, { TokenizedURL } from '@root/axios.instances'
+import { clog, LoopRenameObjecyKeyInArray } from '@utils/utility'
 
 
 
@@ -89,9 +90,13 @@ class DetailClient extends Component {
         { label: 'Client Data' }, 
         { label: 'Client PIC Data' }
       ],
+      picActiveTab: 0,
+      picData: []
     }
 
     this.getStepContent = this.getStepContent.bind(this)
+    this.handlePicTabChange = this.handlePicTabChange.bind(this) 
+
   }
 
   componentDidMount() {
@@ -109,12 +114,23 @@ class DetailClient extends Component {
           kelurahan: response.data.kelurahan,
           alamat: response.data.alamat,
           iconURL: TokenizedURL(`/client/${id}/image`)
-        })
-        clog(response)
+        })                
       })
       .catch(error => {
         clog(error)
       })
+
+    axios.get(`client/${id}/pic`)
+      .then(response => {
+        if (response.data.content !== null) {
+          const convArr = LoopRenameObjecyKeyInArray(response.data.content, 'suffix', '_pic')
+          this.setState({
+            picData: convArr
+          })
+        }
+      })
+      .catch(err => clog(err))
+    
   }
 
   getStepContent(step) {
@@ -139,15 +155,27 @@ class DetailClient extends Component {
         )
       case 1:
         return (
-          <div></div>
+          <ClientPICForm 
+            readOnly={true}
+            classes={classes}
+            handleChangeTab={this.handlePicTabChange}
+            picData={this.state.picData}
+            activeTab={this.state.picActiveTab}
+            disableAddTab={true}
+          />
         )
       default:
         return 'Unknown step'
     }
   }
 
-  submitHandler() {
-
+  handlePicTabChange(event, value) {
+    const maxTabs = this.state.picData.length - 1
+    if (value > maxTabs) {
+      this.setState({ picActiveTab: value - 1 })
+    } else {
+      this.setState({ picActiveTab: value })
+    }
   }
 
   render() {

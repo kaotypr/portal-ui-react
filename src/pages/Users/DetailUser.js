@@ -95,7 +95,7 @@ class DetailUser extends Component {
         this.setState({...updateState})
       })
       .catch(error => {
-        console.log({...error})
+        utils.clog({...error})
       })
   }
 

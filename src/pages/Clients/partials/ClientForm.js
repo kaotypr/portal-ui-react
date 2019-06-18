@@ -250,8 +250,8 @@ ClientForm.propTypes = {
   kelurahan: PropTypes.string,
   alamat: PropTypes.string,
   iconURL: PropTypes.string,
-  iconChangeHandler: PropTypes.func.isRequired,
-  iconChooserHandler: PropTypes.func.isRequired,
+  iconChangeHandler: PropTypes.func,
+  iconChooserHandler: PropTypes.func,
   iconChooserInput: PropTypes.any,
   readOnly: PropTypes.bool
 }

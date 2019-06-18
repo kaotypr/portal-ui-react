@@ -71,7 +71,8 @@ const ClientPICForm = props => {
     handleAddTab,
     handleRemoveTab,
     formChangeHandler,
-    disableAddTab
+    disableAddTab,
+    readOnly
   } = props
 
   return (
@@ -89,7 +90,7 @@ const ClientPICForm = props => {
           disableRipple
           classes={{ root: classes.tabRoot, selected: classes.tabSelected, wrapper: classes.tabLabel }}
           label={'PIC 1'}
-          icon={(
+          icon={ readOnly ? null : (
             <IconButton disabled color="primary" className={classes.button} aria-label="Delete">
               <CloseIcon fontSize="small"/>
             </IconButton>
@@ -104,7 +105,7 @@ const ClientPICForm = props => {
                 disableRipple
                 classes={{ root: classes.tabRoot, selected: classes.tabSelected, wrapper: classes.tabLabel }}
                 label={`PIC ${(index + 1)}`}
-                icon={ (
+                icon={ readOnly ? null : (
                   <IconButton onClick={() => handleRemoveTab(index)} color="primary" className={classes.button} aria-label="Delete">
                     <CloseIcon fontSize="small"/>
                   </IconButton>
@@ -248,14 +249,15 @@ const ClientPICForm = props => {
 }
 
 ClientPICForm.propTypes = {
-  classes: PropTypes.object.isRequired,
-  disableAddTab: PropTypes.bool.isRequired,
-  activeTab: PropTypes.number.isRequired,
+  classes: PropTypes.object,
+  disableAddTab: PropTypes.bool,
+  activeTab: PropTypes.number,
   picData: PropTypes.array.isRequired,
-  handleChangeTab: PropTypes.func.isRequired,
-  handleAddTab: PropTypes.func.isRequired,
-  handleRemoveTab: PropTypes.func.isRequired,
-  formChangeHandler: PropTypes.func.isRequired
+  handleChangeTab: PropTypes.func,
+  handleAddTab: PropTypes.func,
+  handleRemoveTab: PropTypes.func,
+  formChangeHandler: PropTypes.func,
+  readOnly: PropTypes.bool
 }
 
 export default withStyles(styles)(ClientPICForm)
