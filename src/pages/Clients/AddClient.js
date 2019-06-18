@@ -365,7 +365,8 @@ class AddClient extends Component {
               subheader="Tambah data client"
             />
             <CardContent>
-              <StepperWrapper 
+              <StepperWrapper
+                formMode
                 steps={steps} 
                 getStepContent={this.getStepContent}
                 submitHandler={this.submitHandler}

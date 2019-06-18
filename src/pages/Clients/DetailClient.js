@@ -166,7 +166,7 @@ class DetailClient extends Component {
               subheader="detail data client"
             />
             <CardContent>
-              <StepperWrapper 
+              <StepperWrapper
                 steps={steps} 
                 getStepContent={this.getStepContent}
                 submitHandler={this.submitHandler}

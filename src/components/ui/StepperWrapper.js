@@ -92,7 +92,7 @@ class HorizontalLinearStepper extends React.Component {
   }
 
   render() {
-    const { classes, steps, getStepContent, submitHandler } = this.props
+    const { classes, steps, getStepContent, submitHandler, formMode } = this.props
     const { activeStep } = this.state
 
     return (
@@ -153,7 +153,7 @@ class HorizontalLinearStepper extends React.Component {
                   onClick={activeStep === steps.length - 1 ? submitHandler : this.handleNext }
                   className={classes.button}
                 >
-                  {activeStep === steps.length - 1 ? 
+                  {activeStep === steps.length - 1 && formMode === true ? 
                     <Fragment>
                       Submit
                       <SaveIcon className={classes.extendedIconRight} />
@@ -178,6 +178,7 @@ HorizontalLinearStepper.propTypes = {
   steps: PropTypes.array.isRequired,
   getStepContent: PropTypes.func.isRequired,
   submitHandler: PropTypes.func,
+  formMode: PropTypes.bool
 }
 
 export default withStyles(styles)(HorizontalLinearStepper)
