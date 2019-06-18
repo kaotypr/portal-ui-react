@@ -41,7 +41,7 @@ class HorizontalLinearStepper extends React.Component {
     skipped: new Set(),
   };
 
-  isStepOptional = step => step === 1;
+  isStepOptional = step => step.optional === true;
 
   handleNext = () => {
     const { activeStep } = this.state
@@ -64,7 +64,8 @@ class HorizontalLinearStepper extends React.Component {
 
   handleSkip = () => {
     const { activeStep } = this.state
-    if (!this.isStepOptional(activeStep)) {
+    const { steps } = this.props
+    if (!this.isStepOptional(steps[activeStep])) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
       throw new Error('You can\'t skip a step that isn\'t optional.')
@@ -97,18 +98,18 @@ class HorizontalLinearStepper extends React.Component {
     return (
       <div className={classes.root}>
         <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
+          {steps.map((dstep, index) => {
             const props = {}
             const labelProps = {}
-            if (this.isStepOptional(index)) {
+            if (this.isStepOptional(dstep)) {
               labelProps.optional = <Typography variant="caption">Optional</Typography>
             }
             if (this.isStepSkipped(index)) {
               props.completed = false
             }
             return (
-              <Step key={label} {...props}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
+              <Step key={dstep.label} {...props}>
+                <StepLabel {...labelProps}>{dstep.label}</StepLabel>
               </Step>
             )
           })}
@@ -137,7 +138,7 @@ class HorizontalLinearStepper extends React.Component {
                   <ChevronLeftIcon className={classes.extendedIconLeft} />
                   Back
                 </Button>
-                {this.isStepOptional(activeStep) && (
+                {this.isStepOptional(steps[activeStep]) && (
                   <Button
                     variant="contained"
                     color="primary"
