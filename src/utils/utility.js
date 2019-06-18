@@ -215,3 +215,29 @@ export const loopObjectToFormData = obj => {
 
   return formData
 }
+
+/**
+ * @param {array} arrF array of object that each of the object key will be renamed that will converted to the form data
+ * @param {string} preOrSuff string to decide the additional will be placed as Prefix or suffix
+ * @param {string} addt the string that will be placed
+ * @return {array} multipart/formdata
+ */
+export const LoopRenameObjecyKeyInArray = (arrF, preOrSuff, addt) => {
+  let arrL = []
+
+  arrF.forEach(obj => {
+    let newObj = {}
+    if (preOrSuff === 'prefix') {
+      for (const key in obj) {
+        newObj[`${addt}${key}`] = obj[key]
+      }
+    } else {
+      for (const key in obj) {
+        newObj[`${key}${addt}`] = obj[key]
+      }
+    }
+    arrL.push(newObj)
+  })
+
+  return arrL
+}
