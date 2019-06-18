@@ -91,7 +91,11 @@ class AddClient extends Component {
       alertfirstoption: '',
       alertsecondoption: '',
       alertfirsthandler: null,
-      pageSteps: ['Fill Client Data', 'Add Client PIC', 'Check Form'],
+      pageSteps: [
+        { label: 'Add Client Data' }, 
+        { label: 'Add Client PIC', optional: true },
+        { label: 'Check Form' }
+      ],
       picActiveTab: 0,
       picAllowAddTab: false,
       picData: [{

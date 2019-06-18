@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { Card, CardHeader, CardContent, Grid, Button } from '@material-ui/core'
 import BackSpaceIcon from '@material-ui/icons/Backspace'
+import StepperWrapper from '@ui/StepperWrapper'
 
 import ClientForm from './partials/ClientForm'
 import axios, { TokenizedURL } from '@root/axios.instances'
@@ -83,8 +84,14 @@ class DetailClient extends Component {
       kecamatan: '',
       kelurahan: '',
       alamat: '',
-      iconURL: ''
+      iconURL: '',
+      pageSteps: [
+        { label: 'Client Data' }, 
+        { label: 'Client PIC Data' }
+      ],
     }
+
+    this.getStepContent = this.getStepContent.bind(this)
   }
 
   componentDidMount() {
@@ -110,8 +117,42 @@ class DetailClient extends Component {
       })
   }
 
+  getStepContent(step) {
+    const { classes } = this.props
+    switch (step) {
+      case 0:
+        return (
+          <ClientForm 
+            readOnly={true}
+            classes={classes}
+            id_perusahaan={this.state.id_perusahaan}
+            nama_perusahaan={this.state.nama_perusahaan}
+            nomor_telepon={this.state.nomor_telepon}
+            email={this.state.email}
+            provinsi={this.state.provinsi}
+            kota={this.state.kota}
+            kecamatan={this.state.kecamatan}
+            kelurahan={this.state.kelurahan}
+            alamat={this.state.alamat}
+            iconURL={this.state.iconURL}
+          />
+        )
+      case 1:
+        return (
+          <div></div>
+        )
+      default:
+        return 'Unknown step'
+    }
+  }
+
+  submitHandler() {
+
+  }
+
   render() {
     const { classes } = this.props
+    const { pageSteps: steps } = this.state
 
     return (
       <Fragment>
@@ -125,19 +166,10 @@ class DetailClient extends Component {
               subheader="detail data client"
             />
             <CardContent>
-              <ClientForm 
-                readOnly={true}
-                classes={classes}
-                id_perusahaan={this.state.id_perusahaan}
-                nama_perusahaan={this.state.nama_perusahaan}
-                nomor_telepon={this.state.nomor_telepon}
-                email={this.state.email}
-                provinsi={this.state.provinsi}
-                kota={this.state.kota}
-                kecamatan={this.state.kecamatan}
-                kelurahan={this.state.kelurahan}
-                alamat={this.state.alamat}
-                iconURL={this.state.iconURL}
+              <StepperWrapper 
+                steps={steps} 
+                getStepContent={this.getStepContent}
+                submitHandler={this.submitHandler}
               />
               <Grid container alignItems="center"  direction="row" justify="center" style={{padding: '30px', display: 'flex'}}>
                 <Grid item container justify="space-between">
@@ -152,7 +184,6 @@ class DetailClient extends Component {
             </CardContent>
           </Card>
         </div>
-        {/* <div>{this.props.match.params.id}</div> */}
       </Fragment>
     )
   }
