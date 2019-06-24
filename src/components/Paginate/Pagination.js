@@ -123,6 +123,7 @@ class Pagination extends React.Component {
               rows={this.state.rows}
             />
             <PaginationBody
+              classes={classes}
               actionPathSetter={this.props.actionPathSetter}
               filterHandler={this.handleFilter}
               headerRows={this.state.rows}

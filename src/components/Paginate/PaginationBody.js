@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom'
 import { TableBody, TableRow, TableCell, IconButton, TextField } from '@material-ui/core'
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye'
 
+import SelectsFilter from './Filters/Selects'
+
 const PaginationBody = props => {
   const { data, rowsPerPage, page, order, orderBy, headerRows, filterHandler } = props
 
@@ -44,15 +46,26 @@ const PaginationBody = props => {
               sortDirection={orderBy === hr.key ? order : false}
               style={{padding: '2px 10px 5px 10px'}}
             >
-              <TextField
-                fullWidth
-                onChange={(e) => filterHandler(e, hr.key)}
-                label={`Filter ${hr.label}`}
-                id={`filter_field-${hr.key}`}
-                margin="dense"
-                value={hr.filter}
-                variant="outlined"
-              />
+              {
+                hr.selects !== undefined ?
+                  <SelectsFilter 
+                    menuItems={hr.selects} 
+                    handleChange={(e) => filterHandler(e, hr.key)} 
+                    filterValue={hr.filter}
+                    name={hr.key}
+                    label={hr.label}
+                  />
+                  :
+                  <TextField
+                    fullWidth
+                    onChange={(e) => filterHandler(e, hr.key)}
+                    label={`Filter ${hr.label}`}
+                    id={`filter_field-${hr.key}`}
+                    margin="dense"
+                    value={hr.filter}
+                    variant="outlined"
+                  />
+              }
             </TableCell>)
         })
         }
@@ -73,7 +86,6 @@ const PaginationBody = props => {
               {
                 headerRows.map(hr => {
                   return (
-                    
                     <TableCell 
                       key={hr.key} 
                       align="left"

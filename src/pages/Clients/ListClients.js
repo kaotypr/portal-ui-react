@@ -9,6 +9,8 @@ import Pagination from '@components/Paginate/Pagination'
 import axios from '@root/axios.instances'
 import Alert from '@components/ui/Alert'
 
+import rows_data from './rows_data'
+
 const styles = theme => ({
   root: {
     padding: '8px',
@@ -90,14 +92,8 @@ class ListClients extends Component {
     const { data } = this.state
     const { classes } = this.props
     const actionPathSetter = { detail: (id) => `${this.props.match.path}/${id}/detail` }
-    const rows = [
-      { key: 'id_perusahaan', align: 'left', disablePadding: false, label: 'ID Client', filter: '' },
-      { key: 'nama', align: 'right', disablePadding: false, label: 'Nama Client', filter: '' },
-      { key: 'pic', align: 'left', disablePadding: false, label: 'PIC', filter: '' },
-      { key: 'nomor_telepon', align: 'left', disablePadding: false, label: 'Nomor Telepon', filter: '' },
-      { key: 'email', align: 'left', disablePadding: false, label: 'Email', filter: '' },
-      { key: 'status_client', align: 'right', disablePadding: false, label: 'Status', filter: '', getval: (val) => (val === true) ? 'Aktif' : 'Tidak Aktif' },
-    ]
+    const rows = rows_data
+    
     return (
       <div className={classes.root}>
         <Alert
