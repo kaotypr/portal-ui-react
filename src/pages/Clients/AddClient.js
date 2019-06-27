@@ -122,15 +122,15 @@ class AddClient extends Component {
     this.handlePicAddTab = this.handlePicAddTab.bind(this) 
     this.handlePicRemoveTab = this.handlePicRemoveTab.bind(this) 
     this.formPicChangeHandler = this.formPicChangeHandler.bind(this)
-    this.regionFormHandler = this.regionFormHandler.bind(this)
   }
 
-  formChangeHandler(event) {
-    this.setState({[event.target.name]: event.target.value})
-  }
-
-  regionFormHandler(targetName, targetVal) {
-    this.setState({[targetName]: targetVal.label})
+  formChangeHandler(event, targetVal) {
+    if (targetVal === undefined) {
+      this.setState({[event.target.name]: event.target.value})
+    } else {
+      // sementara menggunakan label daripada id wilayah
+      this.setState({[event.target.name]: targetVal.label})
+    }
   }
 
   formPicRegionHandler(event, index) {
@@ -314,7 +314,7 @@ class AddClient extends Component {
       case 0:
         return (
           <ClientForm 
-            parentUpdater={this.regionFormHandler}
+            parentUpdater={this.formChangeHandler}
             classes={classes}
             id_perusahaan={this.state.id_perusahaan}
             nama_perusahaan={this.state.nama_perusahaan}
