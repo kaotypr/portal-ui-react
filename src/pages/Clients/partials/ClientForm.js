@@ -2,7 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import CollectionsIcon from '@material-ui/icons/Collections'
+
 import { Card, CardHeader, Grid, Typography, TextField, CardMedia, Button } from '@material-ui/core'
+
+import RegionForm from '@components/RegionForm/RegionForm'
 
 
 const ClientForm = (props) => {
@@ -13,15 +16,12 @@ const ClientForm = (props) => {
     nama_perusahaan,
     nomor_telepon,
     email,
-    provinsi,
-    kota,
-    kecamatan,
-    kelurahan,
     alamat,
     iconURL,
     iconChooserHandler,
     iconChooserInput,
     iconChangeHandler,
+    parentUpdater
   } = props
 
   const readOnly = props.readOnly ? true : false
@@ -116,74 +116,8 @@ const ClientForm = (props) => {
           <Typography align='left' className={classes.headline} variant='h5' gutterBottom>Alamat Perusahaan</Typography>
         </Grid>
 
-        <TextField
-          disabled={readOnly}
-          id="provinsi"
-          name="provinsi"
-          onChange={(event) => formChangeHandler(event)}
-          label="Provinsi"
-          value={provinsi}
-          className={classes.textField}
-          margin="normal"
-          fullWidth
-          variant="outlined"
-          InputProps={{
-            classes: {
-              disabled: classes.viewOnly
-            }
-          }}
-        />
-        <TextField
-          disabled={readOnly}
-          id="kota"
-          name="kota"
-          onChange={(event) => formChangeHandler(event)}
-          label="Kota/Kabupaten"
-          value={kota}
-          className={classes.textField}
-          margin="normal"
-          fullWidth
-          variant="outlined"
-          InputProps={{
-            classes: {
-              disabled: classes.viewOnly
-            }
-          }}
-        />
-        <TextField
-          disabled={readOnly}
-          id="kecamatan"
-          name="kecamatan"
-          onChange={(event) => formChangeHandler(event)}
-          label="Kecamatan"
-          value={kecamatan}
-          className={classes.textField}
-          margin="normal"
-          fullWidth
-          variant="outlined"
-          InputProps={{
-            classes: {
-              disabled: classes.viewOnly
-            }
-          }}
-        />
-        <TextField
-          disabled={readOnly}
-          id="kelurahan"
-          name="kelurahan"
-          onChange={(event) => formChangeHandler(event)}
-          label="Kelurahan"
-          value={kelurahan}
-          className={classes.textField}
-          margin="normal"
-          fullWidth
-          variant="outlined"
-          InputProps={{
-            classes: {
-              disabled: classes.viewOnly
-            }
-          }}
-        />
+        <RegionForm  parentUpdater={parentUpdater}/>
+
         <TextField
           disabled={readOnly}
           id="alamat"
@@ -253,7 +187,8 @@ ClientForm.propTypes = {
   iconChangeHandler: PropTypes.func,
   iconChooserHandler: PropTypes.func,
   iconChooserInput: PropTypes.any,
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
+  parentUpdater: PropTypes.func
 }
 
 export default ClientForm

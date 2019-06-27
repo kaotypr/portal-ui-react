@@ -13,7 +13,6 @@ import { clog, logFormData, loopObjectToFormData } from '@utils/utility'
 import ClientForm from './partials/ClientForm'
 import ClientPICForm from './partials/ClientPICForm'
 
-
 const styles = theme => {
   return ({
     root: {
@@ -123,10 +122,15 @@ class AddClient extends Component {
     this.handlePicAddTab = this.handlePicAddTab.bind(this) 
     this.handlePicRemoveTab = this.handlePicRemoveTab.bind(this) 
     this.formPicChangeHandler = this.formPicChangeHandler.bind(this)
+    this.regionFormHandler = this.regionFormHandler.bind(this)
   }
 
   formChangeHandler(event) {
     this.setState({[event.target.name]: event.target.value})
+  }
+
+  regionFormHandler(targetName, targetVal) {
+    this.setState({[targetName]: targetVal.label})
   }
 
   formPicChangeHandler(event, index) {
@@ -304,6 +308,7 @@ class AddClient extends Component {
       case 0:
         return (
           <ClientForm 
+            parentUpdater={this.regionFormHandler}
             classes={classes}
             id_perusahaan={this.state.id_perusahaan}
             nama_perusahaan={this.state.nama_perusahaan}

@@ -41,6 +41,23 @@ export const pick = (obj, keys) => {
 }
 
 /**
+ * Pick some object of an Array Object based on its attribute
+ * @param {Array} arr, the Array Object 
+ * @param {String} keys, attributes name
+ * @param {Any} tval, value of the point attributes
+ * @return {Object}   returning an object from the array of object
+ */
+export const pickFromArrayObject = (arr, keys, tval) => {
+  let dobj = {}
+  arr.map(objOfarr => {
+    if (objOfarr[keys] === tval) {
+      dobj = objOfarr
+    }
+  })
+  return dobj
+}
+
+/**
  * Reject or Remove some attributes of an object, it use the pick method
  * @param {Object} obj, the parent object 
  * @param {Array} keys, attributes name of the parent object that will be removed
