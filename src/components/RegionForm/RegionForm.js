@@ -103,7 +103,7 @@ class RegionForm extends React.Component {
     })
 
     this.getRegencies(event.target.value)
-    this.props.parentUpdater('provinsi', selectedProvinceObj)
+    this.props.parentUpdater(event, selectedProvinceObj)
   }
 
   onSelectRegency(event) {
@@ -115,7 +115,7 @@ class RegionForm extends React.Component {
       disableDistrict: false
     })
     this.getDistricts(event.target.value)
-    this.props.parentUpdater('kota', selectedRegencyObj)
+    this.props.parentUpdater(event, selectedRegencyObj)
   }
 
   onSelectDistrict(event) {
@@ -126,20 +126,20 @@ class RegionForm extends React.Component {
       disableVillage: false
     })
     this.getVillages(event.target.value)
-    this.props.parentUpdater('kecamatan', selectedDistrictObj)
+    this.props.parentUpdater(event, selectedDistrictObj)
   }
 
   onSelectVillage(event) {
     const selectedVillageObj = pickFromArrayObject(this.state.villages, 'value', event.target.value)
     this.setState({ village: selectedVillageObj })
-    this.props.parentUpdater('kelurahan', selectedVillageObj)
+    this.props.parentUpdater(event, selectedVillageObj)
   }
 
   render() {
     return (
       <React.Fragment>
         <SelectComponent 
-          name={'province'}
+          name={'provinsi'}
           label={'Provinsi'}
           menus={this.state.provinces}
           handleChange={this.onSelectProvince}
@@ -147,7 +147,7 @@ class RegionForm extends React.Component {
         />
         <SelectComponent
           disabled={this.state.disableRegency}
-          name={'regency'}
+          name={'kota'}
           label={'Kota/Kabupaten'}
           menus={this.state.regencies}
           handleChange={this.onSelectRegency}
@@ -155,7 +155,7 @@ class RegionForm extends React.Component {
         />
         <SelectComponent 
           disabled={this.state.disableDistrict}
-          name={'district'}
+          name={'kecamatan'}
           label={'Kecamatan'}
           menus={this.state.districts}
           handleChange={this.onSelectDistrict}
@@ -163,7 +163,7 @@ class RegionForm extends React.Component {
         />
         <SelectComponent 
           disabled={this.state.disableVillage}
-          name={'village'}
+          name={'kelurahan'}
           label={'Kelurahan'}
           menus={this.state.villages}
           handleChange={this.onSelectVillage}
