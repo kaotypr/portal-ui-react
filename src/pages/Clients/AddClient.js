@@ -98,16 +98,16 @@ class AddClient extends Component {
       picActiveTab: 0,
       picAllowAddTab: false,
       picData: [{
-        nama_pic: '',
-        nomor_telepon_pic: '',
-        email_pic: '',
-        provinsi_pic: '',
-        kota_pic: '',
-        kecamatan_pic: '',
-        kelurahan_pic: '',
-        rt_pic: '',
-        rw_pic: '',
-        alamat_pic: ''
+        nama: '',
+        nomor_telepon: '',
+        email: '',
+        provinsi: '',
+        kota: '',
+        kecamatan: '',
+        kelurahan: '',
+        rt: '',
+        rw: '',
+        alamat: ''
       }]
     }
 
@@ -131,6 +131,11 @@ class AddClient extends Component {
 
   regionFormHandler(targetName, targetVal) {
     this.setState({[targetName]: targetVal.label})
+  }
+
+  formPicRegionHandler(event, index) {
+    const nextState = {...this.state}
+    nextState.picData[index][event.target.name] = event.target.value
   }
 
   formPicChangeHandler(event, index) {
@@ -172,16 +177,16 @@ class AddClient extends Component {
   handlePicAddTab() {
     const picData = [...this.state.picData]
     picData.push({
-      nama_pic: '',
-      nomor_telepon_pic: '',
-      email_pic: '',
-      provinsi_pic: '',
-      kota_pic: '',
-      kecamatan_pic: '',
-      kelurahan_pic: '',
-      rt_pic: '',
-      rw_pic: '',
-      alamat_pic: ''
+      nama: '',
+      nomor_telepon: '',
+      email: '',
+      provinsi: '',
+      kota: '',
+      kecamatan: '',
+      kelurahan: '',
+      rt: '',
+      rw: '',
+      alamat: ''
     })
     this.setState({ picData, picAllowAddTab: false })
   }
@@ -226,16 +231,16 @@ class AddClient extends Component {
         }
     
         const postData = loopObjectToFormData({
-          nama: eachData.nama_pic,
-          nomor_telepon: eachData.nomor_telepon_pic,
-          email: eachData.email_pic,
-          provinsi: eachData.provinsi_pic,
-          kota: eachData.kota_pic,
-          kecamatan: eachData.kecamatan_pic,
-          kelurahan: eachData.kelurahan_pic,
-          rt: eachData.rt_pic,
-          rw: eachData.rw_pic,
-          alamat: eachData.alamat_pic,
+          nama: eachData.nama,
+          nomor_telepon: eachData.nomor_telepon,
+          email: eachData.email,
+          provinsi: eachData.provinsi,
+          kota: eachData.kota,
+          kecamatan: eachData.kecamatan,
+          kelurahan: eachData.kelurahan,
+          rt: eachData.rt,
+          rw: eachData.rw,
+          alamat: eachData.alamat,
         })
 
         logFormData(postData)
@@ -290,6 +295,7 @@ class AddClient extends Component {
 
     axios.post('/client', postData, headers)
       .then(response => {
+        console.log('ASDASDASDASD')
         this.submitPICData(response.data._id)
       })
       .catch(error => {
@@ -329,6 +335,7 @@ class AddClient extends Component {
       case 1:
         return (
           <ClientPICForm 
+            parentUpdater={() => {}}
             handleChangeTab={this.handlePicTabChange}
             handleAddTab={this.handlePicAddTab}
             handleRemoveTab={this.handlePicRemoveTab}

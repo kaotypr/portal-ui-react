@@ -11,6 +11,8 @@ import AddBoxIcon from '@material-ui/icons/AddBox'
 import CloseIcon from '@material-ui/icons/Close'
 import { IconButton } from '@material-ui/core'
 
+import RegionForm from '@components/RegionForm/RegionForm'
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -72,7 +74,8 @@ const ClientPICForm = props => {
     handleRemoveTab,
     formChangeHandler,
     disableAddTab,
-    readOnly
+    readOnly,
+    parentUpdater
   } = props
 
   return (
@@ -120,34 +123,34 @@ const ClientPICForm = props => {
       <Grid container spacing={24} alignItems="flex-start" direction="row" justify="center">
         <Grid item xs={12} sm={6}>
           <TextField
-            id="nama_pic"
-            name="nama_pic"
+            id="nama"
+            name="nama"
             onChange={(event) => formChangeHandler(event, activeTab)}
             label="Nama PIC"
-            value={picData[activeTab] ? picData[activeTab].nama_pic : ''}
+            value={picData[activeTab] ? picData[activeTab].nama : ''}
             className={classes.textField}
             margin="normal"
             fullWidth
             variant="outlined"
           />
           <TextField
-            id="nomor_telepon_pic"
-            name="nomor_telepon_pic"
+            id="nomor_telepon"
+            name="nomor_telepon"
             onChange={(event) => formChangeHandler(event, activeTab)}
             label="Nomor Telepon PIC"
-            value={picData[activeTab] ? picData[activeTab].nomor_telepon_pic : ''}
+            value={picData[activeTab] ? picData[activeTab].nomor_telepon : ''}
             className={classes.textField}
             margin="normal"
             fullWidth
             variant="outlined"
           />
           <TextField
-            id="email_pic"
-            name="email_pic"
+            id="email"
+            name="email"
             type="email"
             onChange={(event) => formChangeHandler(event, activeTab)}
             label="Email PIC"
-            value={picData[activeTab] ? picData[activeTab].email_pic : ''}
+            value={picData[activeTab] ? picData[activeTab].email : ''}
             className={classes.textField}
             margin="normal"
             fullWidth
@@ -156,45 +159,48 @@ const ClientPICForm = props => {
           <Typography align='center' style={{marginTop: '0.5em'}} className={classes.headline} variant='h5' gutterBottom>
               Alamat PIC
           </Typography>
+
+          <RegionForm  parentUpdater={parentUpdater} multiForm={true} />
+
           <TextField
-            id="provinsi_pic"
-            name="provinsi_pic"
+            id="provinsi"
+            name="provinsi"
             onChange={(event) => formChangeHandler(event, activeTab)}
             label="Provinsi"
-            value={picData[activeTab] ? picData[activeTab].provinsi_pic : ''}
+            value={picData[activeTab] ? picData[activeTab].provinsi : ''}
             className={classes.textField}
             margin="normal"
             fullWidth
             variant="outlined"
           />
           <TextField
-            id="kota_pic"
-            name="kota_pic"
+            id="kota"
+            name="kota"
             onChange={(event) => formChangeHandler(event, activeTab)}
             label="Kota"
-            value={picData[activeTab] ? picData[activeTab].kota_pic : ''}
+            value={picData[activeTab] ? picData[activeTab].kota : ''}
             className={classes.textField}
             margin="normal"
             fullWidth
             variant="outlined"
           />
           <TextField
-            id="kecamatan_pic"
-            name="kecamatan_pic"
+            id="kecamatan"
+            name="kecamatan"
             onChange={(event) => formChangeHandler(event, activeTab)}
             label="Kecamatan"
-            value={picData[activeTab] ? picData[activeTab].kecamatan_pic : ''}
+            value={picData[activeTab] ? picData[activeTab].kecamatan : ''}
             className={classes.textField}
             margin="normal"
             fullWidth
             variant="outlined"
           />
           <TextField
-            id="kelurahan_pic"
-            name="kelurahan_pic"
+            id="kelurahan"
+            name="kelurahan"
             onChange={(event) => formChangeHandler(event, activeTab)}
             label="Kelurahan"
-            value={picData[activeTab] ? picData[activeTab].kelurahan_pic : ''}
+            value={picData[activeTab] ? picData[activeTab].kelurahan : ''}
             className={classes.textField}
             margin="normal"
             fullWidth
@@ -203,11 +209,11 @@ const ClientPICForm = props => {
           <Grid container spacing={16}>
             <Grid item xs={6} sm={6}>
               <TextField
-                id="rt_pic"
-                name="rt_pic"
+                id="rt"
+                name="rt"
                 onChange={(event) => formChangeHandler(event, activeTab)}
                 label="Rt"
-                value={picData[activeTab] ? picData[activeTab].rt_pic : ''}
+                value={picData[activeTab] ? picData[activeTab].rt : ''}
                 className={classes.textField}
                 margin="normal"
                 fullWidth
@@ -216,11 +222,11 @@ const ClientPICForm = props => {
             </Grid>
             <Grid item xs={6} sm={6}>
               <TextField
-                id="rw_pic"
-                name="rw_pic"
+                id="rw"
+                name="rw"
                 onChange={(event) => formChangeHandler(event, activeTab)}
                 label="Rw"
-                value={picData[activeTab] ? picData[activeTab].rw_pic : ''}
+                value={picData[activeTab] ? picData[activeTab].rw : ''}
                 className={classes.textField}
                 margin="normal"
                 fullWidth
@@ -229,11 +235,11 @@ const ClientPICForm = props => {
             </Grid>
           </Grid>
           <TextField
-            id="alamat_pic"
-            name="alamat_pic"
+            id="alamat"
+            name="alamat"
             onChange={(event) => formChangeHandler(event, activeTab)}
             label="Alamat"
-            value={picData[activeTab] ? picData[activeTab].alamat_pic : ''}
+            value={picData[activeTab] ? picData[activeTab].alamat : ''}
             className={classes.textField}
             margin="normal"
             fullWidth
@@ -257,7 +263,8 @@ ClientPICForm.propTypes = {
   handleAddTab: PropTypes.func,
   handleRemoveTab: PropTypes.func,
   formChangeHandler: PropTypes.func,
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
+  parentUpdater: PropTypes.func
 }
 
 export default withStyles(styles)(ClientPICForm)

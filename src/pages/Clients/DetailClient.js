@@ -10,7 +10,7 @@ import ClientForm from './partials/ClientForm'
 import ClientPICForm from './partials/ClientPICForm'
 
 import axios, { TokenizedURL } from '@root/axios.instances'
-import { clog, LoopRenameObjecyKeyInArray } from '@utils/utility'
+import { clog } from '@utils/utility'
 
 
 
@@ -123,9 +123,8 @@ class DetailClient extends Component {
     axios.get(`client/${id}/pic`)
       .then(response => {
         if (response.data.content !== null) {
-          const convArr = LoopRenameObjecyKeyInArray(response.data.content, 'suffix', '_pic')
           this.setState({
-            picData: convArr
+            picData: response.data.content
           })
         }
       })
