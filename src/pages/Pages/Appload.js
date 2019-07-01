@@ -14,7 +14,7 @@ const Appload = (props) => {
         <CircularProgress className={classes.progress} thickness={4} size={50} color="primary"/>
         <Typography component="h2" variant="h3" gutterBottom>
           <br/>
-          load portal
+          Authenticating
         </Typography>
         {/* <Typography className={classes.subtitle}>Page not found!</Typography>
         <Typography variant="caption">Sorry, but the page you were trying to view does not exist. <a>Report this error?</a></Typography> */}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 import * as actions from '../../stores/actions'
 
 import SessionStyles from '../../styles/Session'
+import Alert from '@components/ui/Alert'
 
 const Signin = (props) => {
   const component = new React.Component(props)
@@ -23,7 +24,20 @@ const Signin = (props) => {
   component.state = {
     username: '',
     password: '',
-    remember: false
+    remember: false,
+    openalert: false
+  }
+
+  component.componentDidMount = function componentDidMount () {
+    if (component.props.error) {
+      if (component.props.error !== null || component.props.error !== '' ) {
+        component.setState({openalert: true})
+      }
+    }
+
+    if (component.props.isAuthenticated === true) {
+      component.props.history.push({pathname: '/'})
+    }
   }
 
   function handleChange(event) {
@@ -55,70 +69,75 @@ const Signin = (props) => {
 
   component.render = function render(){
 
-    if (component.props.isAuthenticated === true) {
-      component.props.history.push({pathname: '/'})
-    }
-
     return (
-      <div className={classNames(classes.session, classes.background)}>
-        <div className={classes.content}>
-          <div className={classes.wrapper}>
-            <Card>
-              <CardContent>
-                <form onSubmit={handleSubmit}>
-                  <div className="text-xs-center pb-xs">
-                    <img src="/static/images/logo.png" alt=""/>
-                    <Typography variant="caption">Sign in with your app id to continue.</Typography>
-                  </div>
-                  <TextField
-                    id="username"
-                    label="Username"
-                    name="username"
-                    className={classes.textField}
-                    fullWidth
-                    margin="normal"
-                    autoComplete="on"
-                    onChange={handleChange}
-                  />
-                  <TextField
-                    id="password"
-                    label="Password"
-                    name="password"
-                    className={classes.textField}
-                    type="password"
-                    fullWidth
-                    margin="normal"
-                    autoComplete="on"
-                    onChange={handleChange}
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        name="remember"
-                        onChange={handleRemember}
-                        checked={component.state.remember}
-                        value="checkedA"
-                      />
-                    }
-                    label="Stayed logged in"
-                    className={classes.fullWidth}
-                  />
-                  <Button variant="contained" color="primary" fullWidth type="submit">Login</Button>
-                  <div className="pt-1 text-md-center">
-                    <Link to="/forgot">
-                      <Button>Forgot password?</Button>
-                    </Link>
+      <Fragment>
+        <Alert 
+          open={component.state.openalert} 
+          title={'Alert'} 
+          content={component.props.error} 
+          firstoption={'Close'}
+          firsthandler={() => component.setState({openalert: false})}
+        />
+        <div className={classNames(classes.session, classes.background)}>
+          <div className={classes.content}>
+            <div className={classes.wrapper}>
+              <Card>
+                <CardContent>
+                  <form onSubmit={handleSubmit}>
+                    <div className="text-xs-center pb-xs">
+                      <img src="/static/images/logo.png" alt=""/>
+                      <Typography variant="caption">Sign in with your app id to continue.</Typography>
+                    </div>
+                    <TextField
+                      id="username"
+                      label="Username"
+                      name="username"
+                      className={classes.textField}
+                      fullWidth
+                      margin="normal"
+                      autoComplete="on"
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      id="password"
+                      label="Password"
+                      name="password"
+                      className={classes.textField}
+                      type="password"
+                      fullWidth
+                      margin="normal"
+                      autoComplete="on"
+                      onChange={handleChange}
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          name="remember"
+                          onChange={handleRemember}
+                          checked={component.state.remember}
+                          value="checkedA"
+                        />
+                      }
+                      label="Stayed logged in"
+                      className={classes.fullWidth}
+                    />
+                    <Button variant="contained" color="primary" fullWidth type="submit">Login</Button>
+                    <div className="pt-1 text-md-center">
+                      <Link to="/forgot">
+                        <Button>Forgot password?</Button>
+                      </Link>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <Link to="/signup">
-                      <Button>Create new account.</Button>
-                    </Link>
-                  </div>
-                </form>
-              </CardContent>
-            </Card>
+                      <Link to="/signup">
+                        <Button>Create new account.</Button>
+                      </Link>
+                    </div>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
-      </div>
+      </Fragment>
     )
   }
 
