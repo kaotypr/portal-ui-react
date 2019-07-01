@@ -160,52 +160,8 @@ const ClientPICForm = props => {
               Alamat PIC
           </Typography>
 
-          <RegionForm  parentUpdater={parentUpdater} multiForm={true} />
+          <RegionForm parentUpdater={parentUpdater} multiForm={true} index={activeTab} lastData={picData[activeTab]}/>
 
-          <TextField
-            id="provinsi"
-            name="provinsi"
-            onChange={(event) => formChangeHandler(event, activeTab)}
-            label="Provinsi"
-            value={picData[activeTab] ? picData[activeTab].provinsi : ''}
-            className={classes.textField}
-            margin="normal"
-            fullWidth
-            variant="outlined"
-          />
-          <TextField
-            id="kota"
-            name="kota"
-            onChange={(event) => formChangeHandler(event, activeTab)}
-            label="Kota"
-            value={picData[activeTab] ? picData[activeTab].kota : ''}
-            className={classes.textField}
-            margin="normal"
-            fullWidth
-            variant="outlined"
-          />
-          <TextField
-            id="kecamatan"
-            name="kecamatan"
-            onChange={(event) => formChangeHandler(event, activeTab)}
-            label="Kecamatan"
-            value={picData[activeTab] ? picData[activeTab].kecamatan : ''}
-            className={classes.textField}
-            margin="normal"
-            fullWidth
-            variant="outlined"
-          />
-          <TextField
-            id="kelurahan"
-            name="kelurahan"
-            onChange={(event) => formChangeHandler(event, activeTab)}
-            label="Kelurahan"
-            value={picData[activeTab] ? picData[activeTab].kelurahan : ''}
-            className={classes.textField}
-            margin="normal"
-            fullWidth
-            variant="outlined"
-          />
           <Grid container spacing={16}>
             <Grid item xs={6} sm={6}>
               <TextField

@@ -27,13 +27,19 @@ class RegionForm extends React.Component {
       regencies: [],
       districts: [],
       villages: [],
-      province: { value: '' },
-      regency: { value: '' },
-      district: { value: '' },
-      village: { value: '' },
+      province: { value: props.lastData.provinsi || ''  },
+      regency: { value: props.lastData.kota || '' },
+      district: { value: props.lastData.kecamatan || '' },
+      village: { value: props.lastData.kelurahan || '' },
       disableRegency: true,
       disableDistrict: true,
-      disableVillage: true
+      disableVillage: true,
+      multiFormData: [{
+        province: { value: '' },
+        regency: { value: '' },
+        district: { value: '' },
+        village: { value: '' }
+      }]
     }
 
     this.onSelectProvince = this.onSelectProvince.bind(this)
@@ -80,7 +86,6 @@ class RegionForm extends React.Component {
     axios.get(`/villages/${district_id}`)
       .then(result => {
         const reformedVillages = reFormRespond(result.data, 'id_kelurahan')
-        clog(result)
         this.setState({ villages: reformedVillages })
       })
       .catch(error => {
@@ -88,22 +93,50 @@ class RegionForm extends React.Component {
       })
   }
 
-  componentDidMount() {
+  reupdateState() {
     this.getProvinces()
+    const { lastData } = this.props 
+    if ( lastData.provinsi !== '' || lastData.provinsi !== this.state.province.value  ) {
+      this.getRegencies(lastData.provinsi)
+      if (  lastData.kota !== '' || lastData.kota !== this.state.regency.value ) {
+        this.getDistricts(lastData.kota)
+        if ( lastData.kecamatan !== '' || lastData.kecamatan !== this.state.district.value ) {
+          this.getVillages(lastData.kecamatan)
+        }
+      }
+    }
+  }
+
+  componentDidMount() {
+    this.reupdateState()
   }
 
   onSelectProvince(event) {
     const selectedProvinceObj = pickFromArrayObject(this.state.provinces, 'value', event.target.value)
-    this.setState({ 
+    const { multiForm, index, parentUpdater } = this.props
+    const nextState = { 
       province: selectedProvinceObj,
       regency: { value: '' },
       district: { value: '' },
       village: { value: '' },
       disableRegency: false
-    })
+    } 
+
+    // if (multiForm !== true) {
+    this.setState({ ...nextState })
+    // } else {
+    //   const curState = this.state
+    //   curState.multiFormData[index] = nextState
+    //   this.setState({ ...curState })
+    // }
 
     this.getRegencies(event.target.value)
-    this.props.parentUpdater(event, selectedProvinceObj)
+
+    if (multiForm === true) {
+      parentUpdater(event, index, selectedProvinceObj)
+    } else {
+      parentUpdater(event, selectedProvinceObj)
+    }
   }
 
   onSelectRegency(event) {
@@ -115,7 +148,13 @@ class RegionForm extends React.Component {
       disableDistrict: false
     })
     this.getDistricts(event.target.value)
-    this.props.parentUpdater(event, selectedRegencyObj)
+
+    const { multiForm, index, parentUpdater } = this.props
+    if (multiForm === true) {
+      parentUpdater(event, index)
+    } else {
+      parentUpdater(event)
+    }
   }
 
   onSelectDistrict(event) {
@@ -126,13 +165,25 @@ class RegionForm extends React.Component {
       disableVillage: false
     })
     this.getVillages(event.target.value)
-    this.props.parentUpdater(event, selectedDistrictObj)
+
+    const { multiForm, index, parentUpdater } = this.props
+    if (multiForm === true) {
+      parentUpdater(event, index, selectedDistrictObj)
+    } else {
+      parentUpdater(event, selectedDistrictObj)
+    }
   }
 
   onSelectVillage(event) {
     const selectedVillageObj = pickFromArrayObject(this.state.villages, 'value', event.target.value)
     this.setState({ village: selectedVillageObj })
-    this.props.parentUpdater(event, selectedVillageObj)
+    
+    const { multiForm, index, parentUpdater } = this.props
+    if (multiForm === true) {
+      parentUpdater(event, index, selectedVillageObj)
+    } else {
+      parentUpdater(event, selectedVillageObj)
+    }
   }
 
   render() {
@@ -143,23 +194,23 @@ class RegionForm extends React.Component {
           label={'Provinsi'}
           menus={this.state.provinces}
           handleChange={this.onSelectProvince}
-          value={this.state.province.value}
+          value={ this.props.lastData.provinsi }
         />
         <SelectComponent
-          disabled={this.state.disableRegency}
+          disabled={ this.state.disableRegency }
           name={'kota'}
           label={'Kota/Kabupaten'}
           menus={this.state.regencies}
           handleChange={this.onSelectRegency}
-          value={this.state.regency.value}
+          value={this.props.lastData.kota }
         />
         <SelectComponent 
-          disabled={this.state.disableDistrict}
+          disabled={ this.state.disableDistrict }
           name={'kecamatan'}
           label={'Kecamatan'}
           menus={this.state.districts}
           handleChange={this.onSelectDistrict}
-          value={this.state.district.value}
+          value={this.props.lastData.kecamatan }
         />
         <SelectComponent 
           disabled={this.state.disableVillage}
@@ -167,7 +218,7 @@ class RegionForm extends React.Component {
           label={'Kelurahan'}
           menus={this.state.villages}
           handleChange={this.onSelectVillage}
-          value={this.state.village.value}
+          value={this.props.lastData.kelurahan }
         />
       </React.Fragment>
     )
@@ -176,7 +227,10 @@ class RegionForm extends React.Component {
 }
 
 RegionForm.propTypes = {
-  parentUpdater: PropTypes.func.isRequired
+  parentUpdater: PropTypes.func.isRequired,
+  multiForm: PropTypes.bool,
+  index: PropTypes.any,
+  lastData: PropTypes.object
 }
 
 export default RegionForm

@@ -124,18 +124,8 @@ class AddClient extends Component {
     this.formPicChangeHandler = this.formPicChangeHandler.bind(this)
   }
 
-  formChangeHandler(event, targetVal) {
-    if (targetVal === undefined) {
-      this.setState({[event.target.name]: event.target.value})
-    } else {
-      // sementara menggunakan label daripada id wilayah
-      this.setState({[event.target.name]: targetVal.label})
-    }
-  }
-
-  formPicRegionHandler(event, index) {
-    const nextState = {...this.state}
-    nextState.picData[index][event.target.name] = event.target.value
+  formChangeHandler(event) {
+    this.setState({[event.target.name]: event.target.value})
   }
 
   formPicChangeHandler(event, index) {
@@ -295,7 +285,6 @@ class AddClient extends Component {
 
     axios.post('/client', postData, headers)
       .then(response => {
-        console.log('ASDASDASDASD')
         this.submitPICData(response.data._id)
       })
       .catch(error => {
@@ -335,7 +324,7 @@ class AddClient extends Component {
       case 1:
         return (
           <ClientPICForm 
-            parentUpdater={() => {}}
+            parentUpdater={this.formPicChangeHandler}
             handleChangeTab={this.handlePicTabChange}
             handleAddTab={this.handlePicAddTab}
             handleRemoveTab={this.handlePicRemoveTab}

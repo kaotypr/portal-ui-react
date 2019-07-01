@@ -21,7 +21,11 @@ const ClientForm = (props) => {
     iconChooserHandler,
     iconChooserInput,
     iconChangeHandler,
-    parentUpdater
+    parentUpdater,
+    provinsi,
+    kota,
+    kecamatan,
+    kelurahan
   } = props
 
   const readOnly = props.readOnly ? true : false
@@ -116,7 +120,12 @@ const ClientForm = (props) => {
           <Typography align='left' className={classes.headline} variant='h5' gutterBottom>Alamat Perusahaan</Typography>
         </Grid>
 
-        <RegionForm  parentUpdater={parentUpdater}/>
+        <RegionForm  parentUpdater={parentUpdater} lastData={{
+          provinsi: provinsi,
+          kota: kota,
+          kecamatan: kecamatan,
+          kelurahan: kelurahan
+        }}/>
 
         <TextField
           disabled={readOnly}

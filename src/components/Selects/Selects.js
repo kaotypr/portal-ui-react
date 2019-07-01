@@ -51,7 +51,7 @@ class SelectComponent extends React.Component {
               labelWidth={this.state.labelWidth}
               fullWidth
               name={name}
-              id="outlined-age-simple"
+              id={`outlined-${name}-simple`}
             />
           }
         >
