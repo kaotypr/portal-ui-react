@@ -24,6 +24,9 @@ const styles = theme => ({
   tabsIndicator: {
     backgroundColor: theme.palette.primary.main,
   },
+  viewOnly: {
+    color: '#2d2a2a'
+  },
   tabRoot: {
     textTransform: 'initial',
     minWidth: 72,
@@ -123,6 +126,7 @@ const ClientPICForm = props => {
       <Grid container spacing={24} alignItems="flex-start" direction="row" justify="center">
         <Grid item xs={12} sm={6}>
           <TextField
+            disabled={readOnly}
             id="nama"
             name="nama"
             onChange={(event) => formChangeHandler(event, activeTab)}
@@ -132,8 +136,14 @@ const ClientPICForm = props => {
             margin="normal"
             fullWidth
             variant="outlined"
+            InputProps={{
+              classes: {
+                disabled: classes.viewOnly
+              }
+            }}
           />
           <TextField
+            disabled={readOnly}
             id="nomor_telepon"
             name="nomor_telepon"
             onChange={(event) => formChangeHandler(event, activeTab)}
@@ -143,8 +153,14 @@ const ClientPICForm = props => {
             margin="normal"
             fullWidth
             variant="outlined"
+            InputProps={{
+              classes: {
+                disabled: classes.viewOnly
+              }
+            }}
           />
           <TextField
+            disabled={readOnly}
             id="email"
             name="email"
             type="email"
@@ -155,16 +171,22 @@ const ClientPICForm = props => {
             margin="normal"
             fullWidth
             variant="outlined"
+            InputProps={{
+              classes: {
+                disabled: classes.viewOnly
+              }
+            }}
           />
           <Typography align='center' style={{marginTop: '0.5em'}} className={classes.headline} variant='h5' gutterBottom>
               Alamat PIC
           </Typography>
 
-          <RegionForm parentUpdater={parentUpdater} multiForm={true} index={activeTab} lastData={picData[activeTab]}/>
+          <RegionForm parentUpdater={parentUpdater} multiForm={true} index={activeTab} lastData={picData[activeTab]} readOnly={readOnly}/>
 
           <Grid container spacing={16}>
             <Grid item xs={6} sm={6}>
               <TextField
+                disabled={readOnly}
                 id="rt"
                 name="rt"
                 onChange={(event) => formChangeHandler(event, activeTab)}
@@ -174,10 +196,16 @@ const ClientPICForm = props => {
                 margin="normal"
                 fullWidth
                 variant="outlined"
+                InputProps={{
+                  classes: {
+                    disabled: classes.viewOnly
+                  }
+                }}
               />
             </Grid>
             <Grid item xs={6} sm={6}>
               <TextField
+                disabled={readOnly}
                 id="rw"
                 name="rw"
                 onChange={(event) => formChangeHandler(event, activeTab)}
@@ -187,10 +215,16 @@ const ClientPICForm = props => {
                 margin="normal"
                 fullWidth
                 variant="outlined"
+                InputProps={{
+                  classes: {
+                    disabled: classes.viewOnly
+                  }
+                }}
               />
             </Grid>
           </Grid>
           <TextField
+            disabled={readOnly}
             id="alamat"
             name="alamat"
             onChange={(event) => formChangeHandler(event, activeTab)}
@@ -203,6 +237,11 @@ const ClientPICForm = props => {
             rows={3}
             rowsMax={5}
             variant="outlined"
+            InputProps={{
+              classes: {
+                disabled: classes.viewOnly
+              }
+            }}
           />
         </Grid>
       </Grid>

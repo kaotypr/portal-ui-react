@@ -125,7 +125,9 @@ const ClientForm = (props) => {
           kota: kota,
           kecamatan: kecamatan,
           kelurahan: kelurahan
-        }}/>
+        }}
+        readOnly={readOnly}
+        />
 
         <TextField
           disabled={readOnly}

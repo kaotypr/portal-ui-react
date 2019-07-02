@@ -31,6 +31,7 @@ class RegionForm extends React.Component {
       regency: { value: props.lastData.kota || '' },
       district: { value: props.lastData.kecamatan || '' },
       village: { value: props.lastData.kelurahan || '' },
+      disableProvince: props.readOnly ? true : false,
       disableRegency: true,
       disableDistrict: true,
       disableVillage: true,
@@ -190,6 +191,7 @@ class RegionForm extends React.Component {
     return (
       <React.Fragment>
         <SelectComponent 
+          disabled={ this.state.disableProvince }
           name={'provinsi'}
           label={'Provinsi'}
           menus={this.state.provinces}
@@ -230,7 +232,8 @@ RegionForm.propTypes = {
   parentUpdater: PropTypes.func.isRequired,
   multiForm: PropTypes.bool,
   index: PropTypes.any,
-  lastData: PropTypes.object
+  lastData: PropTypes.object,
+  readOnly: PropTypes.bool
 }
 
 export default RegionForm
