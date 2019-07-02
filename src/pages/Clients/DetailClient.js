@@ -91,7 +91,18 @@ class DetailClient extends Component {
         { label: 'Client PIC Data' }
       ],
       picActiveTab: 0,
-      picData: []
+      picData: [{
+        nama: '',
+        nomor_telepon: '',
+        email: '',
+        provinsi: '',
+        kota: '',
+        kecamatan: '',
+        kelurahan: '',
+        rt: '',
+        rw: '',
+        alamat: ''
+      }]
     }
 
     this.getStepContent = this.getStepContent.bind(this)
