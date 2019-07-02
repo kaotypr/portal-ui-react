@@ -13,13 +13,13 @@ const rows_data = [
     label: 'Nama Client',
     filter: ''
   },
-  { 
-    key: 'pic',
-    align: 'left',
-    disablePadding: false,
-    label: 'PIC',
-    filter: ''
-  },
+  // { 
+  //   key: 'pic',
+  //   align: 'left',
+  //   disablePadding: false,
+  //   label: 'PIC',
+  //   filter: ''
+  // },
   { 
     key: 'nomor_telepon',
     align: 'left',
