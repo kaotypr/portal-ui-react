@@ -79,9 +79,8 @@ const initialState = {
   ]
 }
 
-const authSuccess = (state, payload) => {
+const authSuccess = (state) => {
   // eslint-disable-next-line no-console
-  console.log(payload)
   return updateObject(state, {
     ...state // it should be the payload.user, payload.accessRoutes Change with the new result from backend api LATER!
   })

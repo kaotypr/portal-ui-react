@@ -148,7 +148,6 @@ class AddClient extends Component {
   }
 
   iconChangeHandler() {
-    // console.log(this.iconChooserInput.current.files)
     this.setState({
       icon: this.iconChooserInput.current.files[0],
       iconURL: URL.createObjectURL(this.iconChooserInput.current.files[0])
