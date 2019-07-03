@@ -49,7 +49,7 @@ class DetailUser extends Component {
       nama: '',
       tempat_lahir: '',
       tanggal_lahir: '',
-      jenis_kelamin: 'LAKI-LAKI',
+      jenis_kelamin: 'L',
       provinsi: '',
       kota: '',
       kecamatan: '',
@@ -217,8 +217,8 @@ class DetailUser extends Component {
                       className={classes.group}
                       value={jenis_kelamin}
                       onChange={() => {}}>
-                      <FormControlLabel disabled={!(jenis_kelamin === 'PEREMPUAN')} value="PEREMPUAN" control={<Radio />} label="PEREMPUAN" />
-                      <FormControlLabel disabled={!(jenis_kelamin === 'LAKI-LAKI')} value="LAKI-LAKI" control={<Radio />} label="LAKI-LAKI" />
+                      <FormControlLabel disabled={!(jenis_kelamin === 'P')} value="P" control={<Radio />} label="PEREMPUAN" />
+                      <FormControlLabel disabled={!(jenis_kelamin === 'L')} value="L" control={<Radio />} label="LAKI-LAKI" />
                     </RadioGroup>
                   </FormControl>
                 </Grid>
