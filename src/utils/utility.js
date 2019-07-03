@@ -44,10 +44,10 @@ export const pick = (obj, keys) => {
  * Pick some object of an Array Object based on its attribute
  * @param {Array} arr, the Array Object 
  * @param {String} keys, attributes name
- * @param {Any} tval, value of the point attributes
+ * @param {*} tval, value of the point attributes
  * @return {Object}   returning an object from the array of object
  */
-export const pickFromArrayObject = (arr, keys, tval) => {
+export const getObjectOfArrayObjects = (arr, keys, tval) => {
   let dobj = {}
   arr.map(objOfarr => {
     if (objOfarr[keys] === tval) {
@@ -55,6 +55,22 @@ export const pickFromArrayObject = (arr, keys, tval) => {
     }
   })
   return dobj
+}
+
+/**
+ * @param {Array} arr, array that will be update 
+ * @param {String} filterKeys, string name of the keys which is used as filter 
+ * @param {*} filterVal, any value which is used as filter
+ * @param {Object} newVal, any value that will be used to replace the old Object
+ * @return {Array} return the updated ArrayObjects
+ */
+export const updateObjectOfArrayObjects = (arr, filterKeys, filterVal, newVal) => {
+  arr.map((objOfarr, index) => {
+    if (objOfarr[filterKeys] === filterVal) {
+      arr[index] = newVal
+    }
+  })
+  return arr
 }
 
 /**
