@@ -258,3 +258,16 @@ export const LoopRenameObjecyKeyInArray = (arrF, preOrSuff, addt) => {
 
   return arrL
 }
+
+/**
+ * @param {Object} obj object that will be updated  
+ * @param {String} key string that will be the key
+ * @param {*} value value the new added object  
+ * @return {Object}  the new added object
+ */
+export const addPropertyOfObject = (obj, key, value) => {
+  return {
+    ...obj,
+    [key]: value
+  }
+}
