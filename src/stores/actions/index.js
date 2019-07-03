@@ -3,3 +3,10 @@ export {
   authCheckState,
   directLogout
 } from './auth'
+
+export {
+  getProvinces,
+  getRegencies,
+  getDistricts,
+  getVillages
+} from './region'
