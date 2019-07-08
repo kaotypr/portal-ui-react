@@ -126,6 +126,31 @@ class RegionForm extends React.Component {
   // componentDidMount
   componentDidMount() {
     this.props.initProvinces()
+    const { lastData } = this.props 
+    if (  lastData.kota !== '' ) {
+      this.setState({regency: { value: lastData.kota }})
+      this.props.initDistricts(lastData.kota)
+    }
+    if ( lastData.kecamatan !== '' ) {
+      this.setState({district: { value: lastData.kecamatan }})
+      this.props.initVillages(lastData.kecamatan)
+    }
+  }
+
+  componentDidUpdate() {
+    const { lastData } = this.props 
+    if ( lastData.provinsi !== '' && lastData.provinsi !== this.state.province.value  ) {
+      this.setState({province: { value: lastData.provinsi }})
+      this.props.initRegencies(lastData.provinsi)
+      if (  lastData.kota !== '' && lastData.kota !== this.state.regency.value ) {
+        this.setState({regency: { value: lastData.kota }})
+        this.props.initDistricts(lastData.kota)
+        if ( lastData.kecamatan !== '' && lastData.kecamatan !== this.state.district.value ) {
+          this.setState({district: { value: lastData.kecamatan }})
+          this.props.initVillages(lastData.kecamatan)
+        }
+      }
+    }
   }
 
   render() {
