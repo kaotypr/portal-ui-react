@@ -1,16 +1,28 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import AddIcon from '@material-ui/icons/Add'
+import { withRouter, Link } from 'react-router-dom'
 
-import { withStyles, Card, CardContent, CardHeader } from '@material-ui/core'
+import { withStyles, Card, CardContent, CardHeader, Button } from '@material-ui/core'
 
-import axios from '@root/axios.instances'
 import Pagination from '@components/Paginate/Pagination'
+import axios from '@root/axios.instances'
 import Alert from '@components/ui/Alert'
 
-const styles = {
+import rows_data from './rows_data'
+
+const styles = theme => ({
   root: {
     padding: '8px',
     maxHeight: '100%'
+  },
+  headerWrap: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  headerAction: {
+    display: 'flex',
+    padding: '24px',
   },
   card: {
     padding: '8px',
@@ -26,7 +38,10 @@ const styles = {
   tableWrapper: {
     overflowX: 'auto',
   },
-}
+  extendedIcon: {
+    marginLeft: theme.spacing.unit,
+  },
+})
 
 class OcrLogList extends Component {
   constructor(props) {
@@ -39,7 +54,7 @@ class OcrLogList extends Component {
 
   // COMPONENT DID MOUNT
   componentDidMount() {
-    // this.requestData()
+    this.requestData()
   }
 
   showAlert(title, content, options, handlers) {
@@ -53,7 +68,7 @@ class OcrLogList extends Component {
   }
 
   requestData() {
-    axios.get('/users?limit=1000')
+    axios.get('/ocrlog?limit=1000')
       .then(response => {
         this.setState({
           data: response.data.content
@@ -74,15 +89,12 @@ class OcrLogList extends Component {
   }
 
   render() {
+
     const { data } = this.state
     const { classes } = this.props
-    const rows = [
-      { key: 'trace_number', align: 'left', disablePadding: false, label: 'Trace Number', filter: '' },
-      { key: 'client_id', align: 'right', disablePadding: false, label: 'ID Client', filter: '' },
-      { key: 'client_name', align: 'left', disablePadding: false, label: 'Nama Client', filter: '' },
-      { key: 'created_at', align: 'left', disablePadding: false, label: 'Created Date', filter: '' },
-      { key: 'status', align: 'right', disablePadding: false, label: 'Status', filter: ''},
-    ]
+    const actionPathSetter = { detail: (id) => `${this.props.match.path}/${id}/detail` }
+    const rows = rows_data
+    
     return (
       <div className={classes.root}>
         <Alert
@@ -93,20 +105,35 @@ class OcrLogList extends Component {
           firsthandler={this.state.firsthandler}
         />
         <Card square className={classes.card}>
-          <CardHeader
-            classes={{
-              title: classes.title,
-            }}
-            title="List User Data"
-            subheader="Cheking users data set"
-          />
+          <div className={classes.headerWrap}>
+            <CardHeader
+              classes={{
+                title: classes.title,
+              }}
+              title="OCR LOGS"
+              subheader="List OCR logs"
+            />
+            <div className={classes.headerAction}>
+              <Link to={`${this.props.match.path}/add`}>
+                <Button variant="contained" color="primary" className={classes.button}>
+                  Tambah Data
+                  <AddIcon className={classes.extendedIcon} />
+                </Button>
+              </Link>
+            </div>
+          </div>
           <CardContent>
-            <Pagination data={data} classes={this.props.classes} rows={rows}/>
+            <Pagination actionPathSetter={actionPathSetter} data={data} classes={this.props.classes} rows={rows}/>
           </CardContent>
         </Card>
       </div>
     )
   }
+
+}
+
+OcrLogList.propTypes = {
+  classes: PropTypes.any
 }
 
 export default withRouter(withStyles(styles)(OcrLogList))

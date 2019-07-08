@@ -109,8 +109,8 @@ class ListClients extends Component {
               classes={{
                 title: classes.title,
               }}
-              title="List Clients"
-              subheader="Checking users data set"
+              title="LIST CLIENT"
+              subheader="List client"
             />
             <div className={classes.headerAction}>
               <Link to={`${this.props.match.path}/add`}>
