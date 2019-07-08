@@ -55,15 +55,20 @@ const setRegencies = (province_id, regencies) => {
 } 
 
 export const getRegencies = (province_id) => {
-  return dispatch => {
-    axios.get(`/regencies/${province_id}`)
-      .then(result => {
-        const reformedRegencies = reFormRespond(result.data, 'id_kabupaten')
-        dispatch(setRegencies(province_id, reformedRegencies))
-      })
-      .catch(error => {
-        clog({...error})
-      })
+  return (dispatch, getState) => {
+    const { regencies: currentRegencies } = getState().regions
+
+    if ( currentRegencies[province_id] === undefined ) {
+      axios.get(`/regencies/${province_id}`)
+        .then(result => {
+          const reformedRegencies = reFormRespond(result.data, 'id_kabupaten')
+          dispatch(setRegencies(province_id, reformedRegencies))
+        })
+        .catch(error => {
+          clog({...error})
+        })
+    }
+
   }
 }
 
@@ -79,15 +84,19 @@ const setDistricts = (regency_id, districts) => {
 } 
 
 export const getDistricts = (regency_id) => {
-  return dispatch => {
-    axios.get(`/districts/${regency_id}`)
-      .then(result => {
-        const reformedDistrict = reFormRespond(result.data, 'id_distrik')
-        dispatch(setDistricts(regency_id, reformedDistrict))
-      })
-      .catch(error => {
-        clog({...error})
-      })
+  return (dispatch, getState) => {
+    const { districts: currentDistricts } = getState().regions
+
+    if ( currentDistricts[regency_id] === undefined ) {
+      axios.get(`/districts/${regency_id}`)
+        .then(result => {
+          const reformedDistrict = reFormRespond(result.data, 'id_distrik')
+          dispatch(setDistricts(regency_id, reformedDistrict))
+        })
+        .catch(error => {
+          clog({...error})
+        })
+    }
   }
 }
 
@@ -103,14 +112,19 @@ const setVillages = (district_id, villages) => {
 } 
 
 export const getVillages = (district_id) => {
-  return dispatch => {
-    axios.get(`/villages/${district_id}`)
-      .then(result => {
-        const reformedVillages = reFormRespond(result.data, 'id_kelurahan')
-        dispatch(setVillages(district_id, reformedVillages))
-      })
-      .catch(error => {
-        clog({...error})
-      })
+  return (dispatch, getState) => {
+    const { villages: currentVillages } = getState().regions
+
+    if (currentVillages[district_id] === undefined) {
+      axios.get(`/villages/${district_id}`)
+        .then(result => {
+          const reformedVillages = reFormRespond(result.data, 'id_kelurahan')
+          dispatch(setVillages(district_id, reformedVillages))
+        })
+        .catch(error => {
+          clog({...error})
+        })
+    }
+
   }
 }
