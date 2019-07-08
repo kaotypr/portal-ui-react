@@ -132,8 +132,8 @@ export default {
     type: 'submenu',
     icon: ViewColumnIcon,
     children: [{
-      path: '/loglist',
-      name: 'Logs',
+      path: '',
+      name: 'Log List',
       component: OcrLogList
     }]
   },

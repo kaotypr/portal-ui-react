@@ -39,7 +39,7 @@ const initialState = {
       path: '/ocr',
       nested: true,
       children: [{
-        path: '/loglist',
+        path: '/',
         nested: false,
       }]
     },
