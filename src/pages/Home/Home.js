@@ -25,6 +25,7 @@ import NotificationsOffIcon from '@material-ui/icons/NotificationsOff'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Wrapper, NewsCard, StatCard } from '../../components'
 import axios from '@root/axios.instances'
+import { dateGlobalFormat } from '@utils/utility'
 
 
 let id = 0
@@ -33,13 +34,6 @@ function createData(name, date, progress) {
   return { id, name, date, progress }
 }
 
-const data = [
-  createData('UI prototyping', 'January 23', 67),
-  createData('Design', 'February 2', 87),
-  createData('Development', 'March 30', 54),
-  createData('Testing and delivery', 'April 12', 34),
-  createData('Ongoing maintanance', 'May 28', 56),
-]
 
 class Home extends Component {
   state = {
@@ -66,7 +60,13 @@ class Home extends Component {
       from: '',
       message: '',
       subject: '',
-    }]
+    }],
+    dataTable: [
+      createData('Data Terverifikasi', dateGlobalFormat(new Date('tanggal_registrasi')), 67),
+      createData('Data Gagal', 'February 2', 87),
+      createData('Data Pending', 'March 30', 54),
+      createData('Total Data', 'April 12', 34)
+    ]
   };
 
   handleClick = event => {
@@ -84,20 +84,39 @@ class Home extends Component {
   }
 
   requestData() {
+
     axios.get('/dashboard')
-      .then(response => {
+      .then(dashboardResp => {
+
+        const { 
+          last_done, 
+          last_fail, 
+          last_pending, 
+          last_update,
+          total_data_kyc,
+          total_gagal,
+          total_pending,
+          total_terverifikasi
+        } = dashboardResp.data
+
+
+
+        const dataTable = [
+          createData('Data Terverifikasi', last_done ? dateGlobalFormat(new Date(last_done)) : '', ((total_terverifikasi*100)/ total_data_kyc)),
+          createData('Data Gagal', last_fail ? dateGlobalFormat(new Date(last_fail)) : '', ((total_gagal*100)/total_data_kyc)),
+          createData('Data Pending', last_pending ? dateGlobalFormat(new Date(last_pending)) : '-', ((total_pending*100)/total_data_kyc)),
+          createData('Total Data', last_update ? dateGlobalFormat(new Date(last_update)) : '', 100),
+        ]
+
         this.setState({
-          total: response.data.total_data_kyc,
-          gagal: response.data.total_gagal,
-          pending: response.data.total_pending,
-          terverifikasi: response.data.total_terverifikasi
+          total: total_data_kyc,
+          gagal: total_gagal,
+          pending: total_pending,
+          terverifikasi: total_terverifikasi,
+          dataTable: dataTable
         })
       })
-      .catch(error => {
-        if (error !== undefined) {
-          this.props.history.push({pathname: '/500'})
-        }
-      })
+    
   }
 
   requestLogFeed() {
@@ -122,7 +141,7 @@ class Home extends Component {
   }
 
   render() {
-    const { anchorEl, gagal, terverifikasi, pending, total, lastUpdateLogFeed, logFeed } = this.state
+    const { anchorEl, gagal, terverifikasi, pending, total, lastUpdateLogFeed, logFeed, dataTable } = this.state
     const chartMenu = (
       <Menu
         id="chart-menu"
@@ -234,23 +253,23 @@ class Home extends Component {
           </Grid>
           
           <Grid item xs={12} sm={12} md={8}>
-            <Paper className="table-responsive">
-              <Table>
+            <Paper className="table-responsive" style={{height: '100%'}}>
+              <Table style={{height: '100%', padding: '8px'}}>
                 <TableHead>
                   <TableRow>
                     <TableCell>Status</TableCell>
-                    <TableCell align="right">Last Updated</TableCell>
-                    <TableCell align="right">Percentage</TableCell>
+                    <TableCell>Last Updated</TableCell>
+                    <TableCell>Percentage Bar</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  { data.map(n => (
-                    <TableRow style={{height: '60px'}} key={n.id}>
+                  { dataTable.map(n => (
+                    <TableRow key={n.id}>
                       <TableCell component="th" scope="row">
                         {n.name}
                       </TableCell>
-                      <TableCell align="right">{n.date}</TableCell>
-                      <TableCell align="right">{<LinearProgress variant="determinate" value={n.progress} />}</TableCell>
+                      <TableCell>{n.date}</TableCell>
+                      <TableCell>{<LinearProgress variant="determinate" value={n.progress} />}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
