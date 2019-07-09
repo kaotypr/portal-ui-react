@@ -24,8 +24,8 @@ import MoreIcon from '@material-ui/icons/More'
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOff'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Wrapper, NewsCard, StatCard } from '../../components'
-import { mockFeed } from '../../utils/mock'
 import axios from '@root/axios.instances'
+
 
 let id = 0
 function createData(name, date, progress) {
@@ -48,7 +48,25 @@ class Home extends Component {
     gagal: 0,
     terverifikasi: 0,
     pending: 0,
-    total: 0
+    total: 0,
+    lastUpdateLogFeed: 0,
+    logFeed: [{
+      from: '',
+      message: '',
+      subject: '',
+    }, {
+      from: '',
+      message: '',
+      subject: '',
+    }, {
+      from: '',
+      message: '',
+      subject: '',
+    }, {
+      from: '',
+      message: '',
+      subject: '',
+    }]
   };
 
   handleClick = event => {
@@ -62,6 +80,7 @@ class Home extends Component {
   // COMPONENT DID MOUNT
   componentDidMount() {
     this.requestData()
+    this.requestLogFeed()
   }
 
   requestData() {
@@ -75,21 +94,35 @@ class Home extends Component {
         })
       })
       .catch(error => {
-        if (error.response === undefined || error.response.status === 500) {
+        if (error !== undefined) {
           this.props.history.push({pathname: '/500'})
-        } else {
-          this.showAlert(
-            'Terjadi kesalahan',
-            error.response.data.error,
-            { secondoption: 'Tutup' },
-            { secondhandler: () => this.setState({openalert: false}) }
-          )
+        }
+      })
+  }
+
+  requestLogFeed() {
+    axios.get('/ocrlog?limit=4')
+      .then(response => {
+        const { logFeed } = this.state
+        const { data } = response
+
+        data.content.forEach((content, index) => {
+          logFeed[index].from = `${content._id}`
+          logFeed[index].subject = `${content.nama} - ${content.status}`
+          logFeed[index].message = `${content.created_at}`
+        })
+
+        this.setState({logFeed: logFeed})
+      })
+      .catch(error => {
+        if (error !== undefined) {
+          this.props.history.push({pathname: '/500'})
         }
       })
   }
 
   render() {
-    const { anchorEl, gagal, terverifikasi, pending, total } = this.state
+    const { anchorEl, gagal, terverifikasi, pending, total, lastUpdateLogFeed, logFeed } = this.state
     const chartMenu = (
       <Menu
         id="chart-menu"
@@ -201,9 +234,9 @@ class Home extends Component {
           </Grid>
           <Grid item xs={12} sm={12} md={8}>
             <NewsCard
-              title="Log Feed"
-              subtitle="Last updated 24 mins ago"
-              feed={mockFeed}
+              title="OCR Log Feed"
+              subtitle={`Last updated ${lastUpdateLogFeed} mins ago`}
+              feed={logFeed}
             />
           </Grid>
           <Grid item xs={12} sm={12} md={12}>
