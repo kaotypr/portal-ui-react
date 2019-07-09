@@ -34,8 +34,8 @@ const authSuccess = (state, payload) => {
 }
 
 const authFail = (state, error) => {
-  if (error === undefined) {
-    return 
+  if (error === undefined || error.response === undefined) {
+    return updateObject(state, {loading: false, error: 'Error connection aborted', checked: true})
   }
   return updateObject(state, {loading: false, error: error.response.data.error, checked: true})
 }
