@@ -100,11 +100,14 @@ const PaginationBody = props => {
               <TableCell 
                 padding="default"
               >
-                <IconButton onClick={() => {
-                  props.history.push({pathname: props.actionPathSetter.detail(n._id), params: { id: n._id }})
-                }}>
-                  <RemoveRedEyeIcon color="primary" />
-                </IconButton>
+                {
+                  props.actionPathSetter.detail !== undefined ?
+                    <IconButton onClick={() => {
+                      props.history.push({pathname: props.actionPathSetter.detail(n._id), params: { id: n._id }})
+                    }}>
+                      <RemoveRedEyeIcon color="primary" />
+                    </IconButton> : null
+                }
               </TableCell>
             </TableRow>
           )
