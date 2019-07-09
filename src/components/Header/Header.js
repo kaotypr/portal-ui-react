@@ -8,7 +8,7 @@ import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Badge from '@material-ui/core/Badge'
+// import Badge from '@material-ui/core/Badge'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
@@ -18,7 +18,7 @@ import Hidden from '@material-ui/core/Hidden'
 import Collapse from '@material-ui/core/Collapse'
 import SearchIcon from '@material-ui/icons/Search'
 import FullscreenIcon from '@material-ui/icons/Fullscreen'
-import NotificationsIcon from '@material-ui/icons/Notifications'
+// import NotificationsIcon from '@material-ui/icons/Notifications'
 import SettingsIcon from '@material-ui/icons/Settings'
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOff'
@@ -116,11 +116,11 @@ class Header extends Component {
             </IconButton>
           </Hidden>
 
-          <IconButton color="inherit" onClick={this.handleNotificationToggle}>
+          {/* <IconButton color="inherit" onClick={this.handleNotificationToggle}>
             <Badge badgeContent={5} color="secondary">
               <NotificationsIcon />
             </Badge>
-          </IconButton>
+          </IconButton> */}
 
           <IconButton
             aria-label="User Settings"
