@@ -69,9 +69,14 @@ class DetailUser extends Component {
       alasan: '',
       status: '',
       openalert: false,
+      firsthandler: () => {},
+      secondhandler: () => {},
+      firstoption: '',
+      secondoption: ''
     }
     this.alasanFillHandler = this.alasanFillHandler.bind(this)
     this.updateStatusSubmit = this.updateStatusSubmit.bind(this)
+    this.closeAlert = this.closeAlert.bind(this)
   }
 
   componentDidMount() {
@@ -113,15 +118,45 @@ class DetailUser extends Component {
     this.setState({alasan: event.target.value})
   }
 
+  closeAlert() {
+    this.setState({openalert: false})
+  }
+
   updateStatusSubmit(status) {
-    const { id } = this.state
+    const { id, nik } = this.state
     axios.post(`/validate/${id}/act/${status}`)
       .then(response => {
-        console.log(response)
+        if (response.status === 200) {
+          this.showAlert(
+            'Sukses',
+            `Data user dengan NIK: ${nik} berhasil diverifikasi manual.`,
+            { firstoption: 'Kembali', secondoption: 'Tutup' },
+            {  firsthandler: () => this.props.history.push({pathname: '/users'}), secondhandler: () => this.closeAlert() }
+          )
+          this.setState({status: status === 'accept' ? 'Done' : 'Failed'})
+        }
       })
       .catch(error => {
-        console.log(error)
+        utils.clog(error, `error validate ${id}`)
+        this.showAlert(
+          'Error',
+          'Terjadi kesalahan',
+          { secondoption: 'Tutup' },
+          { secondhandler: () => this.closeAlert() }
+        )
       })
+  }
+
+  showAlert(title, content, options, handlers) {
+    this.setState({
+      openalert: true,
+      alerttitle: title,
+      alertcontent: content,
+      firstoption: options.firstoption,
+      secondoption: options.secondoption,
+      firsthandler: handlers.firsthandler,
+      secondhandler: handlers.secondhandler
+    })
   }
 
   render() {
@@ -162,6 +197,8 @@ class DetailUser extends Component {
           content={this.state.alertcontent} 
           firstoption={this.state.firstoption}
           firsthandler={this.state.firsthandler}
+          secondoption={this.state.secondoption}
+          secondhandler={this.state.secondhandler}
         />
         <Card square className={classes.cardwrapper}>
           <CardHeader
