@@ -1,7 +1,9 @@
 import React, { Component }  from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { withStyles, Card, CardHeader, CardContent, Grid, Typography, TextField, RadioGroup, Radio, FormControlLabel, FormLabel, FormControl, CardMedia } from '@material-ui/core'
+import { withStyles, Divider, Card, Button, CardHeader, CardContent, Grid, Typography, TextField, RadioGroup, Radio, FormControlLabel, FormLabel, FormControl, CardMedia } from '@material-ui/core'
+import CheckIcon from '@material-ui/icons/Check'
+import ClearIcon from '@material-ui/icons/Clear'
 
 import axios, { TokenizedURL } from '@root/axios.instances'
 import * as utils from '@utils/utility'
@@ -28,6 +30,9 @@ const styles = {
     '&:hover': {
       boxShadow: '0 16px 70px -12.125px rgba(0,0,0,0.3)'
     }
+  },
+  divider: {
+    margin: '16px'
   },
   media: {
     paddingTop: '56.25%'
@@ -61,8 +66,12 @@ class DetailUser extends Component {
       email: '',
       nomor_handphone: '',
       nomor_npwp: '',
+      alasan: '',
+      status: '',
       openalert: false,
     }
+    this.alasanFillHandler = this.alasanFillHandler.bind(this)
+    this.updateStatusSubmit = this.updateStatusSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -91,11 +100,27 @@ class DetailUser extends Component {
           nomor_handphone: response.data.support.nomor_handphone || '',
           nomor_npwp: response.data.support.nomor_npwp || '',
           email: response.data.support.email || '',
+          status: response.data.status.status || ''
         }
         this.setState({...updateState})
       })
       .catch(error => {
         utils.clog({...error})
+      })
+  }
+
+  alasanFillHandler(event) {
+    this.setState({alasan: event.target.value})
+  }
+
+  updateStatusSubmit(status) {
+    const { id } = this.state
+    axios.post(`/validate/${id}/act/${status}`)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
       })
   }
 
@@ -120,6 +145,7 @@ class DetailUser extends Component {
       nomor_handphone,
       nomor_npwp,
       id: currentUserId,
+      alasan
     } = this.state
     const defaultImage = 'http://calgarypma.ca/wp-content/uploads/2018/01/default-thumbnail-300x225.jpg'
     const imageUrl_ktp =  nik ? TokenizedURL(`/user/${currentUserId}/image/ktp`) : defaultImage
@@ -371,6 +397,40 @@ class DetailUser extends Component {
                   fullWidth
                   variant="filled"
                 />
+
+                <Divider classes={{ root: classes.divider }} variant="middle" />
+
+                {
+                  this.state.status === 'Pending' ?
+                    <React.Fragment>
+                      <Typography variant="body1" gutterBottom>Update Pending Status</Typography>
+                      <TextField
+                        id="alasan"
+                        label="Alasan"
+                        value={alasan}
+                        className={classes.textField}
+                        margin="normal"
+                        onChange={this.alasanFillHandler}
+                        fullWidth
+                        multiline={true}
+                        rows={4}
+                        rowsMax={8}
+                        variant="filled"
+                      />
+
+                      <Grid container spacing={16} alignItems="flex-start" direction="row-reverse" style={{padding: '8px'}}>
+                        <Button variant="contained" color="primary" className={classes.button} style={{marginLeft: '8px'}} onClick={() => this.updateStatusSubmit('accept')}>
+                          Setujui
+                          <CheckIcon className={classes.extendedIcon} style={{marginLeft: '8px'}}/>
+                        </Button>
+                        <Button variant="contained" color="secondary" className={classes.button} onClick={() => this.updateStatusSubmit('reject')}>
+                          Tolak
+                          <ClearIcon className={classes.extendedIcon} style={{marginLeft: '8px'}}/>
+                        </Button>
+                      </Grid>
+                    </React.Fragment>
+                    : null
+                }
 
               </Grid>
 
