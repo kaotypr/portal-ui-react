@@ -213,7 +213,7 @@ class Home extends Component {
             />
           </Grid>
           {chartMenu}
-          <Grid item xs={12} sm={12} md={4} key={10}>
+          <Grid item xs={12} sm={12} md={4} key={6}>
             <Card>
               <CardHeader
                 subheader={'Total Data KYC'}
@@ -232,26 +232,20 @@ class Home extends Component {
               </CardContent>
             </Card>
           </Grid>
+          
           <Grid item xs={12} sm={12} md={8}>
-            <NewsCard
-              title="OCR Log Feed"
-              subtitle={`Last updated ${lastUpdateLogFeed} mins ago`}
-              feed={logFeed}
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={12}>
             <Paper className="table-responsive">
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Project</TableCell>
-                    <TableCell align="right">Due Date</TableCell>
-                    <TableCell align="right">Current Progress</TableCell>
+                    <TableCell>Status</TableCell>
+                    <TableCell align="right">Last Updated</TableCell>
+                    <TableCell align="right">Percentage</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   { data.map(n => (
-                    <TableRow key={n.id}>
+                    <TableRow style={{height: '60px'}} key={n.id}>
                       <TableCell component="th" scope="row">
                         {n.name}
                       </TableCell>
@@ -262,6 +256,13 @@ class Home extends Component {
                 </TableBody>
               </Table>
             </Paper>
+          </Grid>
+          <Grid item xs={12} sm={12} md={12}>
+            <NewsCard
+              title="OCR Log Feed"
+              subtitle={`Last updated ${lastUpdateLogFeed} mins ago`}
+              feed={logFeed}
+            />
           </Grid>
         </Grid>
       </Wrapper>
