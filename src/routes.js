@@ -26,6 +26,7 @@ import {
   AddClient,
   
   OcrLogList,
+  DetailOcr,
 
   Chat,
   Media,
@@ -135,6 +136,11 @@ export default {
       path: '',
       name: 'Log List',
       component: OcrLogList
+    },{
+      path: '/:id/detail',
+      name: 'Detail OCR Log',
+      sidebar: false,
+      component: DetailOcr
     }]
   },
   {

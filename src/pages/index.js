@@ -14,6 +14,7 @@ import AddClient from './Clients/AddClient'
 
 // Ocr
 import OcrLogList from './Ocr/OcrLogList'
+import DetailOcr from './Ocr/DetailOcr'
 
 // Apps
 import Chat from './Apps/Chat'
@@ -96,6 +97,7 @@ export {
   AddClient,
 
   OcrLogList,
+  DetailOcr,
   
   Chat,
   Media,
