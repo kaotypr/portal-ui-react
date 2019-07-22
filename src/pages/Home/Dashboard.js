@@ -1,11 +1,11 @@
-import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import Grid from '@material-ui/core/Grid';
-import { Bar, HorizontalBar, Line, Bubble, Doughnut, Pie, Polar, Radar } from 'react-chartjs-2';
-import { Wrapper } from '../../components';
-import { mockChart } from '../../utils/mock';
+import React from 'react'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardHeader from '@material-ui/core/CardHeader'
+import Grid from '@material-ui/core/Grid'
+import { Bar, HorizontalBar, Line, Bubble, Doughnut, Pie, Polar, Radar } from 'react-chartjs-2'
+import { Wrapper } from '../../components'
+import { mockChart } from '../../utils/mock'
 
 const Charts = () => (
   <Wrapper>
@@ -80,6 +80,6 @@ const Charts = () => (
       ))}
     </Grid>
   </Wrapper>
-);
+)
 
-export default Charts;
+export default Charts

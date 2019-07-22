@@ -76,7 +76,7 @@ class ListUser extends Component {
   render() {
     const { data } = this.state
     const { classes } = this.props
-    const actionPathSetter = { detail: (id) => `${this.props.match.path}/${id}/detail` }
+    const actionPathSetter = { detail: (id) => `${this.props.match.path}/${id}/detail`, validate: (id) => `${this.props.match.path}/${id}/validate` }
     const rows = [
       { key: 'nama_lengkap', align: 'left', disablePadding: false, label: 'Name', filter: '' },
       { key: 'nik', align: 'right', disablePadding: false, label: 'NIK', filter: '' },
